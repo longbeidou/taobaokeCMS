@@ -8,10 +8,10 @@
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
       <div class="ibox float-e-margins">
+          @include('admin.layouts.form._errors')
           <div class="ibox-title">
               <h5>编辑个人信息</h5>
           </div>
-          @include('admin.layouts.form._errors')
           <div class="ibox-content" style="display: block;">
               <form class="form-horizontal" method="post" action="{{ route('adminers.update', $adminer->id) }}" target="_self">
                   <p>欢迎登录本站(⊙o⊙)</p>
