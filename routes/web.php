@@ -16,6 +16,6 @@ Route::get('admin/login', 'Admin\AdminerLoginController@create')->name('admin.cr
 Route::post('admin/login', 'Admin\AdminerLoginController@checkAdminer')->name('admin.checkAdminer');
 
 // 管理员后台登录
-Route::group(['middleware'=>'CheckAdminer'], function () {
+Route::group(['middleware'=>'checkAdminer'], function () {
   Route::get('admin/dashboard', 'Admin\AdminerLoginController@dashboard')->name('admin.dashboard');
 });

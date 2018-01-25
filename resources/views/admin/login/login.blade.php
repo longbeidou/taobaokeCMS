@@ -14,7 +14,6 @@
 
     <link href="/adminstyle/css/animate.min.css" rel="stylesheet">
     <link href="/adminstyle/css/style.min.css?v=4.0.0" rel="stylesheet">
-    <base target="_blank">
     <!--[if lt IE 8]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
@@ -31,14 +30,14 @@
                 </h1>
             </div>
             <h3>管理员登录系统</h3>
-
+            @include('admin.layouts._errors')
             <form class="m-t" role="form" method="post" action="{{ route('admin.checkAdminer') }}">
               {{ csrf_field() }}
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="用户名" required="">
+                    <input type="email" class="form-control" name="email" placeholder="邮箱" required="">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="密码" required="">
+                    <input type="password" class="form-control" name="password" placeholder="密码" required="">
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
             </form>

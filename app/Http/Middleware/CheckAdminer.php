@@ -15,10 +15,10 @@ class CheckAdminer
      */
     public function handle($request, Closure $next)
     {
-        if ( $request->session()->has('adminid') ) {
+        if ( $request->session()->has('adminer_id') ) {
           return $next($request);
         } else {
-          return redirect()->route('admin.create')->withErrors('请用管理员账号登录！')
+          return redirect()->route('admin.create')->withErrors('请用管理员账号登录！');
         }
     }
 }
