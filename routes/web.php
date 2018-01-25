@@ -20,4 +20,7 @@ Route::group(['middleware'=>'checkAdminer'], function () {
   Route::get('admin/dashboard', 'Admin\AdminerLoginController@dashboard')->name('admin.dashboard');
   Route::get('admin/dashbard/index', 'Admin\AdminerLoginController@index')->name('admin.dashbard.index');
   Route::get('admin/logout', 'Admin\AdminerLoginController@logout')->name('admin.logout');
+  Route::get('adminers/{adminer}', 'Admin\AdminersController@show')->name('adminers.show');
+  Route::get('adminers/{adminer}/edit', 'Admin\AdminersController@edit')->name('adminers.edit');
+  Route::patch('adminers/{adminer}', 'Admin\AdminersController@update')->name('adminers.update');
 });

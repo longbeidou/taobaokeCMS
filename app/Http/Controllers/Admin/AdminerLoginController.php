@@ -13,8 +13,9 @@ class AdminerLoginController extends Controller
     public function dashboard (Request $request) {
       $adminer = Adminer::where('id', $request->session()->get('adminer_id'))->first();
       $name = $adminer->name;
+      $adminerId = $request->session()->get('adminer_id');
 
-      return view('admin.dashboard', compact('name'));
+      return view('admin.dashboard', compact('name', 'adminerId'));
     }
 
     // 管理的登录页面

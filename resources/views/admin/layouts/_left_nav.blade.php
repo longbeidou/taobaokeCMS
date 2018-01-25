@@ -13,9 +13,11 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a class="J_menuItem" href="form_avatar.html">修改密码</a>
+                        <li><a class="J_menuItem" href="{{ route('adminers.edit', $adminerId)}}">修改密码</a>
                         </li>
-                        <li><a class="J_menuItem" href="profile.html">个人资料</a>
+                        <li><a class="J_menuItem" href="{{ route('adminers.edit', $adminerId)}}">编辑个人资料</a>
+                        </li>
+                        <li><a class="J_menuItem" href="{{ route('adminers.show', $adminerId) }}">个人资料</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="{{ route('admin.logout') }}">安全退出</a>
