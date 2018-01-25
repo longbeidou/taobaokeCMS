@@ -12,10 +12,12 @@
 */
 
 // 管理员登录后台
-Route::get('admin/login', 'Admin\AdminerLoginController@create')->name('admin.create');
+Route::get('admin/login', 'Admin\AdminerLoginController@create')->name('admin.login');
 Route::post('admin/login', 'Admin\AdminerLoginController@checkAdminer')->name('admin.checkAdminer');
 
 // 管理员后台登录
 Route::group(['middleware'=>'checkAdminer'], function () {
   Route::get('admin/dashboard', 'Admin\AdminerLoginController@dashboard')->name('admin.dashboard');
+  Route::get('admin/dashbard/index', 'Admin\AdminerLoginController@index')->name('admin.dashbard.index');
+  Route::get('admin/logout', 'Admin\AdminerLoginController@logout')->name('admin.logout');
 });

@@ -18,7 +18,7 @@ class CheckAdminer
         if ( $request->session()->has('adminer_id') ) {
           return $next($request);
         } else {
-          return redirect()->route('admin.create')->withErrors('请用管理员账号登录！');
+          return redirect()->route('admin.login')->withErrors('请用管理员账号登录！');
         }
     }
 }
