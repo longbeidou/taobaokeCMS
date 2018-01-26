@@ -25,6 +25,22 @@ class AdminersController extends Controller
 
     // 编辑用户的个人资料
     public function update (AdminerInfomationRequest $request) {
-      return redirect()->route('adminers.edit', $request->id)->with('sucess', '更新管理员资料成功！');
+      Adminer::where('id', $request->id)->update(['name'=>$request->name, 'email'=>$request->email]);
+
+      return redirect()->route('adminers.edit', $request->id)->with('success', '更新管理员资料成功！');
+    }
+
+    // 显示修改用户密码的页面
+    public function updatePassword (Adminer $adminer) {
+      $title = '编辑管理员密码';
+
+      return view('admin.adminer.change_password', compact('title', 'adminer'));
+    }
+
+    // 修改用户的密码
+    public function updatePasswordaction(\App\Http\Requests\AdminerChangePasswordRequest $request) {
+      $password_ori = Adminer::where('id', $request->id)->first();
+      dd($password_ori);
+      return redirect()->route('adminers.update.password', $request->id)->with('success', '成功修改管理员！');
     }
 }

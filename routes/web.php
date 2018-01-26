@@ -23,4 +23,6 @@ Route::group(['middleware'=>'checkAdminer'], function () {
   Route::get('adminers/{adminer}', 'Admin\AdminersController@show')->name('adminers.show');
   Route::get('adminers/{adminer}/edit', 'Admin\AdminersController@edit')->name('adminers.edit');
   Route::patch('adminers/{adminer}', 'Admin\AdminersController@update')->name('adminers.update');
+  Route::get('adminers/{adminer}/changepassword', 'Admin\AdminersController@updatePassword')->name('adminers.update.password');
+  Route::post('adminers/{adminer}/changepassword', 'Admin\AdminersController@updatePasswordaction')->name('adminers.update.passwordaction');
 });

@@ -13,7 +13,7 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a class="J_menuItem" href="{{ route('adminers.edit', $adminerId)}}">修改密码</a>
+                        <li><a class="J_menuItem" href="{{ route('adminers.update.password', $adminerId)}}">修改密码</a>
                         </li>
                         <li><a class="J_menuItem" href="{{ route('adminers.edit', $adminerId)}}">编辑个人资料</a>
                         </li>
