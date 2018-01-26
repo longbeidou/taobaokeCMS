@@ -9,6 +9,7 @@
   <div class="col-sm-6 col-sm-offset-3">
       <div class="ibox float-e-margins">
           @include('admin.layouts.form._errors')
+          @include('admin.layouts.form._tips')
           <div class="ibox-title">
               <h5>编辑个人信息</h5>
           </div>
