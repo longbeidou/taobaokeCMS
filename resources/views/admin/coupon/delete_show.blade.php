@@ -6,7 +6,7 @@
 @stop
 @section('content')
 <div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
+  <div class="col-sm-8 col-sm-offset-2">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
             <h5>批量删除优惠券信息</h5>
