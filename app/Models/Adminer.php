@@ -13,6 +13,6 @@ class Adminer extends Model
     ];
 
     protected $hidden = [
-      // 'password', 'remember_token'
+      'password', 'remember_token'
     ];
 }
