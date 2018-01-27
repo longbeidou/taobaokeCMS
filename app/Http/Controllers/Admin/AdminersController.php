@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Adminer;
 use App\Http\Requests\AdminerInfomationRequest;
+use Hash;
 
 class AdminersController extends Controller
 {
@@ -39,8 +40,15 @@ class AdminersController extends Controller
 
     // 修改用户的密码
     public function updatePasswordaction(\App\Http\Requests\AdminerChangePasswordRequest $request) {
-      $password_ori = Adminer::where('id', $request->id)->first();
-      dd($password_ori);
-      return redirect()->route('adminers.update.password', $request->id)->with('success', '成功修改管理员！');
+      $password_ori = Adminer::where('id', $request->id)->first()->password;
+
+      if (Hash::check($request->password, $password_ori)) {
+        Adminer::where('id', $request->id)->update(['password'=>Hash::make($request->password_new)]);
+
+        return redirect()->route('adminers.update.password', $request->id)->with('success', '成功修改管理员登录密码！');
+      } else {
+
+        return redirect()->route('adminers.update.password', $request->id)->with('danger', '请输入正确的管理员密码！');
+      }
     }
 }
