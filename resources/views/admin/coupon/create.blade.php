@@ -6,7 +6,7 @@
 @stop
 @section('content')
 <div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
+  <div class="col-sm-8 col-sm-offset-2">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
             <h5>将Excel优惠券文件的信息导入数据库</h5>
