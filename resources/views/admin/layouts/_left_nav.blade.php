@@ -69,10 +69,10 @@
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="{{ route('admin.dashbard.index') }}" data-index="0">增加优惠券</a>
+                        <a class="J_menuItem" href="{{ route('admin.coupons.create') }}" data-index="0">增加优惠券</a>
                     </li>
                     <li>
-                        <a class="J_menuItem" href="{{ route('admin.dashbard.index') }}">删除优惠券</a>
+                        <a class="J_menuItem" href="{{ route('admin.coupons.delete.show') }}">删除优惠券</a>
                     </li>
                 </ul>
             </li>
