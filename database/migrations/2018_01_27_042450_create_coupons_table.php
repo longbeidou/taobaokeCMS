@@ -14,15 +14,16 @@ class CreateCouponsTable extends Migration
     public function up()
     {
         Schema::create('coupons', function (Blueprint $table) {
-            $table->increments('id');
+            $table->engine = 'MyISAM';
+          
             $table->increments('id');
             $table->unique('id');
             $table->index('id');
             $table->char('goods_id',15);      //商品id
             $table->char('goods_name',120); //商品名称
             $table->string('image');          //商品主图
-            $table->string('info_link');      //商品详情页链接地址
-            $table->string('cate');           //商品一级类目
+            $table->string('goods_info_link');      //商品详情页链接地址
+            $table->string('category');           //商品一级类目
             $table->string('taobaoke_click_link');  //淘宝客链接
             $table->decimal('price',7,2);     //商品价格(单位：元)
             $table->integer('sales');     //商品月销量
