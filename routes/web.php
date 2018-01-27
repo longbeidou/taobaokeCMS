@@ -26,5 +26,6 @@ Route::group(['middleware'=>'checkAdminer'], function () {
   Route::get('adminers/{adminer}/changepassword', 'Admin\AdminersController@updatePassword')->name('adminers.update.password');
   Route::post('adminers/{adminer}/changepassword', 'Admin\AdminersController@updatePasswordaction')->name('adminers.update.passwordaction');
   Route::get('admin/coupons/create', 'Admin\CouponsController@create')->name('admin.coupons.create');
+  Route::post('admin/copons/create/excel', 'Admin\CouponsController@storeExcel')->name('admin.coupons.storeExcel')->middleware('CheckCouponExcel');
   Route::get('admin/coupons/delete/show', 'Admin\CouponsController@deleteShow')->name('admin.coupons.delete.show');
 });

@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'checkAdminer' => \App\Http\Middleware\CheckAdminer::class,
+        'CheckCouponExcel' => \App\Http\Middleware\CheckCouponExcel::class,
     ];
 }

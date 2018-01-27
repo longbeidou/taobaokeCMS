@@ -15,7 +15,7 @@ class CreateCouponsTable extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->engine = 'MyISAM';
-          
+
             $table->increments('id');
             $table->unique('id');
             $table->index('id');
@@ -24,7 +24,7 @@ class CreateCouponsTable extends Migration
             $table->string('image');          //商品主图
             $table->string('goods_info_link');      //商品详情页链接地址
             $table->string('category');           //商品一级类目
-            $table->string('taobaoke_click_link');  //淘宝客链接
+            $table->string('taobaoke_click_link', 400);  //淘宝客链接
             $table->decimal('price',7,2);     //商品价格(单位：元)
             $table->integer('sales');     //商品月销量
             $table->decimal('rate',5,2);  //收入比率(%)
@@ -40,7 +40,7 @@ class CreateCouponsTable extends Migration
             $table->date('coupon_begin_date');    //优惠券开始时间
             $table->date('coupon_end_date');      //优惠券结束时间
             $table->string('coupon_link');   //优惠券链接
-            $table->string('coupon_promote_link');  //商品优惠券推广链接
+            $table->string('coupon_promote_link', 400);  //商品优惠券推广链接
             $table->decimal('price_now',7,2)->nullable();  //商品的现价(单位：元)
             $table->decimal('rate_sales',5,2)->nullable(); //商品的优惠幅度（单位：%）
             $table->char('is_recommend',1)->default('1'); //商品是否推荐，1表示推荐，0表示不推荐
