@@ -25,7 +25,7 @@ class AdminerInfomationRequest extends FormRequest
     {
         return [
             'name' => 'required|min:6|max:30',
-            'email' => 'email|required|unique:adminers,email'
+            'email' => 'email|required'
         ];
     }
 
@@ -37,7 +37,7 @@ class AdminerInfomationRequest extends FormRequest
          'name.max' => '用户名最多有30个字符组成',
          'email' => '请输入有效的邮箱',
          'email.required' => '邮箱必填',
-         'email.unique' => '系统中已经存在相同的邮箱，请重新输入'
+         // 'email.unique' => '系统中已经存在相同的邮箱，请重新输入'
        ];
     }
 }
