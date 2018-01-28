@@ -11,7 +11,28 @@ use App\Models\Adminer;
 
 class CouponsController extends Controller
 {
-    static public $successInsertNum = 0;
+    static public $successInsertNum = 0; // 成功修改或插入数据库的优惠券信息条数
+    public $pageSize = 10; // 后台优惠券列表每页默认显示的优惠券条数
+
+    // 优惠券信息的列表
+    public function index (Request $request)
+    {
+      $title = "优惠券商品列表";
+      $viewData = $request->all();
+      $viewData['title'] = $title;
+
+      $urlStr = $this->makeRequstToURLStr($request->all());
+      $pageSize = $this->getPageSize($request->page_size);
+      $coupons = $this->listWhere(new Coupon, $request);
+      $coupons = $this->listOrderBy($coupons, $request);
+      $coupons = $coupons->paginate($pageSize);
+
+      $viewData['urlStr'] = $urlStr;
+      $viewData['coupons'] = $coupons;
+      $viewData['oldRequest'] = $request->all();
+
+      return view('admin.coupon.index', $viewData);
+    }
 
     // 展示增加优惠券数据库的页面
     public function create ()
@@ -176,5 +197,182 @@ class CouponsController extends Controller
     public function getDateTimeEnd ($date)
     {
       return date('Y-m-d H:i:s', strtotime($date)+60*60*24-1);
+    }
+
+    // 将请求的参数制成url字符串参数形式
+    public function makeRequstToURLStr (Array $array)
+    {
+      $urlStr = '';
+
+      foreach ($array as $key => $value) {
+        if ( $key != 'page_size' && $key != 'order') {
+          $urlStr .= $key.'='.$value.'&';
+        }
+      }
+
+      return $urlStr;
+    }
+
+    // Coupon 模型的where条件
+    public function listWhere ($coupon, Request $request)
+    {
+        if ( !empty($request->price_min) ) {
+          $coupon = $coupon->where('price', '>=', $request->price_min);
+        }
+        if ( !empty($request->price_max) ) {
+          $coupon = $coupon->where('price', '<=', $request->price_max);
+        }
+        if ( !empty($request->price_now_min) ) {
+          $coupon = $coupon->where('price_now', '>=', $request->price_now_min);
+        }
+        if ( !empty($request->price_now_max) ) {
+          $coupon = $coupon->where('price_now', '<=', $request->price_now_max);
+        }
+        if ( !empty($request->money_min) ) {
+          $coupon = $coupon->where('money', '>=', $request->money_min);
+        }
+        if ( !empty($request->money_max) ) {
+          $coupon = $coupon->where('money', '<=', $request->money_max);
+        }
+        if ( !empty($request->sales_min) ) {
+          $coupon = $coupon->where('sales', '>=', $request->sales_min);
+        }
+        if ( !empty($request->sales_max) ) {
+          $coupon = $coupon->where('sales', '<=', $request->sales_min);
+        }
+        if ( !empty($request->rate_sales_min) ) {
+          $coupon = $coupon->where('rate_sales', '>=', $request->rate_sales_min);
+        }
+        if ( !empty($request->rate_sales_max) ) {
+          $coupon = $coupon->where('rate_sales', '<=', $request->rate_sales_min);
+        }
+        if ( !empty($request->flat) ) {
+          switch ($request->flat) {
+            case 'taobao':
+              $coupon = $coupon->where('flat', '淘宝');
+              break;
+
+            case 'tmall':
+              $coupon = $coupon->where('flat', '天猫');
+              break;
+
+            case 'all':
+            default:
+              return $coupon;
+              break;
+          }
+        }
+        if ( !empty($request->is_recommend) ) {
+          switch ($request->is_recommend) {
+            case 'yes':
+              $coupon = $coupon->where('is_recommend', '1');
+              break;
+
+            case 'no':
+              $coupon = $coupon->where('is_recommend', '0');
+              break;
+
+            case 'all':
+            default:
+              return $coupon;
+              break;
+          }
+        }
+        if ( !empty($request->is_show) ) {
+          switch ($request->is_show) {
+            case 'yes':
+              $coupon = $coupon->where('is_show', '1');
+              break;
+
+            case 'no':
+              $coupon = $coupon->where('is_show', '0');
+              break;
+
+            case 'all':
+            default:
+              return $coupon;
+              break;
+          }
+        }
+        if ( !empty($request->goods_name) ) {
+          $coupon = $this->goodsNameWhere($coupon, $request->goods_name);
+        }
+
+        return $coupon;
+    }
+
+    // 根据关键词处理搜索条件
+    public function goodsNameWhere ($coupon, $goodsName)
+    {
+      $goodsNameArr = explode(' ', $goodsName);
+      $goodsNameArr = array_filter($goodsNameArr);
+      foreach ($goodsNameArr as $goods_name) {
+        $coupon = $coupon->where('goods_name', 'like', '%'.$goods_name.'%');
+      }
+
+      return $coupon;
+    }
+
+    // Coupon 模型的orderby条件
+    public function listOrderBy ($coupon, Request $request)
+    {
+      if ( !empty($request->order) ) {
+        switch ($request->order) {
+          case 'price_up':
+            $coupon = $coupon->orderBy('price', 'asc');
+            break;
+
+          case 'price_down':
+            $coupon = $coupon->orderBy('price', 'desc');
+            break;
+
+          case 'price_now_up':
+            $coupon = $coupon->orderBy('price_now', 'asc');
+            break;
+
+          case 'price_now_down':
+            $coupon = $coupon->orderBy('price_now', 'desc');
+            break;
+
+          case 'rate_sales_up':
+            $coupon = $coupon->orderBy('rate_sales', 'asc');
+            break;
+
+          case 'rate_sales_down':
+            $coupon = $coupon->orderBy('rate_sales', 'desc');
+            break;
+
+          case 'money_up':
+            $coupon = $coupon->orderBy('money', 'asc');
+            break;
+
+          case 'money_down':
+            $coupon = $coupon->orderBy('money', 'desc');
+            break;
+
+          case 'sales_up':
+            $coupon = $coupon->orderBy('sales', 'asc');
+            break;
+
+          case 'sales_down':
+            $coupon = $coupon->orderBy('sales', 'desc');
+            break;
+
+          default:
+            return $coupon;
+            break;
+        }
+      }
+      return $coupon;
+    }
+
+    // 获取每页显示的条数
+    public function getPageSize($pageSize)
+    {
+      if ( !empty($pageSize) ) {
+        return $pageSize;
+      }
+
+      return $this->pageSize;
     }
 }

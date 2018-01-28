@@ -64,6 +64,24 @@
             <li>
                 <a href="#">
                     <i class="fa fa-home"></i>
+                    <span class="nav-label">优惠券商品</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem" href="{{ route('admin.coupons.index') }}" data-index="0">优惠券商品列表</a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="{{ route('admin.coupons.delete.show') }}">优惠券分类类别</a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="{{ route('admin.coupons.delete.show') }}">添加优惠分类</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-home"></i>
                     <span class="nav-label">优惠券数据库</span>
                     <span class="fa arrow"></span>
                 </a>
