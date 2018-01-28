@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use Excel;
+use Hash;
+use App\Models\Adminer;
 
 class CouponsController extends Controller
 {
@@ -39,6 +41,32 @@ class CouponsController extends Controller
       $title = '删除优惠券';
 
       return view('admin.coupon.delete_show', compact('title'));
+    }
+
+    // 情况优惠券的数据库
+    public function deleteAll (Request $request)
+    {
+      if ( $this->isAdminerPassword($request->password, $request->adminer_id) ) {
+        Coupon::truncate();
+
+        return redirect()->route('admin.coupons.delete.show')->with('success', '成功清空数据库！');
+      } else {
+
+        return redirect()->route('admin.coupons.delete.show')->withErrors('请输入正确的管理员密码！');
+      }
+    }
+
+    // 删除特定创建日期的优惠券信息
+    public function deleteFromDateToDate (Request $request)
+    {
+      $dateBegin = $this->getDateTimeBegin($request->date_begin);
+      $dateEnd = $this->getDateTimeEnd($request->date_end);
+      $num = Coupon::whereBetween('created_at',[$dateBegin, $dateEnd])->delete();
+      if ($num) {
+        return redirect()->route('admin.coupons.delete.show')->with('success', '成功删除创建日期在'.$dateBegin.'至'.$dateEnd.'的'.$num.'条优惠券信息！');
+      } else {
+        return redirect()->route('admin.coupons.delete.show')->with('warning', '所选择的日期'.$dateBegin.'至'.$dateEnd.'没有对应的优惠券信息！');
+      }
     }
 
     // 获取优惠券Excel文件的完整路径
@@ -129,5 +157,24 @@ class CouponsController extends Controller
         ['goods_id'=>$goodsId], $couponStandardArray
       );
       self::$successInsertNum+=1;
+    }
+
+    // 检验提交的密码是否是管理员的密码
+    public function isAdminerPassword ($password, $adminerId) {
+      $adminerPassword = Adminer::where('id', $adminerId)->first(['password'])->password;
+
+      return Hash::check($password, $adminerPassword);
+    }
+
+    // 获取查询的开始日期
+    public function getDateTimeBegin ($date)
+    {
+      return date('Y-m-d H:i:s', strtotime($date));
+    }
+
+    // 获取查询的结束日期
+    public function getDateTimeEnd ($date)
+    {
+      return date('Y-m-d H:i:s', strtotime($date)+60*60*24-1);
     }
 }

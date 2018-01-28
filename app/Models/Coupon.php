@@ -13,6 +13,5 @@ class Coupon extends Model
   ];
 
   protected $hidden = [
-    // 'password', 'remember_token'
   ];
 }

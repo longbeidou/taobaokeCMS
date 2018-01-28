@@ -28,4 +28,6 @@ Route::group(['middleware'=>'checkAdminer'], function () {
   Route::get('admin/coupons/create', 'Admin\CouponsController@create')->name('admin.coupons.create');
   Route::post('admin/copons/create/excel', 'Admin\CouponsController@storeExcel')->name('admin.coupons.storeExcel')->middleware('CheckCouponExcel');
   Route::get('admin/coupons/delete/show', 'Admin\CouponsController@deleteShow')->name('admin.coupons.delete.show');
+  Route::post('admin/coupons/delete/all', 'Admin\CouponsController@deleteAll')->name('admin.coupons.delete.all');
+  Route::post('admin/coupons/delete/fromdatetodate', 'Admin\CouponsController@deleteFromDateToDate')->name('admin.coupons.delete.fromdatetodate');
 });
