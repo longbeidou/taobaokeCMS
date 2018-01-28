@@ -51,37 +51,34 @@ class CouponsController extends Controller
       return $filePath = $destinationPath.$fileName;
     }
 
-    // 将从Excel获取到的文件写入数据库
-    public function couponsInsert (Array $couponOriginInfo)
-    {
-      $coupon = new Coupon;
+    // 将Excel中获取的行数据整理成想要的数组
+    public function makeStandardArray ( $couponOriginInfo ) {
+      $coupon['goods_id']            = $couponOriginInfo['1'];
+      $coupon['goods_name']          = $couponOriginInfo['2'];
+      $coupon['image']               = $couponOriginInfo['3'];
+      $coupon['goods_info_link']     = $couponOriginInfo['4'];
+      $coupon['category']            = $couponOriginInfo['5'];
+      $coupon['taobaoke_click_link'] = $couponOriginInfo['6'];
+      $coupon['price']               = $couponOriginInfo['7'];
+      $coupon['sales']               = $couponOriginInfo['8'];
+      $coupon['rate']                = $couponOriginInfo['9'];
+      $coupon['money']               = $couponOriginInfo['10'];
+      $coupon['seller_wangwang']     = $couponOriginInfo['11'];
+      $coupon['seller_id']           = $couponOriginInfo['12'];
+      $coupon['shop_name']           = $couponOriginInfo['13'];
+      $coupon['flat']                = $couponOriginInfo['14'];
+      $coupon['coupon_id']           = $couponOriginInfo['15'];
+      $coupon['coupon_total']        = $couponOriginInfo['16'];
+      $coupon['coupon_last']         = $couponOriginInfo['17'];
+      $coupon['coupon_info']         = $couponOriginInfo['18'];
+      $coupon['coupon_begin_date']   = $couponOriginInfo['19'];
+      $coupon['coupon_end_date']     = $couponOriginInfo['20'];
+      $coupon['coupon_link']         = $couponOriginInfo['21'];
+      $coupon['coupon_promote_link'] = $couponOriginInfo['22'];
+      $coupon['price_now']           = $this->getPriceNow($coupon['coupon_info'], $coupon['price']);
+      $coupon['rate_sales']          = $this->getRateSales($coupon['price_now'], $coupon['price']);
 
-      $coupon->goods_id            = $couponOriginInfo['1'];
-      $coupon->goods_name          = $couponOriginInfo['2'];
-      $coupon->image               = $couponOriginInfo['3'];
-      $coupon->goods_info_link     = $couponOriginInfo['4'];
-      $coupon->category            = $couponOriginInfo['5'];
-      $coupon->taobaoke_click_link = $couponOriginInfo['6'];
-      $coupon->price               = $couponOriginInfo['7'];
-      $coupon->sales               = $couponOriginInfo['8'];
-      $coupon->rate                = $couponOriginInfo['9'];
-      $coupon->money               = $couponOriginInfo['10'];
-      $coupon->seller_wangwang     = $couponOriginInfo['11'];
-      $coupon->seller_id           = $couponOriginInfo['12'];
-      $coupon->shop_name           = $couponOriginInfo['13'];
-      $coupon->flat                = $couponOriginInfo['14'];
-      $coupon->coupon_id           = $couponOriginInfo['15'];
-      $coupon->coupon_total        = $couponOriginInfo['16'];
-      $coupon->coupon_last         = $couponOriginInfo['17'];
-      $coupon->coupon_info         = $couponOriginInfo['18'];
-      $coupon->coupon_begin_date   = $couponOriginInfo['19'];
-      $coupon->coupon_end_date     = $couponOriginInfo['20'];
-      $coupon->coupon_link         = $couponOriginInfo['21'];
-      $coupon->coupon_promote_link = $couponOriginInfo['22'];
-      $coupon->price_now           = $this->getPriceNow($coupon->coupon_info, $coupon->price);
-      $coupon->rate_sales          = (1-$coupon->price_now/$coupon->price)*100;
-
-      $coupon->save();
+      return $coupon;
     }
 
     // 获取使用优惠券后的现价
@@ -94,9 +91,9 @@ class CouponsController extends Controller
     }
 
     // 获取商品的优惠幅度
-    public function getRateSales ()
+    public function getRateSales ($priceNow, $priceOri)
     {
-      //
+      return (1-$priceNow/$priceOri)*100;
     }
 
     // 将优惠券的面额处理成数组
@@ -126,11 +123,11 @@ class CouponsController extends Controller
     // 插入或更新数据库的优惠券信息
     public function insertOrUpdateCoupons (Array $coupon)
     {
-      if ( Coupon::where('goods_id', $coupon[1])->count() ) {
-
-      } else {
-        $this->couponsInsert($coupon);
-        self::$successInsertNum+=1;
-      }
+      $couponStandardArray = $this->makeStandardArray( $coupon );
+      $goodsId = array_shift($couponStandardArray);
+      Coupon::updateOrCreate(
+        ['goods_id'=>$goodsId], $couponStandardArray
+      );
+      self::$successInsertNum+=1;
     }
 }
