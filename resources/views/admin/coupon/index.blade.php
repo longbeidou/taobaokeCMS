@@ -9,9 +9,11 @@
 @section('content')
 <!-- 搜索控制面板 -->
 @include('admin.coupon._search_board')
+@include('admin.layouts.table._tips')
 
 <!-- 优惠券列表 -->
 <form action="" method="post" id="couponList">
+  {{ csrf_field() }}
 <div class="row">
     <div class="col-sm-12">
         <div class="ibox float-e-margins">
@@ -116,31 +118,31 @@
 
     // 删除选中
 		if (value == 1) {
-			form.action = 'https://www.52010000.cn/admin/coupon/list/delmany';
+			form.action = '{{ route('admin.coupons.deleteByIds') }}';
 			$("#couponList").attr('action', form.action);
 			form.submit();
 		}
     // 推荐选中
 		if (value == 2) {
-			form.action = "https://www.52010000.cn/admin/coupon/list/recommendmany";
+			form.action = "{{ route('admin.coupons.recommendByIds') }}";
 			$("#couponList").attr('action', form.action);
 			form.submit();
 		}
     // 取消推荐
 		if (value == 3) {
-			form.action = "https://www.52010000.cn/admin/coupon/list/cancelrecommendmany";
+			form.action = "{{ route('admin.coupons.notRecommendByIds') }}";
 			$("#couponList").attr('action', form.action);
 			form.submit();
 		}
     // 显示
 		if (value == 4) {
-			form.action = "https://www.52010000.cn/admin/coupon/list/cancelrecommendmany";
+			form.action = "{{ route('admin.coupons.showByIds') }}";
 			$("#couponList").attr('action', form.action);
 			form.submit();
 		}
     // 取消显示
 		if (value == 5) {
-			form.action = "https://www.52010000.cn/admin/coupon/list/cancelrecommendmany";
+			form.action = "{{ route('admin.coupons.notShowByIds') }}";
 			$("#couponList").attr('action', form.action);
 			form.submit();
 		}

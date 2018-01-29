@@ -42,6 +42,180 @@ class CouponsController extends Controller
       return view('admin.coupon.create', compact('title'));
     }
 
+    // 根据优惠券的id批量删除
+    public function deleteByIds (Request $request)
+    {
+      $ids = $request->ids;
+      $num = Coupon::destroy($ids);
+
+      if ($num) {
+
+        return back()->with('success', '成功删除'.$num.'条商品信息！');
+      } else {
+
+        return back()->with('warning', '成功删除'.$num.'条商品信息！');
+      }
+    }
+
+    // 更加优惠券的id批量推荐商品
+    public function recommendByIds(Request $request)
+    {
+      $ids = $request->ids;
+
+      if ( !count($ids) ) {
+        return back()->with('warning', '您没有选择要推荐的商品！');
+      }
+
+      $num = Coupon::whereIn('id', $ids)->update(['is_recommend'=>1]);
+
+      if ($num) {
+
+        return back()->with('success', '成功推荐'.$num.'条商品信息！');
+      } else {
+
+        return back()->with('warning', '成功推荐'.$num.'条商品信息！');
+      }
+    }
+
+    // 更加优惠券的id批量取消推荐商品
+    public function notRecommendByIds(Request $request)
+    {
+      $ids = $request->ids;
+
+      if ( !count($ids) ) {
+        return back()->with('warning', '您没有选择要取消推荐的商品！');
+      }
+
+      $num = Coupon::whereIn('id', $ids)->update(['is_recommend'=>0]);
+
+      if ($num) {
+
+        return back()->with('success', '成功取消推荐'.$num.'条商品信息！');
+      } else {
+
+        return back()->with('warning', '成功取消推荐'.$num.'条商品信息！');
+      }
+    }
+
+    // 更加优惠券的id批量推荐商品
+    public function showByIds(Request $request)
+    {
+      $ids = $request->ids;
+
+      if ( !count($ids) ) {
+        return back()->with('warning', '您没有选择要显示的商品！');
+      }
+
+      $num = Coupon::whereIn('id', $ids)->update(['is_show'=>1]);
+
+      if ($num) {
+
+        return back()->with('success', '成功设置'.$num.'条商品信息为显示状态！');
+      } else {
+
+        return back()->with('warning', '成功设置'.$num.'条商品信息为显示状态！');
+      }
+    }
+
+    // 更加优惠券的id批量取消推荐商品
+    public function notShowByIds(Request $request)
+    {
+      $ids = $request->ids;
+
+      if ( !count($ids) ) {
+        return back()->with('warning', '您没有选择要取消显示的商品！');
+      }
+
+      $num = Coupon::whereIn('id', $ids)->update(['is_show'=>0]);
+
+      if ($num) {
+
+        return back()->with('success', '成功设置'.$num.'条商品信息为不显示状态！');
+      } else {
+
+        return back()->with('warning', '成功设置'.$num.'条商品信息为不显示状态！');
+      }
+    }
+
+    // 根据优惠券的id批量删除
+    public function deleteById (Request $request)
+    {
+      $id = $request->id;
+      $num = Coupon::destroy($id);
+
+      if ($num) {
+
+        return back()->with('success', '成功删除id为'.$id.'的商品信息！');
+      } else {
+
+        return back()->with('warning', 'id为'.$id.'的商品信息不存在！');
+      }
+    }
+
+    // 根据优惠券的id批量推荐商品
+    public function recommendById(Request $request)
+    {
+      $id = $request->id;
+
+      $num = Coupon::where('id', $id)->update(['is_recommend'=>1]);
+
+      if ($num) {
+
+        return back()->with('success', '成功推荐id为'.$id.'的商品信息！');
+      } else {
+
+        return back()->with('warning', '成功推荐id为'.$id.'的商品信息！');
+      }
+    }
+
+    // 根据优惠券的id批量取消推荐商品
+    public function notRecommendById(Request $request)
+    {
+      $id = $request->id;
+
+      $num = Coupon::where('id', $id)->update(['is_recommend'=>0]);
+
+      if ($num) {
+
+        return back()->with('success', '成功取消推荐id为'.$id.'的商品信息！');
+      } else {
+
+        return back()->with('warning', '成功取消推荐id为'.$id.'的商品信息！');
+      }
+    }
+
+    // 根据优惠券的id批量推荐商品
+    public function showById(Request $request)
+    {
+      $id = $request->id;
+
+      $num = Coupon::where('id', $id)->update(['is_show'=>1]);
+
+      if ($num) {
+
+        return back()->with('success', '成功设置id为'.$id.'的商品信息为显示状态！');
+      } else {
+
+        return back()->with('warning', '成功设置id为'.$id.'的商品信息为显示状态！');
+      }
+    }
+
+    // 根据优惠券的id批量取消推荐商品
+    public function notShowById(Request $request)
+    {
+      $id = $request->id;
+
+      $num = Coupon::where('id', $id)->update(['is_show'=>0]);
+
+      if ($num) {
+
+        return back()->with('success', '成功设置id为'.$id.'的商品信息为不显示状态！');
+      } else {
+
+        return back()->with('warning', '成功设置id为'.$id.'的商品信息为不显示状态！');
+      }
+    }
+
     // 将Excel文件的内容入库
     public function storeExcel (Request $request)
     {
@@ -238,13 +412,13 @@ class CouponsController extends Controller
           $coupon = $coupon->where('sales', '>=', $request->sales_min);
         }
         if ( !empty($request->sales_max) ) {
-          $coupon = $coupon->where('sales', '<=', $request->sales_min);
+          $coupon = $coupon->where('sales', '<=', $request->sales_max);
         }
         if ( !empty($request->rate_sales_min) ) {
-          $coupon = $coupon->where('rate_sales', '>=', $request->rate_sales_min);
+          $coupon = $coupon->where('rate_sales', '>=', $request->rate_sales_min*100);
         }
         if ( !empty($request->rate_sales_max) ) {
-          $coupon = $coupon->where('rate_sales', '<=', $request->rate_sales_min);
+          $coupon = $coupon->where('rate_sales', '<=', $request->rate_sales_max*100);
         }
         if ( !empty($request->flat) ) {
           switch ($request->flat) {
@@ -258,7 +432,6 @@ class CouponsController extends Controller
 
             case 'all':
             default:
-              return $coupon;
               break;
           }
         }
@@ -274,7 +447,6 @@ class CouponsController extends Controller
 
             case 'all':
             default:
-              return $coupon;
               break;
           }
         }
@@ -290,7 +462,6 @@ class CouponsController extends Controller
 
             case 'all':
             default:
-              return $coupon;
               break;
           }
         }

@@ -43,7 +43,7 @@ class CreateCouponsTable extends Migration
             $table->string('coupon_promote_link', 400);  //商品优惠券推广链接
             $table->decimal('price_now',7,2)->nullable();  //商品的现价(单位：元)
             $table->decimal('rate_sales',5,2)->nullable(); //商品的优惠幅度（单位：%）
-            $table->char('is_recommend',1)->default('1'); //商品是否推荐，1表示推荐，0表示不推荐
+            $table->char('is_recommend',1)->default('0'); //商品是否推荐，1表示推荐，0表示不推荐
             $table->char('is_show',1)->default('1'); //商品是否推荐，1表示显示，0表示不显示
             $table->char('tao_kou_ling',20)->nullable();   //淘口令
             $table->timestamps();

@@ -31,4 +31,14 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
   Route::post('coupons/delete/all', 'Admin\CouponsController@deleteAll')->name('admin.coupons.delete.all');
   Route::post('coupons/delete/fromdatetodate', 'Admin\CouponsController@deleteFromDateToDate')->name('admin.coupons.delete.fromdatetodate');
   Route::get('coupons', 'Admin\CouponsController@index')->name('admin.coupons.index');
+  Route::post('coupons/delete/byids', 'Admin\CouponsController@deleteByIds')->name('admin.coupons.deleteByIds');
+  Route::post('coupons/recommend/byids', 'Admin\CouponsController@recommendByIds')->name('admin.coupons.recommendByIds');
+  Route::post('coupons/notrecommend/byids', 'Admin\CouponsController@notRecommendByIds')->name('admin.coupons.notRecommendByIds');
+  Route::post('coupons/show/byids', 'Admin\CouponsController@showByIds')->name('admin.coupons.showByIds');
+  Route::post('coupons/notshow/byids', 'Admin\CouponsController@notShowByIds')->name('admin.coupons.notShowByIds');
+  Route::get('coupons/delete/{id}', 'Admin\CouponsController@deleteById')->name('admin.coupons.deleteById')->where('id', '[0-9]+');
+  Route::get('coupons/recommend/{id}', 'Admin\CouponsController@recommendById')->name('admin.coupons.recommendById')->where('id', '[0-9]+');
+  Route::get('coupons/notrecommend/{id}', 'Admin\CouponsController@notRecommendById')->name('admin.coupons.notRecommendById')->where('id', '[0-9]+');
+  Route::get('coupons/show/{id}', 'Admin\CouponsController@showById')->name('admin.coupons.showById')->where('id', '[0-9]+');
+  Route::get('coupons/notshow/{id}', 'Admin\CouponsController@notShowById')->name('admin.coupons.notShowById')->where('id', '[0-9]+');
 });
