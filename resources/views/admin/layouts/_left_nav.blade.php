@@ -72,10 +72,10 @@
                         <a class="J_menuItem" href="{{ route('admin.coupons.index') }}" data-index="0">优惠券商品列表</a>
                     </li>
                     <li>
-                        <a class="J_menuItem" href="{{ route('admin.coupons.delete.show') }}">优惠券分类类别</a>
+                        <a class="J_menuItem" href="{{ route('couponcategorys.index') }}">优惠券分类类别</a>
                     </li>
                     <li>
-                        <a class="J_menuItem" href="{{ route('admin.coupons.delete.show') }}">添加优惠分类</a>
+                        <a class="J_menuItem" href="{{ route('couponcategorys.create') }}">添加优惠分类</a>
                     </li>
                 </ul>
             </li>
