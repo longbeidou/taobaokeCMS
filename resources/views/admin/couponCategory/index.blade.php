@@ -18,11 +18,11 @@
                           <i class="fa fa-wrench"></i> 每页显示信息数
                       </a>
                       <ul class="dropdown-menu dropdown-user">
-                          <li><a href="https://www.52010000.cn/admin/coupon/category/list?pageNumber=10">每页显示10条信息</a></li>
-                          <li><a href="https://www.52010000.cn/admin/coupon/category/list?pageNumber=15">每页显示15条信息</a></li>
-                          <li><a href="https://www.52010000.cn/admin/coupon/category/list?pageNumber=20">每页显示20条信息</a></li>
-                          <li><a href="https://www.52010000.cn/admin/coupon/category/list?pageNumber=25">每页显示25条信息</a></li>
-                          <li><a href="https://www.52010000.cn/admin/coupon/category/list?pageNumber=30">每页显示30条信息</a></li>
+                          <li><a href="{{ route('couponCategorys.index') }}?page_size=10">每页显示10条信息</a></li>
+                          <li><a href="{{ route('couponCategorys.index') }}?page_size=15">每页显示15条信息</a></li>
+                          <li><a href="{{ route('couponCategorys.index') }}?page_size=20">每页显示20条信息</a></li>
+                          <li><a href="{{ route('couponCategorys.index') }}?page_size=25">每页显示25条信息</a></li>
+                          <li><a href="{{ route('couponCategorys.index') }}?page_size=30">每页显示30条信息</a></li>
                       </ul>
                   </div>
               </div>
@@ -66,9 +66,7 @@
 
         <!-- 分页 -->
         <div class="row text-center">
-            <nav aria-label="Page navigation">
-                <ul class="pagination"><li class="disabled"><span>&laquo;</span></li> <li class="active"><span>1</span></li><li><a href="https://www.52010000.cn/admin/coupon/category/list?page=2">2</a></li> <li><a href="https://www.52010000.cn/admin/coupon/category/list?page=2" rel="next">&raquo;</a></li></ul>
-            </nav>
+            {!! $couponCategorys->appends($oldRequest)->render() !!}
         </div>
               </div>
               </form>

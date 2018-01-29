@@ -16,7 +16,7 @@
         <div class="ibox-content">
           <div class="row form-body form-horizontal m-t">
             <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
-              <form action="{{ route('couponcategorys.store') }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('couponCategorys.store') }}" method="POST" enctype="multipart/form-data">
               		{{ csrf_field() }}
                   <div class="col-md-12">
                       <div class="form-group">
