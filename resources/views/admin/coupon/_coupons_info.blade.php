@@ -9,7 +9,7 @@
       {{ $coupon['goods_name'] }}
       </a>
     </td>
-    <td>{{ $coupon['category'] }}</td>
+    <td style="max-width:100px;">{{ $coupon['category'] }}</td>
     <td>{{ $coupon['coupon_info'] }}</td>
     <td class="text-right">{{ $coupon['price'] }}</td>
     <td class="text-right">{{ $coupon['price_now'] }}</td>

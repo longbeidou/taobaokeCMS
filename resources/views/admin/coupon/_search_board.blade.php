@@ -6,10 +6,13 @@
                 <h5>优惠券搜索面板</h5>
                 <div class="ibox-tools">
                     <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
+                        <i class="fa fa-chevron-up"></i> 收起
+                    </a>
+                    <a class="dropdown-toggle" href="{{ route('admin.coupons.index') }}" target="_blank">
+                        <i class="fa fa-external-link-square"></i> 新窗口打开
                     </a>
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-wrench"></i>
+                        <i class="fa fa-wrench"></i> 每页显示的信息数
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="{{ route('admin.coupons.index') }}?{{ $urlStr }}page_size=10&order={{ $oldRequest['order'] or '' }}">每页显示10条信息</a></li>
@@ -20,7 +23,7 @@
                         <li><a href="{{ route('admin.coupons.index') }}?{{ $urlStr }}page_size=100&order={{ $oldRequest['order'] or '' }}">每页显示100条信息</a></li>
                     </ul>
                     <a class="close-link">
-                        <i class="fa fa-times"></i>
+                        <i class="fa fa-times"></i> 关闭
                     </a>
                 </div>
             </div>
