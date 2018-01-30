@@ -22,6 +22,7 @@ class CreateCouponCategorysTable extends Migration
           $table->string('category_name', 30);      // 分类的名称
           $table->string('self_where');             // 自定义条件
           $table->char('imgage_small', 200);       // 小图片地址
+          $table->char('font_icon', 50)->nullable();       // 字体图标
           $table->integer('order')->default('0');   // 分类排列顺序
           $table->integer('is_show')->default('1'); // 分类是否显示，1表示显示，0表示不显示
 

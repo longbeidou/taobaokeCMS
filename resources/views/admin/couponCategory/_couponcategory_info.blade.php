@@ -7,7 +7,8 @@
       <input type="number" min="0" max="99" step="1" name="order[{{ $couponCategory->id }}]" value="{{ $couponCategory->order }}" />
     </td>
     <td><a href="#" target="_blank">{{ $couponCategory->category_name }}</a></td>
-    <td><img src="{{ $couponCategory->imgage_small }}" height="41px" /></td>
+    <td class="text-center"><img src="{{ $couponCategory->imgage_small }}" height="41px" /></td>
+    <td class="text-center">{!! $couponCategory->font_icon !!}</td>
     <td class="text-center" style="color:">{{ $goodsTotal[$couponCategory->id] }}</td>
     <td>{{ $couponCategory->self_where }}</td>
     <td class="text-center">

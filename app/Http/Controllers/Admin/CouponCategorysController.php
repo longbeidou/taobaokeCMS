@@ -62,6 +62,7 @@ class CouponCategorysController extends Controller
       $couponCategory['category_name'] = $request->category_name;
       $couponCategory['order'] = $request->order;
       $couponCategory['is_show'] = $request->is_show;
+      $couponCategory['font_icon'] = $request->font_icon;
 
       $num = CouponCategory::create($couponCategory);
 
@@ -89,6 +90,7 @@ class CouponCategorysController extends Controller
       $updateInfo['category_name'] = $request->category_name;
       $updateInfo['is_show'] = $request->is_show;
       $updateInfo['order'] = $request->order;
+      $updateInfo['font_icon'] = $request->font_icon;
 
       if ($request->hasFile('imgage_small')) {
         $updateInfo['imgage_small'] = $this->getImagesSmallPath($request);

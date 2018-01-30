@@ -36,7 +36,8 @@
                                   <th></th>
                                   <th>排序</th>
                                   <th style="min-width:75px;">分类名称</th>
-                                  <th>图片</th>
+                                  <th class="text-center">图片</th>
+                                  <th class="text-center">字体图标</th>
                                   <th class="text-center" style="min-width:75px;">商品总数</th>
                                   <th>分类条件字符串</th>
                                   <th class="text-center" style="min-width:75px;">显示状态</th>
