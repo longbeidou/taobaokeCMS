@@ -8,26 +8,26 @@
 
   @include('admin.layouts.table._tips')
 
-  <div class="row">
-      <div class="col-sm-12">
-          <div class="ibox float-e-margins">
-              <div class="ibox-title">
-                  <h5>优惠券分类列表</h5>
-                  <div class="ibox-tools">
-                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                          <i class="fa fa-wrench"></i> 每页显示信息数
-                      </a>
-                      <ul class="dropdown-menu dropdown-user">
-                          <li><a href="{{ route('couponCategorys.index') }}?page_size=10">每页显示10条信息</a></li>
-                          <li><a href="{{ route('couponCategorys.index') }}?page_size=15">每页显示15条信息</a></li>
-                          <li><a href="{{ route('couponCategorys.index') }}?page_size=20">每页显示20条信息</a></li>
-                          <li><a href="{{ route('couponCategorys.index') }}?page_size=25">每页显示25条信息</a></li>
-                          <li><a href="{{ route('couponCategorys.index') }}?page_size=30">每页显示30条信息</a></li>
-                      </ul>
-                  </div>
-              </div>
-              <form action="" method="post" id="couponList">
-              	{{ csrf_field() }}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>优惠券分类列表</h5>
+                <div class="ibox-tools">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i> 每页显示信息数
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="{{ route('couponCategorys.index') }}?page_size=10">每页显示10条信息</a></li>
+                        <li><a href="{{ route('couponCategorys.index') }}?page_size=15">每页显示15条信息</a></li>
+                        <li><a href="{{ route('couponCategorys.index') }}?page_size=20">每页显示20条信息</a></li>
+                        <li><a href="{{ route('couponCategorys.index') }}?page_size=25">每页显示25条信息</a></li>
+                        <li><a href="{{ route('couponCategorys.index') }}?page_size=30">每页显示30条信息</a></li>
+                    </ul>
+                </div>
+            </div>
+            <form action="" method="post" id="couponList">
+            	{{ csrf_field() }}
               <div class="ibox-content" style="display: block;">
                   <div class="table-responsive">
                       <table class="table table-striped table-hover table-condensed">
@@ -35,12 +35,12 @@
                               <tr>
                                   <th></th>
                                   <th>排序</th>
-                                  <th>分类名称</th>
+                                  <th style="min-width:75px;">分类名称</th>
                                   <th>图片</th>
-                                  <th class="text-center">商品总数</th>
+                                  <th class="text-center" style="min-width:75px;">商品总数</th>
                                   <th>分类条件字符串</th>
-                                  <th class="text-center">是否显示</th>
-                                  <th class="text-center">操作</th>
+                                  <th class="text-center" style="min-width:75px;">显示状态</th>
+                                  <th class="text-center" style="width:110px;">操作</th>
                               </tr>
                           </thead>
                           <tbody id="chk">
@@ -62,21 +62,16 @@
                       	</tbody>
                       </table>
                   </div>
-          	</form>
 
-        <!-- 分页 -->
-        <div class="row text-center">
-            {!! $couponCategorys->appends($oldRequest)->render() !!}
-        </div>
+                  <!-- 分页 -->
+                  <div class="row text-center">
+                      {!! $couponCategorys->appends($oldRequest)->render() !!}
+                  </div>
               </div>
-              </form>
-          </div>
-      </div>
-
-  </div>
-
-
-
+            </form>
+        </div>
+    </div>
+</div>
 @stop
 @section('footJs')
 <!-- 实现全选、反选、全不选 -->

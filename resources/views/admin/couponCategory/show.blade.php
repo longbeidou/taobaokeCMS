@@ -13,8 +13,8 @@
         <div class="ibox-title">
             <h5>优惠券分类详情</h5>
             <div class="ibox-tools">
-                <a class="dropdown-toggle" href="{{ route('couponCategorys.create') }}">
-                    <i class="fa fa-plus-circle"></i> 添加优惠券分类
+                <a class="dropdown-toggle" href="{{ route('couponCategorys.index') }}">
+                    <i class="fa fa-list"></i> 优惠券分类列表
                 </a>
             </div>
         </div>

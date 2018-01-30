@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CouponCategory;
+use App\Models\Coupon;
 use App\Http\Requests\CouponCategorysStoreRequest;
+use App\Http\Requests\CouponCategorysUpdateRequest;
 
 class CouponCategorysController extends Controller
 {
@@ -22,7 +24,7 @@ class CouponCategorysController extends Controller
       $oldRequest = $request->all();
       $pageSize = $this->getPageSize($request->page_size);
       $couponCategorys = CouponCategory::orderBy('order', 'asc')->paginate($pageSize);
-      $goodsTotal = $this->getCateToCouponsTotalNumArr($couponCategorys);
+      $goodsTotal = $this->getCateToCouponsTotalNumArr ($couponCategorys, new Coupon);
 
       return view('admin.couponCategory.index', compact('title', 'couponCategorys', 'oldRequest', 'goodsTotal'));
     }
@@ -71,21 +73,76 @@ class CouponCategorysController extends Controller
     }
 
     // 编辑优惠券分类的页面
-    public function edit()
+    public function edit(CouponCategory $couponCategory)
     {
+      $title = '编辑优惠券分类';
 
+      $selfWhereArray = $this->makeSelfWhereToArray($couponCategory->self_where);
+      $selfWhereView = $this->makeSelfWhereArrToView($selfWhereArray);
+
+      return view('admin.couponCategory.edit', compact('title', 'couponCategory', 'selfWhereView'));
     }
 
     // 更新优惠券分类信息
-    public function update()
+    public function update(CouponCategory $couponCategory, CouponCategorysUpdateRequest $request)
     {
+      $updateInfo['category_name'] = $request->category_name;
+      $updateInfo['is_show'] = $request->is_show;
+      $updateInfo['order'] = $request->order;
 
+      if ($request->hasFile('imgage_small')) {
+        $updateInfo['imgage_small'] = $this->getImagesSmallPath($request);
+        $this->unlinkFiles($couponCategory->imgage_small);
+      }
+
+      $selfWhere = $this->makeCategoryString($request->group1, $request->group2);
+      if ( $selfWhere != '' ) {
+        $updateInfo['self_where'] = $this->makeCategoryString($request->group1, $request->group2);
+      }
+      $couponCategory->update($updateInfo);
+
+      return redirect()->route('couponCategorys.show', $couponCategory->id)->with('success', '成功更新优惠券分类详情信息！');
     }
 
-    // 删除优惠券分类信息
-    public function destroy()
+    // 根据id删除优惠券分类信息
+    public function delete (Request $request)
     {
+      $couponCategory = CouponCategory::where('id', $request->id);
 
+      if ( !$couponCategory->count() ) {
+
+        return back()->with('danger', '要删除的信息不存在！');
+      }
+
+      $imageSmall = $couponCategory->first(['imgage_small'])->imgage_small;
+      $this->unlinkFiles($imageSmall);
+      $couponCategory->delete();
+
+      return back()->with('success', '成功删除优惠券分类信息！');
+    }
+
+    // 设置优惠券分类为显示状态
+    public function isShow(Request $request)
+    {
+      $num = CouponCategory::where('id', $request->id)->update(['is_show'=>1]);
+
+      if ( $num ) {
+        return back()->with('success', '成功设置优惠券分类为显示状态。');
+      } else {
+        return back()->with('danger', '设置优惠券分类为显示状态，失败！');
+      }
+    }
+
+    // 设置优惠券分类为不显示状态
+    public function notShow(Request $request)
+    {
+      $num = CouponCategory::where('id', $request->id)->update(['is_show'=>0]);
+
+      if ( $num ) {
+        return back()->with('success', '成功设置优惠券分类为不显示状态。');
+      } else {
+        return back()->with('danger', '设置优惠券分类为不显示状态，失败！');
+      }
     }
 
     // 获取请求的pageSize的数据
@@ -97,21 +154,33 @@ class CouponCategorysController extends Controller
       return $pageSize;
     }
 
-    // 获取id对应的优惠券总数
-    public function getCateToCouponsTotalNumArr ($couponCategorys)
+    // 删除文件
+    public function unlinkFiles (String $path)
     {
-      $ids = [];
-      foreach ($couponCategorys as $couponCategory) {
-        $ids[$couponCategory->id] = $couponCategory->self_where;
-
-        ///////////////////////////
+      if ( !empty($path) ) {
+        $fullPath = public_path().$path;
+        if ( is_file($fullPath) ) {
+          unlink($fullPath);
+        }
       }
     }
 
+    // 获取id对应的优惠券总数
+    public function getCateToCouponsTotalNumArr ($couponCategorys, $coupon)
+    {
+      $ids = [];
+
+      foreach ($couponCategorys as $couponCategory) {
+        $ids[$couponCategory->id] = $this->getGoodsTotalBySelfWhere($couponCategory->self_where, $coupon);
+      }
+
+      return $ids;
+    }
+
     // 根据self_where来确定优惠券商品总数
-    public function getGoodsTotalBySelfWhere ($self_where) {
-      $cateToWordArr = $this->makeSelfWhereToArray($self_where);
-      ////////////////////////////////////
+    public function getGoodsTotalBySelfWhere ($self_where, $coupon) {
+
+      return $this->selfWhere($self_where, $coupon)->count();
     }
 
     // 根据self_where来进行的查询条件
@@ -131,7 +200,7 @@ class CouponCategorysController extends Controller
             }
           }
         } elseif ($num == 1) {
-          $coupon = $coupon->orWhere(function ($query) {
+          $coupon = $coupon->orWhere(function ($query) use($cateToWordArr) {
             foreach ($cateToWordArr as $cateToWord) {
               foreach ($cateToWord as $cate => $word) {
                 $query = $query->where($cate, 'like', $word);
@@ -154,9 +223,7 @@ class CouponCategorysController extends Controller
         return $group1Str.$this->groupAdd.$group2Str;
       }
 
-      if (empty($group2Str) || empty($group2Str)) {
-        return $group1Str.$group2Str;
-      }
+      return (String)$group1Str.(String)$group2Str;
     }
 
     // 将数组的各元素组合成为搜索条件的字符串

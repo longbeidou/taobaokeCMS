@@ -11,32 +11,38 @@
     @include('admin.layouts.form._tips')
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>增加优惠券分类</h5>
+            <h5>编辑优惠券分类</h5>
+            <div class="ibox-tools">
+                <a class="dropdown-toggle" href="{{ route('couponCategorys.index') }}">
+                    <i class="fa fa-list"></i> 优惠券分类列表
+                </a>
+            </div>
         </div>
         <div class="ibox-content">
           <div class="row form-body form-horizontal m-t">
             <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
-              <form action="{{ route('couponCategorys.store') }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('couponCategorys.update', $couponCategory->id) }}" method="POST" enctype="multipart/form-data">
               		{{ csrf_field() }}
+                  {{ method_field('PATCH')}}
                   <div class="col-md-12">
                       <div class="form-group">
                           <label class="col-sm-3 control-label">分类名称：</label>
                           <div class="col-sm-9">
-                              <input type="text" name="category_name" class="form-control" required placeholder="请输入优惠券的分类名称">
+                              <input type="text" name="category_name" value="{{ $couponCategory->category_name }}" class="form-control" required placeholder="请输入优惠券的分类名称">
                               <span class="help-block m-b-none">分类名称最多由10个汉字组成</span>
                           </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-3 control-label">排序：</label>
                           <div class="col-sm-9">
-                              <input type="number" required name="order" class="form-control" value="0" placeholder="请输入排序数值">
+                              <input type="number" required name="order" class="form-control" value="{{ $couponCategory->order }}" placeholder="请输入排序数值">
                               <span class="help-block m-b-none">值越小，排名越靠前！</span>
                           </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-3 control-label">上传图片：</label>
-                          <div class="col-sm-9">
-                              <input type="file" required name="imgage_small" class="form-control">
+                          <div class="col-sm-9"><img src="{{ $couponCategory->imgage_small }}" style="max-width:41px;" />
+                              <input type="file" name="imgage_small" class="form-control">
                               <span class="help-block m-b-none text-warning"><strong>提示：</strong>上传图片的大小为：41px*41px</span>
                           </div>
                       </div>
@@ -44,9 +50,15 @@
                           <label class="col-sm-3 control-label">是否显示：</label>
                           <div class="col-sm-9">
                               <label class="radio-inline">
-                                  <input type="radio" checked value="1" id="optionsRadios1" name="is_show">显示</label>
+                                  <input type="radio" @if($couponCategory->is_show == '1') checked @endif value="1" id="optionsRadios1" name="is_show">显示</label>
                               <label class="radio-inline">
-                                  <input type="radio" value="0" id="optionsRadios2" name="is_show">不显示</label>
+                                  <input type="radio" @if($couponCategory->is_show == '0') checked @endif value="0" id="optionsRadios2" name="is_show">不显示</label>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-sm-3 control-label">商品组合条件：</label>
+                          <div class="col-sm-9">
+                            {!! $selfWhereView !!}
                           </div>
                       </div>
                   </div>
@@ -97,7 +109,7 @@
                       <div class="form-group copy">
                           <label class="col-sm-4 control-label">填写关键词：</label>
                           <div class="col-sm-8">
-                              <input type="text" name="group1[0][word]" required class="form-control" placeholder="请输入关键词">
+                              <input type="text" name="group1[0][word]" class="form-control" placeholder="请输入关键词">
                           </div>
                       </div>
                       <div class="form-group copy">
