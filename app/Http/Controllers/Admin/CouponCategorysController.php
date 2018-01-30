@@ -148,6 +148,10 @@ class CouponCategorysController extends Controller
       $idToOrderArr = $request->order;
       $num = 0;
 
+      if ( empty($idToOrderArr) ) {
+        return back()->with('danger', '没有可以排序的优惠券分类，请刷新页面重试或者添加优惠券分类后重试！');
+      }
+
       foreach ($idToOrderArr as $id => $order) {
         $num += CouponCategory::where('id', $id)->update(['order'=>$order]);
       }
