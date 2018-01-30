@@ -41,5 +41,8 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
   Route::get('coupons/notrecommend/{id}', 'Admin\CouponsController@notRecommendById')->name('admin.coupons.notRecommendById')->where('id', '[0-9]+');
   Route::get('coupons/show/{id}', 'Admin\CouponsController@showById')->name('admin.coupons.showById')->where('id', '[0-9]+');
   Route::get('coupons/notshow/{id}', 'Admin\CouponsController@notShowById')->name('admin.coupons.notShowById')->where('id', '[0-9]+');
+  Route::get('couponCategorys/delete/{id}', 'Admin\CouponCategorysController@delete')->name('couponCategorys.delete');
+  Route::get('couponCategorys/isshow/{id}', 'Admin\CouponCategorysController@isShow')->name('couponCategorys.isShow');
+  Route::get('couponCategorys/notshow/{id}', 'Admin\CouponCategorysController@notShow')->name('couponCategorys.notShow');
   Route::resource('couponCategorys', 'Admin\CouponCategorysController');
 });
