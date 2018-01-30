@@ -9,6 +9,6 @@ class CouponCategory extends Model
     protected $table = "coupon_categorys";
 
     protected $fillable = [
-      'category_name', 'self_where', 'imgage_small', 'order', 'is_show'
+      'category_name', 'self_where', 'imgage_small', 'order', 'is_show', 'font_icon'
     ];
 }

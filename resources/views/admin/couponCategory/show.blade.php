@@ -43,6 +43,12 @@
                           </p>
                       </div>
                   </div>
+									<div class="form-group">
+											<label class="col-sm-3 control-label">字体图标：</label>
+											<div class="col-sm-9">
+													<p class="form-control-static">{!! $couponCategory->font_icon !!}</p>
+											</div>
+									</div>
                   <div class="form-group">
                       <label class="col-sm-3 control-label">是否显示：</label>
                       <div class="col-sm-9">

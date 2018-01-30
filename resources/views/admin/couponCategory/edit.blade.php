@@ -46,6 +46,13 @@
                               <span class="help-block m-b-none text-warning"><strong>提示：</strong>上传图片的大小为：41px*41px</span>
                           </div>
                       </div>
+											<div class="form-group">
+													<label class="col-sm-3 control-label">字体图标：</label>
+													<div class="col-sm-9">
+															<input type="text" name="font_icon" value="{{ $couponCategory->font_icon }}" class="form-control"  placeholder="请输入字体图标的标签">
+															<span class="help-block m-b-none">字体图标由完成的i标签组成</span>
+													</div>
+											</div>
                       <div class="form-group">
                           <label class="col-sm-3 control-label">是否显示：</label>
                           <div class="col-sm-9">
