@@ -121,6 +121,42 @@ class CouponCategorysController extends Controller
       return back()->with('success', '成功删除优惠券分类信息！');
     }
 
+    // 根据id集合来删除数据
+    public function deleteMany (Request $request)
+    {
+      $ids = $request->ids;
+
+      if ( empty($ids) ) {
+        return back()->with('info', '请选择好要删除的分类再提交删除请求！');
+      }
+
+      $this->unlinkFilesByIds($ids);
+      $num = CouponCategory::destroy($ids);
+
+      if ( $num ) {
+        return back()->with('success', '成功删除'.$num.'条优惠券分类信息！');
+      } else {
+        return back()->with('danger', '删除失败，请重新操作！');
+      }
+    }
+
+    // 批量修改优惠券分类的排序
+    public function changeOrder (Request $request)
+    {
+      $idToOrderArr = $request->order;
+      $num = 0;
+
+      foreach ($idToOrderArr as $id => $order) {
+        $num += CouponCategory::where('id', $id)->update(['order'=>$order]);
+      }
+
+      if ( $num ) {
+        return back()->with('success', '成功修改'.$num.'条优惠券分类信息！');
+      } else {
+        return back()->with('danger', '修改排序失败，请重新操作！');
+      }
+    }
+
     // 设置优惠券分类为显示状态
     public function isShow(Request $request)
     {
@@ -154,7 +190,7 @@ class CouponCategorysController extends Controller
       return $pageSize;
     }
 
-    // 删除文件
+    // 根据文件路径删除文件
     public function unlinkFiles (String $path)
     {
       if ( !empty($path) ) {
@@ -162,6 +198,15 @@ class CouponCategorysController extends Controller
         if ( is_file($fullPath) ) {
           unlink($fullPath);
         }
+      }
+    }
+
+    // 根据id集合删除文件
+    public function unlinkFilesByIds ($ids)
+    {
+      $couponCategorys = CouponCategory::whereIn('id', $ids)->get(['imgage_small'])->toArray();
+      foreach ($couponCategorys as $couponCategory) {
+        $this->unlinkFiles($couponCategory['imgage_small']);
       }
     }
 

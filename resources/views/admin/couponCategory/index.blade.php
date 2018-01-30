@@ -101,12 +101,12 @@
     var form = $("#couponList");
 
     if (value == 1) {
-      form.action = 'https://www.52010000.cn/admin/coupon/category/delmany';
+      form.action = '{{ route('couponCategorys.deleteMany') }}';
       $("#couponList").attr('action', form.action);
       form.submit();
     }
     if (value == 2) {
-      form.action = "https://www.52010000.cn/admin/coupon/category/changeOrder";
+      form.action = "{{route('couponCategorys.changeOrder')}}";
       $("#couponList").attr('action', form.action);
       form.submit();
     }
