@@ -64,6 +64,21 @@
             <li>
                 <a href="#">
                     <i class="fa fa-home"></i>
+                    <span class="nav-label">网站栏目</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem" href="{{ route('categorys.index') }}" data-index="0">栏目列表</a>
+                    </li>
+                    <li>
+                      <a class="J_menuItem" href="{{ route('categorys.create') }}">添加栏目</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-home"></i>
                     <span class="nav-label">优惠券商品</span>
                     <span class="fa arrow"></span>
                 </a>
