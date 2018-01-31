@@ -11,7 +11,8 @@ class CategorysController extends Controller
     // 显示所有分类列表的页面
     public function index ()
     {
-      //
+      $title = '分类列表';
+      return view('admin.category.index', compact('title'));
     }
 
     // 显示分类信息的页面
