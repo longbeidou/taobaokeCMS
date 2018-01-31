@@ -9,11 +9,26 @@ use App\Http\Requests\CategorysStoreRequest;
 
 class CategorysController extends Controller
 {
+    public $pageSize = 10;
+    public $imageSmallPath       = 'img/category/imageSmall/';
+    public $imageMagicLeftPath   = 'img/category/imageMagicLeft/';
+    public $imageMagicTopPath    = 'img/category/imageMagicTop/';
+    public $imageMagicButtomPath = 'img/category/imageMagicButtom/';
+
     // 显示所有分类列表的页面
-    public function index ()
+    public function index (Request $request)
     {
       $title = '分类列表';
-      return view('admin.category.index', compact('title'));
+
+      if ( !empty($request->pageSize) ) {
+        $this->pageSize = $request->pageSize;
+      }
+
+      $pageSize = $this->pageSize;
+
+      $categorys = Category::orderBy('order', 'asc')->get();
+
+      return view('admin.category.index', compact('title', 'categorys', 'pageSize'));
     }
 
     // 显示分类信息的页面
@@ -45,13 +60,13 @@ class CategorysController extends Controller
         'is_show_wx' => $request->is_show_wx,
         'is_show_qq' => $request->is_show_qq,
         'is_show_wechat' =>$request->is_show_wechat,
-        'image_small'        => $this->getImagesSavePath($request, 'img/category/imageSmall/',       'image_small'),
-        'image_magic_left'   => $this->getImagesSavePath($request, 'img/category/imageMagicLeft/',   'image_magic_left'),
-        'image_magic_top'    => $this->getImagesSavePath($request, 'img/category/imageMagicTop/',    'image_magic_top'),
-        'image_magic_buttom' => $this->getImagesSavePath($request, 'img/category/imageMagicButtom/', 'image_magic_buttom'),
+        'image_small'        => $this->getImagesSavePath($request, $imageSmallPath,       'image_small'),
+        'image_magic_left'   => $this->getImagesSavePath($request, $imageMagicLeftPath,   'image_magic_left'),
+        'image_magic_top'    => $this->getImagesSavePath($request, $imageMagicTopPath,    'image_magic_top'),
+        'image_magic_buttom' => $this->getImagesSavePath($request, $imageMagicButtomPath, 'image_magic_buttom'),
       ]);
 
-      return redirect()->route('categorys.show', compact('category'));
+      return back()->with('success', '添加栏目分类成功！');
     }
 
     // 编辑分类信息的页面
@@ -68,6 +83,28 @@ class CategorysController extends Controller
 
     // 删除用户
     public function destroy ( Category $category )
+    {
+      //
+    }
+
+    // 批量修改栏目分类的排序
+    public function changeOrder ( Request $request)
+    {
+      $idToOrdersArr = $request->order;
+
+      if ( empty($idToOrdersArr) ) {
+        return back()->with('danger', '没有收到提交的数据，请添加栏目分类或者刷新页面后操作！');
+      }
+
+      foreach ($idToOrdersArr as $id=>$order) {
+        Category::where('id', $id)->update(['order'=>$order]);
+      }
+
+      return back()->with('success', '成功更新栏目分类排序！');
+    }
+
+    // 根据id集合批量删除
+    public function deleteMany ( Request $request)
     {
       //
     }

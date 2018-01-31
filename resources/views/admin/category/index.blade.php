@@ -17,26 +17,28 @@
                         <i class="fa fa-wrench"></i> 每页显示信息数
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#">每页显示5条信息</a></li>
-                        <li><a href="#">每页显示10条信息</a></li>
-                        <li><a href="#">每页显示15条信息</a></li>
-                        <li><a href="#">每页显示20条信息</a></li>
-                        <li><a href="#">每页显示25条信息</a></li>
-                        <li><a href="#">每页显示30条信息</a></li>
+                        <li><a href="{{ route('categorys.index') }}?pageSize=5">每页显示5条信息</a></li>
+                        <li><a href="{{ route('categorys.index') }}?pageSize=10">每页显示10条信息</a></li>
+                        <li><a href="{{ route('categorys.index') }}?pageSize=15">每页显示15条信息</a></li>
+                        <li><a href="{{ route('categorys.index') }}?pageSize=20">每页显示20条信息</a></li>
+                        <li><a href="{{ route('categorys.index') }}?pageSize=25">每页显示25条信息</a></li>
+                        <li><a href="{{ route('categorys.index') }}?pageSize=30">每页显示30条信息</a></li>
                     </ul>
                 </div>
             </div>
             <div class="ibox-content">
                 <form class="" action="" method="post" id="couponList">
                   {{ csrf_field() }}
-                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="10">
+                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="{{ $pageSize }}">
                     <thead>
                         <tr>
-                            <th data-toggle="true">排序</th>
-                            <th>栏目名称</th>
-                            <th>字体图标</th>
-                            <th>显示状态</th>
-                            <th>导航小图片</th>
+                            <th data-toggle="true" style="width:30px;"></th>
+                            <th style="width:30px;"></th>
+                            <th class="text-center" style="width:60px;" >排序</th>
+                            <th >栏目名称</th>
+                            <th class="text-center">字体图标</th>
+                            <th class="text-center">显示状态</th>
+                            <th class="text-center">导航小图片</th>
                             <th data-hide="all">魔方左侧大图片</th>
                             <th data-hide="all">魔方右侧正方形图片</th>
                             <th data-hide="all">魔方右侧长方形图片</th>
@@ -44,7 +46,7 @@
                             <th data-hide="all">移动端</th>
                             <th data-hide="all">微信端</th>
                             <th data-hide="all">QQ端</th>
-                            <th>操作</th>
+                            <th class="text-center">操作</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,23 +69,7 @@
                         </table>
 
                         <div class="row text-center">
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination">
-                                    <li class="disabled"><span>&laquo;</span></li>
-                                    <li class="active"><span>1</span></li>
-                                    <li><a href="http://taobaokecms.test/admin/coupons?page=2">2</a></li>
-                                    <li><a href="http://taobaokecms.test/admin/coupons?page=3">3</a></li>
-                                    <li><a href="http://taobaokecms.test/admin/coupons?page=4">4</a></li>
-                                    <li><a href="http://taobaokecms.test/admin/coupons?page=5">5</a></li>
-                                    <li><a href="http://taobaokecms.test/admin/coupons?page=6">6</a></li>
-                                    <li><a href="http://taobaokecms.test/admin/coupons?page=7">7</a></li>
-                                    <li><a href="http://taobaokecms.test/admin/coupons?page=8">8</a></li>
-                                    <li class="disabled"><span>...</span></li>
-                                    <li><a href="http://taobaokecms.test/admin/coupons?page=299">299</a></li>
-                                    <li><a href="http://taobaokecms.test/admin/coupons?page=300">300</a></li>
-                                    <li><a href="http://taobaokecms.test/admin/coupons?page=2" rel="next">&raquo;</a></li>
-                                  </ul>
-                            </nav>
+                            <ul class="pagination text-center"></ul>
                         </div>
 
                         <!-- <tr>
@@ -127,12 +113,12 @@
     var form = $("#couponList");
 
     if (value == 1) {
-      form.action = '{{ route('couponCategorys.deleteMany') }}';
+      form.action = '{{ route('categorys.deleteMany') }}';
       $("#couponList").attr('action', form.action);
       form.submit();
     }
     if (value == 2) {
-      form.action = "{{route('couponCategorys.changeOrder')}}";
+      form.action = "{{route('categorys.changeOrder')}}";
       $("#couponList").attr('action', form.action);
       form.submit();
     }

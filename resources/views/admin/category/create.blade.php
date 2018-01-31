@@ -96,7 +96,7 @@
                               <label class="radio-inline">
                                   <input type="radio" checked value="1" id="optionsRadios1" name="is_show_pc">显示</label>
                               <label class="radio-inline">
-                                  <input type="radio" value="2" id="optionsRadios2" name="is_show_pc">不显示</label>
+                                  <input type="radio" value="0" id="optionsRadios2" name="is_show_pc">不显示</label>
                           </div>
                       </div>
                   </div>
@@ -118,7 +118,7 @@
                               <label class="radio-inline">
                                   <input type="radio" checked value="1" id="optionsRadios1" name="is_show_wx">显示</label>
                               <label class="radio-inline">
-                                  <input type="radio" value="2" id="optionsRadios2" name="is_show_wx">不显示</label>
+                                  <input type="radio" value="0" id="optionsRadios2" name="is_show_wx">不显示</label>
                           </div>
                       </div>
                   </div>
@@ -140,7 +140,7 @@
                               <label class="radio-inline">
                                   <input type="radio" checked value="1" id="optionsRadios1" name="is_show_wechat">显示</label>
                               <label class="radio-inline">
-                                  <input type="radio" value="2" id="optionsRadios2" name="is_show_wechat">不显示</label>
+                                  <input type="radio" value="0" id="optionsRadios2" name="is_show_wechat">不显示</label>
                           </div>
                       </div>
                   </div>
@@ -162,7 +162,7 @@
                               <label class="radio-inline">
                                   <input type="radio" checked value="1" id="optionsRadios1" name="is_show_qq">显示</label>
                               <label class="radio-inline">
-                                  <input type="radio" value="2" id="optionsRadios2" name="is_show_qq">不显示</label>
+                                  <input type="radio" value="0" id="optionsRadios2" name="is_show_qq">不显示</label>
                           </div>
                       </div>
                   </div>
