@@ -27,6 +27,8 @@
                 </div>
             </div>
             <div class="ibox-content">
+                <form class="" action="" method="post" id="couponList">
+                  {{ csrf_field() }}
                 <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="10">
                     <thead>
                         <tr>
@@ -91,11 +93,50 @@
                         </tr> -->
                     </tfoot>
                 </table>
+                </form>
             </div>
         </div>
     </div>
 </div>
 @stop
 @section('footJs')
+<!-- 实现全选、反选、全不选 -->
+<script type="text/javascript">
+  function chk(value) {
+    var chktotal = $("#chk");
 
+    if (value == 1) { //全选
+      $("input:checkbox").each(function () {
+      this.checked = true;
+      })
+    }
+    if (value == 2) { //反选
+          $("input:checkbox").each(function () {
+            this.checked = !this.checked;
+         })
+    }
+    if (value == 3) { //全不选
+      $("input:checkbox").removeAttr("checked");
+    }
+  }
+
+</script>
+<!-- 确定提交地址的js -->
+<script type="text/javascript">
+  function submitChoice(value) {
+    var form = $("#couponList");
+
+    if (value == 1) {
+      form.action = '{{ route('couponCategorys.deleteMany') }}';
+      $("#couponList").attr('action', form.action);
+      form.submit();
+    }
+    if (value == 2) {
+      form.action = "{{route('couponCategorys.changeOrder')}}";
+      $("#couponList").attr('action', form.action);
+      form.submit();
+    }
+  }
+
+</script>
 @stop
