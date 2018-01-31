@@ -9,7 +9,7 @@ class Category extends Model
   protected $table = "categorys";
 
   protected $fillable = [
-    'name', 'imgage_small', 'order', 'font_icon', 'pc_link', 'pc_is_show', 'wx_link', 'wx_is_show', 'wechat_link', 'wechat_is_show', 'qq_link', 'qq_is_show'
+    'name', 'image_small','is_show', 'order', 'font_icon', 'link_pc', 'link_wx', 'link_wechat', 'link_qq', 'is_show_pc', 'is_show_wx', 'is_show_wechat', 'is_show_qq', 'image_magic_top', 'image_magic_left', 'image_magic_buttom'
   ];
 
   protected $hidden = [
