@@ -21,6 +21,9 @@ class CreateCategorysTable extends Migration
             $table->index('id');
             $table->char('name', 30);                   // 分类的名称
             $table->char('imgage_small', 200);          // 小图片地址
+            $table->char('imgage_magic_left', 200);          // 魔方排列左边最大的图片地址
+            $table->char('imgage_magic_top', 200);          // 魔方排列上边小正方形图片地址
+            $table->char('imgage_magic_buttom', 200);          // 魔方排列右边长方形图片地址
             $table->char('font_icon', 50)->nullable();  // 字体图标
             $table->integer('order')->default('0');     // 分类排列顺序
             $table->char('pc_link', 200);                     // pc端的链接
