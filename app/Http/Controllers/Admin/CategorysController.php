@@ -23,7 +23,8 @@ class CategorysController extends Controller
     // 创建分类的页面
     public function create ()
     {
-      return view('admin.category.create');
+      $title = "增加栏目分类";
+      return view('admin.category.create', compact('title'));
     }
 
     // 创建分类

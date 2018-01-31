@@ -26,14 +26,14 @@ class CreateCategorysTable extends Migration
             $table->char('imgage_magic_buttom', 200);          // 魔方排列右边长方形图片地址
             $table->char('font_icon', 50)->nullable();  // 字体图标
             $table->integer('order')->default('0');     // 分类排列顺序
-            $table->char('pc_link', 200);                     // pc端的链接
-            $table->integer('pc_is_show')->default('1');      // pc端分类是否显示，1表示显示，0表示不显示
-            $table->char('wx_link', 200);                     // wx端的链接
-            $table->integer('wx_is_show')->default('1');      // wx端分类是否显示，1表示显示，0表示不显示
-            $table->char('wechat_link', 200);                 // wechat端的链接
-            $table->integer('wechat_is_show')->default('1');  // wechat端分类是否显示，1表示显示，0表示不显示
-            $table->char('qq_link', 200);                     // QQ端的链接
-            $table->integer('qq_is_show')->default('1');      // QQ端分类是否显示，1表示显示，0表示不显示
+            $table->char('link_pc', 200);                     // pc端的链接
+            $table->integer('is_show_pc')->default('1');      // pc端分类是否显示，1表示显示，0表示不显示
+            $table->char('link_wx', 200);                     // wx端的链接
+            $table->integer('is_show_wx')->default('1');      // wx端分类是否显示，1表示显示，0表示不显示
+            $table->char('link_wechat', 200);                 // wechat端的链接
+            $table->integer('is_show_wechat')->default('1');  // wechat端分类是否显示，1表示显示，0表示不显示
+            $table->char('link_qq', 200);                     // QQ端的链接
+            $table->integer('is_show_qq')->default('1');      // QQ端分类是否显示，1表示显示，0表示不显示
 
             $table->timestamps();
         });
