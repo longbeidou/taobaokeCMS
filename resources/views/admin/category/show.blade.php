@@ -11,7 +11,7 @@
     @include('admin.layouts.form._tips')
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>编辑栏目分类</h5>
+            <h5>栏目分类详情</h5>
 						<div class="ibox-tools">
 							<a class="dropdown-toggle" href="{{ route('categorys.index') }}">
 									<i class="fa fa-list"></i> 栏目分类列表
@@ -42,7 +42,11 @@
                     <strong>字体图标</strong>
                   </div>
                   <div class="col-sm-9">
+										@if(empty($category->font_icon))
+										<p>&nbsp;</p>
+										@else
                     <p>{!! $category->font_icon !!}</p>
+										@endif
                   </div>
               </div>
               <div class="row">
@@ -51,7 +55,11 @@
                   </div>
                   <div class="col-sm-9">
                     <p>
+											@if(empty($category->image_small))
+											<img class="img-thumbnail" src="/adminstyle/img/nopicture.jpg" style="max-width:41px; max-height:41px;" alt="">
+											@else
                       <img class="img-thumbnail" src="{{ $category->image_small }}" style="width:41px; height:41px;" alt="">
+											@endif
                     </p>
                   </div>
               </div>
@@ -83,8 +91,8 @@
                       <strong>PC端链接</strong>
                   </div>
                   <div class="col-sm-1">
-                      @if($category->link_pc == 1) <span class="text-info">显示</span> @endif
-                      @if($category->link_pc == 0) <span class="text-danger">不显示</span> @endif
+                      @if($category->is_show_pc == 1) <span class="text-info">显示</span> @endif
+                      @if($category->is_show_pc == 0) <span class="text-danger">不显示</span> @endif
                   </div>
                   <div class="col-sm-1">
                      <a href="{{ $category->link_pc}}">查看</a>
@@ -98,8 +106,8 @@
                       <strong>移动端链接</strong>
                   </div>
                   <div class="col-sm-1">
-                      @if($category->link_wx == 1) <span class="text-info">显示</span> @endif
-                      @if($category->link_wx == 0) <span class="text-danger">不显示</span> @endif
+                      @if($category->is_show_wx == 1) <span class="text-info">显示</span> @endif
+                      @if($category->is_show_wx == 0) <span class="text-danger">不显示</span> @endif
                   </div>
                   <div class="col-sm-1">
                      <a href="{{ $category->link_wx}}">查看</a>
@@ -113,8 +121,8 @@
                       <strong>微信端链接</strong>
                   </div>
                   <div class="col-sm-1">
-                      @if($category->link_wechat == 1) <span class="text-info">显示</span> @endif
-                      @if($category->link_wechat == 0) <span class="text-danger">不显示</span> @endif
+                      @if($category->is_show_wechat == 1) <span class="text-info">显示</span> @endif
+                      @if($category->is_show_wechat == 0) <span class="text-danger">不显示</span> @endif
                   </div>
                   <div class="col-sm-1">
                      <a href="{{ $category->link_wechat}}">查看</a>
@@ -128,8 +136,8 @@
                       <strong>QQ端链接</strong>
                   </div>
                   <div class="col-sm-1">
-                      @if($category->link_qq == 1) <span class="text-info">显示</span> @endif
-                      @if($category->link_qq == 0) <span class="text-danger">不显示</span> @endif
+                      @if($category->is_show_qq == 1) <span class="text-info">显示</span> @endif
+                      @if($category->is_show_qq == 0) <span class="text-danger">不显示</span> @endif
                   </div>
                   <div class="col-sm-1">
                      <a href="{{ $category->link_qq}}">查看</a>
@@ -147,15 +155,27 @@
               </div>
               <div class="row">
                 <div class="text-center col-sm-4 text-center">
+										@if(empty($category->image_magic_left))
+										<img class="img-thumbnail" src="/adminstyle/img/nopicture.jpg" style="max-width:320px; max-height:320px;" alt="">
+										@else
                     <img class="img-thumbnail" src="{{ $category->image_magic_left}}" style="width:320px; height:320px" alt="">
+										@endif
                     <p>魔方左侧大正方形图片</p>
                 </div>
                 <div class="text-center col-sm-4 text-center">
+										@if(empty($category->image_magic_buttom))
+										<img class="img-thumbnail" src="/adminstyle/img/nopicture.jpg" style="max-width:320px; max-height:160px;" alt="">
+										@else
                     <img class="img-thumbnail" src="{{ $category->image_magic_buttom}}" style="width:320px; height:160px" alt="">
+										@endif
                     <p>魔方右侧长方形图片</p>
                 </div>
                 <div class="text-center col-sm-4 text-center">
+										@if(empty($category->image_magic_top))
+										<img class="img-thumbnail" src="/adminstyle/img/nopicture.jpg" style="max-width:160px; max-height:160px;" alt="">
+										@else
                     <img class="img-thumbnail" src="{{ $category->image_magic_top}}" style="width:160px; height:160px" alt="">
+										@endif
                     <p>魔方右侧小正方形图片</p>
                 </div>
               </div>
