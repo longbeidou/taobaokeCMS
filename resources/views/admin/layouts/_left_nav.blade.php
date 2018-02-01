@@ -79,6 +79,27 @@
             <li>
                 <a href="#">
                     <i class="fa fa-home"></i>
+                    <span class="nav-label">品牌券</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem" href="{{ route('brandCategorys.index') }}" data-index="0">品牌分类列表</a>
+                    </li>
+                    <li>
+                      <a class="J_menuItem" href="{{ route('brandCategorys.create') }}">添加品牌栏目</a>
+                    </li>
+                    <li>
+                      <a class="J_menuItem" href="{{ route('brands.index') }}">品牌列表</a>
+                    </li>
+                    <li>
+                      <a class="J_menuItem" href="{{ route('brands.create') }}">添加品牌</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-home"></i>
                     <span class="nav-label">优惠券商品</span>
                     <span class="fa arrow"></span>
                 </a>
