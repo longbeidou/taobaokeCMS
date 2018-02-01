@@ -87,7 +87,7 @@
                       <div class="form-group">
                           <label class="col-sm-3 control-label">链接</label>
                           <div class="col-sm-9">
-                              <input type="text" name="link_pc" {{ old('link_pc') }} class="form-control" placeholder="请输入网址链接">
+                              <input type="text" name="link_pc" required value="{{ old('link_pc') }}" class="form-control" placeholder="请输入网址链接">
                           </div>
                       </div>
                       <div class="form-group">
@@ -109,7 +109,7 @@
                       <div class="form-group">
                           <label class="col-sm-3 control-label">链接</label>
                           <div class="col-sm-9">
-                              <input type="text" name="link_wx" value="{{ old('link_wx') }}" class="form-control" placeholder="请输入网址链接">
+                              <input type="text" name="link_wx" required value="{{ old('link_wx') }}" class="form-control" placeholder="请输入网址链接">
                           </div>
                       </div>
                       <div class="form-group">
@@ -131,7 +131,7 @@
                       <div class="form-group">
                           <label class="col-sm-3 control-label">链接</label>
                           <div class="col-sm-9">
-                              <input type="text" name="link_wechat" value="{{ old('link_wechat') }}" class="form-control" placeholder="请输入网址链接">
+                              <input type="text" name="link_wechat" required value="{{ old('link_wechat') }}" class="form-control" placeholder="请输入网址链接">
                           </div>
                       </div>
                       <div class="form-group">
@@ -153,7 +153,7 @@
                       <div class="form-group">
                           <label class="col-sm-3 control-label">链接</label>
                           <div class="col-sm-9">
-                              <input type="text" name="link_qq" {{ old('link_qq') }} class="form-control" placeholder="请输入网址链接">
+                              <input type="text" name="link_qq" required value="{{ old('link_qq') }}"  class="form-control" placeholder="请输入网址链接">
                           </div>
                       </div>
                       <div class="form-group">

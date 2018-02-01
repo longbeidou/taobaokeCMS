@@ -34,7 +34,11 @@ class CategorysStoreRequest extends FormRequest
             'is_show_pc' => 'required',
             'is_show_wx' => 'required',
             'is_show_wechat' => 'required',
-            'is_show_qq' => 'required'
+            'is_show_qq' => 'required',
+            'link_pc' => 'required',
+            'link_wx' => 'required',
+            'link_wechat' => 'required',
+            'link_qq' => 'required',
         ];
     }
 
@@ -55,6 +59,10 @@ class CategorysStoreRequest extends FormRequest
          'is_show_wx.image' => '请选择移动端显示状态后再提交！',
          'is_show_wechat.image' => '请选择微信端显示状态后再提交！',
          'is_show_qq.image' => '请选择QQ端显示状态后再提交！',
+         'link_pc.required' => '请填好PC端链接后再提交！',
+         'link_wx.required' => '请填好移动端链接后再提交！',
+         'link_wechat.required' => '请填好微信端链接后再提交！',
+         'link_qq.required' => '请填好QQ端链接后再提交！'
        ];
     }
 }

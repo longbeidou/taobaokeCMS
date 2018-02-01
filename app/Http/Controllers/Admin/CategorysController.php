@@ -60,10 +60,10 @@ class CategorysController extends Controller
         'is_show_wx' => $request->is_show_wx,
         'is_show_qq' => $request->is_show_qq,
         'is_show_wechat' =>$request->is_show_wechat,
-        'image_small'        => $this->getImagesSavePath($request, $imageSmallPath,       'image_small'),
-        'image_magic_left'   => $this->getImagesSavePath($request, $imageMagicLeftPath,   'image_magic_left'),
-        'image_magic_top'    => $this->getImagesSavePath($request, $imageMagicTopPath,    'image_magic_top'),
-        'image_magic_buttom' => $this->getImagesSavePath($request, $imageMagicButtomPath, 'image_magic_buttom'),
+        'image_small'        => $this->getImagesSavePath($request, $this->imageSmallPath,       'image_small'),
+        'image_magic_left'   => $this->getImagesSavePath($request, $this->imageMagicLeftPath,   'image_magic_left'),
+        'image_magic_top'    => $this->getImagesSavePath($request, $this->imageMagicTopPath,    'image_magic_top'),
+        'image_magic_buttom' => $this->getImagesSavePath($request, $this->imageMagicButtomPath, 'image_magic_buttom'),
       ]);
 
       return back()->with('success', '添加栏目分类成功！');
@@ -72,13 +72,38 @@ class CategorysController extends Controller
     // 编辑分类信息的页面
     public function edit ( Category $category )
     {
-      return view('admin.category.edit');
+      $title = '编辑栏目分类';
+
+      return view('admin.category.edit', compact('title', 'category'));
     }
 
     // 更新分类信息
     public function update ( Category $category, Request $request )
     {
-      //
+      $num = Category::where('id', $category->id)->update([
+        'name' => $request->name,
+        'order' => $request->order,
+        'is_show' => $request->is_show,
+        'font_icon' => $request->font_icon,
+        'link_pc' => $request->link_pc,
+        'link_wx' => $request->link_wx,
+        'link_wechat' => $request->link_wechat,
+        'link_qq' => $request->link_qq,
+        'is_show_pc' => $request->is_show_pc,
+        'is_show_wx' => $request->is_show_wx,
+        'is_show_qq' => $request->is_show_qq,
+        'is_show_wechat' =>$request->is_show_wechat,
+        'image_small'        => $this->getImagesUpdatePath($request, $this->imageSmallPath,       'image_small',        $category),
+        'image_magic_left'   => $this->getImagesUpdatePath($request, $this->imageMagicLeftPath,   'image_magic_left',   $category),
+        'image_magic_top'    => $this->getImagesUpdatePath($request, $this->imageMagicTopPath,    'image_magic_top',    $category),
+        'image_magic_buttom' => $this->getImagesUpdatePath($request, $this->imageMagicButtomPath, 'image_magic_buttom', $category),
+      ]);
+
+      if ( $num ) {
+        return redirect()->route('categorys.index')->with('success', '成功更新id为'.$category->id.'的栏目分类。');
+      } else {
+        return redirect()->route('categorys.index')->with('danger', '更新栏目分类失败，请刷新页面后再操作！');
+      }
     }
 
     // 删除用户
@@ -110,7 +135,8 @@ class CategorysController extends Controller
     }
 
     // 处理上传的图片
-    public function getImagesSavePath (Request $request, String $path, String $field) {
+    public function getImagesSavePath (Request $request, String $path, String $field)
+    {
       if ( $request->hasFile($field) ) {
         $fileDir = $path.date('Y-m-d').'/';
         $file = $request->file($field);
@@ -122,5 +148,31 @@ class CategorysController extends Controller
       }
 
       return '';
+    }
+
+    // 根据上传图片的情况更新图片
+    public function getImagesUpdatePath (Request $request, String $path, String $field, $category)
+    {
+      $path = $this->getImagesSavePath($request, $path, $field);
+
+      if ( empty($path) ) {
+
+        return $category->$field;
+      }
+
+      $this->unlinkFiles($category->$field);
+
+      return $path;
+    }
+
+    // 根据文件路径删除文件
+    public function unlinkFiles (String $path)
+    {
+      if ( !empty($path) ) {
+        $fullPath = public_path().$path;
+        if ( is_file($fullPath) ) {
+          unlink($fullPath);
+        }
+      }
     }
 }
