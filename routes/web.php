@@ -49,5 +49,6 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
   Route::resource('couponCategorys', 'Admin\CouponCategorysController');
   Route::post('categorys/changeOrder', 'Admin\CategorysController@changeOrder')->name('categorys.changeOrder');
   Route::post('categorys/deleteMany', 'Admin\CategorysController@deleteMany')->name('categorys.deleteMany');
+  Route::get('categorys/delete/{id}', 'Admin\CategorysController@deleteById')->name('categorys.deleteById');
   Route::resource('categorys', 'Admin\CategorysController');
 });

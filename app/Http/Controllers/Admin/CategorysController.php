@@ -112,6 +112,27 @@ class CategorysController extends Controller
       //
     }
 
+    // 根据用户的id删除用户
+    public function deleteById (Request $request)
+    {
+      $category = Category::where('id', $request->id);
+
+      if ( !$category->count() ) {
+        return redirect()->route('categorys.index')->with('warning', '删除的栏目信息不存在，请刷新页面后操作！');
+      }
+
+      $category = $category->first();
+      $this->unlinkCategoryFiles($category);
+
+      $num = Category::destroy($request->id);
+
+      if ( $num ) {
+        return redirect()->route('categorys.index')->with('success', '成功删除id为'.$request->id.'的栏目分类信息！');
+      } else {
+        return redirect()->route('categorys.index')->with('danger', '删除栏目分类信息失败，请刷新页面后再操作！');
+      }
+    }
+
     // 批量修改栏目分类的排序
     public function changeOrder ( Request $request)
     {
@@ -174,5 +195,14 @@ class CategorysController extends Controller
           unlink($fullPath);
         }
       }
+    }
+
+    // 删除给定栏目分类模型的所有图片资源
+    public function unlinkCategoryFiles ($category)
+    {
+      $this->unlinkFiles($category->image_small);
+      $this->unlinkFiles($category->image_magic_top);
+      $this->unlinkFiles($category->image_magic_left);
+      $this->unlinkFiles($category->image_magic_buttom);
     }
 }

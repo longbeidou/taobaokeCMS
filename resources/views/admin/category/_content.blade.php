@@ -39,7 +39,7 @@
     </td>
     <td class="text-center">
       <a class="text-info" href="{{ route('categorys.edit', $category->id) }}"><i class="fa fa-edit text-info"></i> 编辑</a> |
-      <a class="text-danger" href="{{ route('categorys.destroy', $category->id) }}"><i class="fa fa-close text-danger"></i> 删除</a> |
+      <a class="text-danger" href="{{ route('categorys.deleteById', $category->id) }}"><i class="fa fa-close text-danger"></i> 删除</a> |
       <a class="text-info" href="{{ route('categorys.show', $category->id) }}"><i class="fa fa-info-circle text-info"></i> 详情</a>
     </td>
 </tr>
