@@ -152,7 +152,31 @@ class CategorysController extends Controller
     // 根据id集合批量删除
     public function deleteMany ( Request $request)
     {
-      //
+      $ids = $request->ids;
+
+      if ( empty($ids) ) {
+
+        return redirect()->route('categorys.index')->with('warning', '没有选择要删除的栏目，请选中后再提交删除！');
+      }
+
+      $categorys = Category::whereIn('id', $ids);
+
+      if ($categorys->count() == 0) {
+
+        return redirect()->route('categorys.index')->with('danger', '批量删除栏目分类失败，请刷新页面后重新操作！');
+      }
+
+      foreach ($categorys->get() as $category) {
+        $this->unlinkCategoryFiles($category);
+      }
+
+      if ( $num = $category->destroy($ids) ) {
+
+        return redirect()->route('categorys.index')->with('success', '成功删除'.$num.'条栏目分类信息！');
+      } else {
+
+        return redirect()->routes('categorys.index')->with('danger', '批量删除栏目分类失败，请刷新页面后重新操作！');
+      }
     }
 
     // 处理上传的图片
