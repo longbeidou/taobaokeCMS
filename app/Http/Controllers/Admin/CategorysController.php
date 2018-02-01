@@ -34,7 +34,9 @@ class CategorysController extends Controller
     // 显示分类信息的页面
     public function show ( Category $category )
     {
-      return view('admin.category.show');
+      $title = '栏目分类详情';
+
+      return view('admin.category.show', compact('title', 'category'));
     }
 
     // 创建分类的页面

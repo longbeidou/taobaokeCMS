@@ -9,7 +9,7 @@
       @if($category->is_show == 1) <span class="text-info">显示</span> @endif
       @if($category->is_show == 0) <span class="text-danger">不显示</span> @endif
     </td>
-    <td class="text-center"><img src="{{ $category->image_small}}" height="31px" /></td>
+    <td class="text-center"><img src="{{ $category->image_small}}" style="width:31px; height:31px; border:1px solid green;"  /></td>
     <td><img src="{{ $category->image_magic_left}}" height="60px" /></td>
     <td><img src="{{ $category->image_magic_top}}" height="60px" /></td>
     <td><img src="{{ $category->image_magic_buttom}}" height="60px" /></td>
