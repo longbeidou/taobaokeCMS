@@ -13,7 +13,7 @@
         <div class="ibox-title">
             <h5>品牌分类详情</h5>
 						<div class="ibox-tools">
-							<a class="dropdown-toggle" href="{{ route('categorys.index') }}">
+							<a class="dropdown-toggle" href="{{ route('brandCategorys.index') }}">
 									<i class="fa fa-list"></i> 品牌分类列表
 							</a>
 						</div>
