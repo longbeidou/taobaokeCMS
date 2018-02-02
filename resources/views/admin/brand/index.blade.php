@@ -37,9 +37,9 @@
                                   <th>排序</th>
                                   <th style="min-width:75px;">品牌名称</th>
                                   <th class="text-center">商品总数</th>
-                                  <th>品牌分类</th>
+                                  <th class="text-center">品牌分类</th>
                                   <th class="text-center">图片</th>
-                                  <th>品牌关键词</th>
+                                  <th class="text-center">品牌关键词</th>
                                   <th class="text-center">显示状态</th>
                                   <th class="text-center">操作</th>
                               </tr>

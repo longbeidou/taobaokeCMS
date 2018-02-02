@@ -37,23 +37,20 @@
                           <label class="col-sm-3 control-label">所属品牌分类：</label>
                           <div class="col-sm-9">
                               <select class="form-control" name="brand_category_id">
-                                  <option>选项 1</option>
-                                  <option>选项 2</option>
-                                  <option>选项 3</option>
-                                  <option>选项 4</option>
+                                  {!! $option !!}
                               </select>
                           </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-3 control-label">品牌关键词：</label>
                           <div class="col-sm-9">
-                              <input type="text" name="name" class="form-control" required placeholder="请输入品牌关键词">
+                              <input type="text" name="keywords" class="form-control" required placeholder="请输入品牌关键词">
                           </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-3 control-label">上传图片：</label>
                           <div class="col-sm-9">
-                              <input type="file" required name="image_small" class="form-control">
+                              <input type="file" required name="image" class="form-control">
                               <span class="help-block m-b-none text-warning"><strong>提示：</strong>上传图片的大小为：75px*45px</span>
                           </div>
                       </div>
