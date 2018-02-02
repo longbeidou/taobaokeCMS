@@ -19,11 +19,13 @@ class CreateBrandsTable extends Migration
             $table->increments('id');
             $table->unique('id');
             $table->index('id');
-            $table->char('name', 30);                   // 品牌分类的名称
-            $table->integer('order')->default('0');     // 品牌分类排列顺序
+            $table->char('name', 30);                   // 品牌的名称
+            $table->integer('order')->default('0');     // 品牌排列顺序
+            $table->integer('brand_category_id');       // 所属的品牌分类的id
+            $table->char('keywords', 30);               // 关键词
             $table->integer('is_show')->default(1);     // 是否显示
             $table->char('image', 200);                 // 小图片地址
-            $table->integer('total')->nullable();       // 包含的品牌总数
+            $table->integer('total')->nullable();       // 包含的优惠券总数
             $table->timestamps();
         });
     }

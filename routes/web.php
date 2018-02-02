@@ -20,11 +20,13 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
   Route::get('dashboard', 'Admin\AdminerLoginController@dashboard')->name('admin.dashboard');
   Route::get('dashbard/index', 'Admin\AdminerLoginController@index')->name('admin.dashbard.index');
   Route::get('logout', 'Admin\AdminerLoginController@logout')->name('admin.logout');
+
   Route::get('adminers/{adminer}', 'Admin\AdminersController@show')->name('adminers.show');
   Route::get('adminers/{adminer}/edit', 'Admin\AdminersController@edit')->name('adminers.edit');
   Route::patch('adminers/{adminer}', 'Admin\AdminersController@update')->name('adminers.update');
   Route::get('adminers/{adminer}/changepassword', 'Admin\AdminersController@updatePassword')->name('adminers.update.password');
   Route::post('adminers/{adminer}/changepassword', 'Admin\AdminersController@updatePasswordaction')->name('adminers.update.passwordaction');
+
   Route::get('coupons/create', 'Admin\CouponsController@create')->name('admin.coupons.create');
   Route::post('copons/create/excel', 'Admin\CouponsController@storeExcel')->name('admin.coupons.storeExcel')->middleware('CheckCouponExcel');
   Route::get('coupons/delete/show', 'Admin\CouponsController@deleteShow')->name('admin.coupons.delete.show');
@@ -41,16 +43,28 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
   Route::get('coupons/notrecommend/{id}', 'Admin\CouponsController@notRecommendById')->name('admin.coupons.notRecommendById')->where('id', '[0-9]+');
   Route::get('coupons/show/{id}', 'Admin\CouponsController@showById')->name('admin.coupons.showById')->where('id', '[0-9]+');
   Route::get('coupons/notshow/{id}', 'Admin\CouponsController@notShowById')->name('admin.coupons.notShowById')->where('id', '[0-9]+');
+
   Route::get('couponCategorys/delete/{id}', 'Admin\CouponCategorysController@delete')->name('couponCategorys.delete');
   Route::post('couponCategorys/deleteMany/', 'Admin\CouponCategorysController@deleteMany')->name('couponCategorys.deleteMany');
   Route::get('couponCategorys/isshow/{id}', 'Admin\CouponCategorysController@isShow')->name('couponCategorys.isShow');
   Route::get('couponCategorys/notshow/{id}', 'Admin\CouponCategorysController@notShow')->name('couponCategorys.notShow');
   Route::post('couponCategorys/changeOrder', 'Admin\CouponCategorysController@changeOrder')->name('couponCategorys.changeOrder');
   Route::resource('couponCategorys', 'Admin\CouponCategorysController');
+
   Route::post('categorys/changeOrder', 'Admin\CategorysController@changeOrder')->name('categorys.changeOrder');
   Route::post('categorys/deleteMany', 'Admin\CategorysController@deleteMany')->name('categorys.deleteMany');
   Route::get('categorys/delete/{id}', 'Admin\CategorysController@deleteById')->name('categorys.deleteById');
   Route::resource('categorys', 'Admin\CategorysController');
+
+  Route::get('brandCategorys/isShow/{id}', 'Admin\BrandsController@isShow')->name('brandCategorys.isShow');
+  Route::get('brandCategorys/notShow/{id}', 'Admin\BrandsController@notShow')->name('brandCategorys.notShow');
+  Route::post('brandCategorys/deleteMany', 'Admin\BrandsController@deleteMany')->name('brandCategorys.deleteMany');
+  Route::post('brandCategorys/changeOrder', 'Admin\BrandsController@changeOrder')->name('brandCategorys.changeOrder');
   Route::resource('brandCategorys', 'Admin\BrandCategorysController');
+
+  Route::get('brands/isShow/{id}', 'Admin\BrandsController@isShow')->name('brands.isShow');
+  Route::get('brands/notShow/{id}', 'Admin\BrandsController@notShow')->name('brands.notShow');
+  Route::post('brands/deleteMany', 'Admin\BrandsController@deleteMany')->name('brands.deleteMany');
+  Route::post('brands/changeOrder', 'Admin\BrandsController@changeOrder')->name('brands.changeOrder');
   Route::resource('brands', 'Admin\BrandsController');
 });

@@ -22,7 +22,6 @@ class CreateBrandCategorysTable extends Migration
             $table->char('name', 30);                   // 品牌分类的名称
             $table->integer('order')->default('0');     // 品牌分类排列顺序
             $table->integer('is_show')->default(1);     // 是否显示
-            $table->char('keywords', 30);               // 关键词
             $table->char('font_icon', 50)->nullable();  // 字体图标
             $table->integer('total')->nullable();       // 包含的品牌总数
             $table->timestamps();
