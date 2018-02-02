@@ -27,7 +27,7 @@ class CouponCategorysStoreRequest extends FormRequest
             'category_name' => 'required|min:1|max:30',
             'order' => 'required|numeric',
             'is_show' => 'required',
-            'imgage_small' => 'required|image',
+            'image_small' => 'required|image',
             'group1.0.word' => 'required'
         ];
     }
@@ -41,8 +41,8 @@ class CouponCategorysStoreRequest extends FormRequest
          'order.required' => '请填写排序',
          'order.numeric' => '请用数字填写排序选项',
          'is_show.required' => '请选择是否展示分类',
-         'imgage_small.required' => '请上传图片文件',
-         'imgage_small.image' => '请上传正确格式的图片',
+         'image_small.required' => '请上传图片文件',
+         'image_small.image' => '请上传正确格式的图片',
          'group1.0.word.required' => '请填写关键字'
        ];
     }

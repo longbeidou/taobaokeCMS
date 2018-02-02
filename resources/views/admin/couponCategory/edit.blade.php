@@ -41,8 +41,8 @@
                       </div>
                       <div class="form-group">
                           <label class="col-sm-3 control-label">上传图片：</label>
-                          <div class="col-sm-9"><img src="{{ $couponCategory->imgage_small }}" style="max-width:41px;" />
-                              <input type="file" name="imgage_small" class="form-control">
+                          <div class="col-sm-9"><img src="{{ $couponCategory->image_small }}" style="max-width:41px;" />
+                              <input type="file" name="image_small" class="form-control">
                               <span class="help-block m-b-none text-warning"><strong>提示：</strong>上传图片的大小为：41px*41px</span>
                           </div>
                       </div>

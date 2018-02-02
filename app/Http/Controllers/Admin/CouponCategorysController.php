@@ -49,7 +49,7 @@ class CouponCategorysController extends Controller
     // 创建优惠券分类的页面
     public function create()
     {
-      $title = '编辑优惠券分类';
+      $title = '增加优惠券分类';
 
       return view('admin.couponCategory.create', compact('title'));
     }
@@ -58,7 +58,7 @@ class CouponCategorysController extends Controller
     public function store(CouponCategorysStoreRequest $request)
     {
       $couponCategory['self_where'] = $this->makeCategoryString($request->group1, $request->group2);
-      $couponCategory['imgage_small'] = $this->getImagesSmallPath($request);
+      $couponCategory['image_small'] = $this->getImagesSmallPath($request);
       $couponCategory['category_name'] = $request->category_name;
       $couponCategory['order'] = $request->order;
       $couponCategory['is_show'] = $request->is_show;
@@ -92,9 +92,9 @@ class CouponCategorysController extends Controller
       $updateInfo['order'] = $request->order;
       $updateInfo['font_icon'] = $request->font_icon;
 
-      if ($request->hasFile('imgage_small')) {
-        $updateInfo['imgage_small'] = $this->getImagesSmallPath($request);
-        $this->unlinkFiles($couponCategory->imgage_small);
+      if ($request->hasFile('image_small')) {
+        $updateInfo['image_small'] = $this->getImagesSmallPath($request);
+        $this->unlinkFiles($couponCategory->image_small);
       }
 
       $selfWhere = $this->makeCategoryString($request->group1, $request->group2);
@@ -116,7 +116,7 @@ class CouponCategorysController extends Controller
         return back()->with('danger', '要删除的信息不存在！');
       }
 
-      $imageSmall = $couponCategory->first(['imgage_small'])->imgage_small;
+      $imageSmall = $couponCategory->first(['image_small'])->image_small;
       $this->unlinkFiles($imageSmall);
       $couponCategory->delete();
 
@@ -210,9 +210,9 @@ class CouponCategorysController extends Controller
     // 根据id集合删除文件
     public function unlinkFilesByIds ($ids)
     {
-      $couponCategorys = CouponCategory::whereIn('id', $ids)->get(['imgage_small'])->toArray();
+      $couponCategorys = CouponCategory::whereIn('id', $ids)->get(['image_small'])->toArray();
       foreach ($couponCategorys as $couponCategory) {
-        $this->unlinkFiles($couponCategory['imgage_small']);
+        $this->unlinkFiles($couponCategory['image_small']);
       }
     }
 
@@ -296,7 +296,7 @@ class CouponCategorysController extends Controller
     // 处理上传的图片
     public function getImagesSmallPath (Request $request) {
       $fileDir = 'img/couponCategory/imageSmall/'.date('Y-m-d').'/';
-      $file = $request->file('imgage_small');
+      $file = $request->file('image_small');
       $extension = $file->getClientOriginalExtension();
       $newName = md5(time().str_random(25)).'.'.$extension;
       $file->move($fileDir, $newName);

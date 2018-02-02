@@ -39,7 +39,7 @@
                       <label class="col-sm-3 control-label">图片：</label>
                       <div class="col-sm-9">
                           <p class="form-control-static">
-                            <img src="{{ $couponCategory->imgage_small }}" style="max-height:50px;" alt="">
+                            <img src="{{ $couponCategory->image_small }}" style="max-height:50px;" alt="">
                           </p>
                       </div>
                   </div>

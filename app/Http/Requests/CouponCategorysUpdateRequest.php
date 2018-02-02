@@ -27,7 +27,7 @@ class CouponCategorysUpdateRequest extends FormRequest
           'category_name' => 'required|min:1|max:30',
           'order' => 'required|numeric',
           'is_show' => 'required',
-          'imgage_small' => 'image'
+          'image_small' => 'image'
         ];
     }
 
@@ -40,7 +40,7 @@ class CouponCategorysUpdateRequest extends FormRequest
          'order.required' => '请填写排序',
          'order.numeric' => '请用数字填写排序选项',
          'is_show.required' => '请选择是否展示分类',
-         'imgage_small.image' => '请上传正确格式的图片'
+         'image_small.image' => '请上传正确格式的图片'
        ];
     }
 }

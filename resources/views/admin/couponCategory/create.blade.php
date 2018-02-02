@@ -36,7 +36,7 @@
                       <div class="form-group">
                           <label class="col-sm-3 control-label">上传图片：</label>
                           <div class="col-sm-9">
-                              <input type="file" required name="imgage_small" class="form-control">
+                              <input type="file" required name="image_small" class="form-control">
                               <span class="help-block m-b-none text-warning"><strong>提示：</strong>上传图片的大小为：41px*41px</span>
                           </div>
                       </div>
