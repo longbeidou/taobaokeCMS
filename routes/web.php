@@ -44,29 +44,29 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
   Route::get('coupons/show/{id}', 'Admin\CouponsController@showById')->name('admin.coupons.showById')->where('id', '[0-9]+');
   Route::get('coupons/notshow/{id}', 'Admin\CouponsController@notShowById')->name('admin.coupons.notShowById')->where('id', '[0-9]+');
 
-  Route::get('couponCategorys/delete/{id}', 'Admin\CouponCategorysController@delete')->name('couponCategorys.delete');
+  Route::get('couponCategorys/delete/{id}', 'Admin\CouponCategorysController@delete')->name('couponCategorys.delete')->where('id', '[0-9]+');
   Route::post('couponCategorys/deleteMany/', 'Admin\CouponCategorysController@deleteMany')->name('couponCategorys.deleteMany');
-  Route::get('couponCategorys/isshow/{id}', 'Admin\CouponCategorysController@isShow')->name('couponCategorys.isShow');
-  Route::get('couponCategorys/notshow/{id}', 'Admin\CouponCategorysController@notShow')->name('couponCategorys.notShow');
+  Route::get('couponCategorys/isshow/{id}', 'Admin\CouponCategorysController@isShow')->name('couponCategorys.isShow')->where('id', '[0-9]+');
+  Route::get('couponCategorys/notshow/{id}', 'Admin\CouponCategorysController@notShow')->name('couponCategorys.notShow')->where('id', '[0-9]+');
   Route::post('couponCategorys/changeOrder', 'Admin\CouponCategorysController@changeOrder')->name('couponCategorys.changeOrder');
   Route::resource('couponCategorys', 'Admin\CouponCategorysController');
 
   Route::post('categorys/changeOrder', 'Admin\CategorysController@changeOrder')->name('categorys.changeOrder');
   Route::post('categorys/deleteMany', 'Admin\CategorysController@deleteMany')->name('categorys.deleteMany');
-  Route::get('categorys/delete/{id}', 'Admin\CategorysController@deleteById')->name('categorys.deleteById');
+  Route::get('categorys/delete/{id}', 'Admin\CategorysController@deleteById')->name('categorys.deleteById')->where('id', '[0-9]+');
   Route::resource('categorys', 'Admin\CategorysController');
 
-  Route::get('brandCategorys/isShow/{id}', 'Admin\BrandCategorysController@isShow')->name('brandCategorys.isShow');
-  Route::get('brandCategorys/notShow/{id}', 'Admin\BrandCategorysController@notShow')->name('brandCategorys.notShow');
-  Route::get('brandCategorys/delete/{id}', 'Admin\BrandCategorysController@delete')->name('brandCategorys.delete');
+  Route::get('brandCategorys/isShow/{id}', 'Admin\BrandCategorysController@isShow')->name('brandCategorys.isShow')->where('id', '[0-9]+');
+  Route::get('brandCategorys/notShow/{id}', 'Admin\BrandCategorysController@notShow')->name('brandCategorys.notShow')->where('id', '[0-9]+');
+  Route::get('brandCategorys/delete/{id}', 'Admin\BrandCategorysController@delete')->name('brandCategorys.delete')->where('id', '[0-9]+');
   Route::post('brandCategorys/deleteMany', 'Admin\BrandCategorysController@deleteMany')->name('brandCategorys.deleteMany');
   Route::post('brandCategorys/changeOrder', 'Admin\BrandCategorysController@changeOrder')->name('brandCategorys.changeOrder');
   Route::post('brandCategorys/updateTotalMuti', 'Admin\BrandCategorysController@updateTotalMuti')->name('brandCategorys.updateTotalMuti');
   Route::resource('brandCategorys', 'Admin\BrandCategorysController');
 
-  Route::get('brands/isShow/{id}', 'Admin\BrandsController@isShow')->name('brands.isShow');
-  Route::get('brands/notShow/{id}', 'Admin\BrandsController@notShow')->name('brands.notShow');
-  Route::get('brands/delete/{id}', 'Admin\BrandsController@delete')->name('brands.delete');
+  Route::get('brands/isShow/{id}', 'Admin\BrandsController@isShow')->name('brands.isShow')->where('id', '[0-9]+');
+  Route::get('brands/notShow/{id}', 'Admin\BrandsController@notShow')->name('brands.notShow')->where('id', '[0-9]+');
+  Route::get('brands/delete/{id}', 'Admin\BrandsController@delete')->name('brands.delete')->where('id', '[0-9]+');
   Route::post('brands/deleteMany', 'Admin\BrandsController@deleteMany')->name('brands.deleteMany');
   Route::post('brands/changeOrder', 'Admin\BrandsController@changeOrder')->name('brands.changeOrder');
   Route::resource('brands', 'Admin\BrandsController');

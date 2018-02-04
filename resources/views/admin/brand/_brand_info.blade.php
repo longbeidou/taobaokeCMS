@@ -13,7 +13,7 @@
       @if(empty($brand->image))
       <img class="img-thumbnail" src="/adminstyle/img/nopicture.jpg" style="max-height:31px;" alt="">
       @else
-      <img src="{{ $brand->image }}" height="41px" />
+      <img class="img-thumbnail" src="{{ $brand->image }}" style="height:41px;" />
       @endif
     </td>
     <td class="text-center">{{ $brand->keywords }}</td>

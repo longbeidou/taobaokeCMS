@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\BrandCategory;
 use App\Models\Coupon;
+use App\Http\Requests\BrandsStoreRequest;
+use App\Http\Requests\BrandsUpdateRequest;
 
 class BrandsController extends Controller
 {
@@ -49,7 +51,7 @@ class BrandsController extends Controller
     }
 
     // 创建品牌
-    public function store( Request $request )
+    public function store( BrandsStoreRequest $request )
     {
       $brand = Brand::create([
         'name' => $request->name,
@@ -68,15 +70,32 @@ class BrandsController extends Controller
     }
 
     // 编辑品牌的页面
-    public function edit()
+    public function edit ( Brand $brand )
     {
-      //
+      $title = '编辑品牌信息';
+      $option = $this->getOptionStr($brand->brand_category_id);
+
+      return view('admin.brand.edit', compact('title', 'brand', 'option'));
     }
 
     // 更新用户
-    public function update()
+    public function update( Brand $brand, BrandsUpdateRequest $request )
     {
-      //
+      $num = $brand->update([
+        'name' => $request->name,
+        'order' => $request->order,
+        'brand_category_id' => $request->brand_category_id,
+        'is_show' => $request->is_show,
+        'keywords' => $request->keywords,
+        'image' => $this->getImagesUpdatePath($request, $this->imagePath, 'image', $brand),
+        'total' => $this->getCouponsTotalByBrandKeywords($request->keywords)
+      ]);
+
+      if ( $num ) {
+        return redirect()->route('brands.index')->with('success', '成功更新id为'.$brand->id.'的品牌信息！');
+      } else {
+        return redirect()->route('brands.index')->with('warning', '更新id为'.$brand->id.'的品牌信息失败！');
+      }
     }
 
     // 删除用户
@@ -86,27 +105,88 @@ class BrandsController extends Controller
     }
 
     // 设置展示
-    public function isShow()
+    public function isShow(Request $request)
     {
-      //
+      $num = Brand::where('id', $request->id)->update(['is_show'=>'1']);
+
+      if ($num) {
+        return redirect()->route('brands.index')->with('success','成功设置id为'.$request->id.'的品牌信息为显示状态！');
+      } else {
+        return redirect()->route('brands.index')->with('warning', '要设置id为'.$request->id.'的品牌为显示状态的信息不存在！');
+      }
     }
 
     // 设置不展示
-    public function notShow()
+    public function notShow(Request $request)
     {
-      //
+      $num = Brand::where('id', $request->id)->update(['is_show'=>'0']);
+
+      if ($num) {
+        return redirect()->route('brands.index')->with('success','成功设置id为'.$request->id.'的品牌信息为不显示状态！');
+      } else {
+        return redirect()->route('brands.index')->with('warning', '要设置id为'.$request->id.'的品牌为不显示状态的信息不存在！');
+      }
+    }
+
+    // 根据id删除
+    public function delete(Request $request)
+    {
+      $brand = Brand::where('id', $request->id);
+
+      if (!$brand->count()) {
+        return redirect()->route('brands.index')->with('warning', '要删除的信息不存在！');
+      }
+
+      $this->unlinkFiles($brand->first()->image);
+
+      if ($brand->delete()) {
+        return redirect()->route('brands.index')->with('success','成功删除品牌信息！');
+      } else {
+        return redirect()->route('brands.index')->with('warning', '要删除的信息不存在！');
+      }
     }
 
     // 根据id集合批量删除
-    public function deleteMany()
+    public function deleteMany(Request $request)
     {
-      //
+      $ids = $request->ids;
+
+      if (!count($ids)) {
+        return redirect()->route('brands.index')->with('info', '没有删除任何品牌信息！');
+      }
+
+      $brands = Brand::whereIn('id', $ids)->get(['image']);
+
+      foreach ($brands as $brand) {
+        $this->unlinkFiles($brand->image);
+      }
+
+      if ($num = Brand::destroy($ids)) {
+        return redirect()->route('brands.index')->with('success', '成功删除'.$num.'条品牌信息！');
+      } else {
+        return redirect()->route('brands.index')->with('info', '没有删除任何品牌信息！');
+      }
     }
 
     // 修改排序
-    public function changeOrder()
+    public function changeOrder(Request $request)
     {
-      //
+      $idToorderArrs = $request->order;
+      $num = 0;
+
+      if (!count($idToorderArrs)) {
+        return redirect()->route('brands.index')->with('info', '目前没有品牌，修改排序前，请先添加品牌信息！');
+      }
+
+      foreach ($idToorderArrs as $id=>$order) {
+        $num += Brand::where('id', $id)->update(['order'=>$order]);
+      }
+
+      if ($num) {
+        return redirect()->route('brands.index')->with('success', '成功更新'.$num.'条商品信息的排序！');
+      } else {
+        return redirect()->route('brands.index')->with('info', '没有更新任何品牌的排序！');
+      }
     }
 
     // 处理上传的图片
@@ -138,6 +218,17 @@ class BrandsController extends Controller
       $this->unlinkFiles($category->$field);
 
       return $path;
+    }
+
+    // 根据文件路径删除文件
+    public function unlinkFiles (String $path)
+    {
+      if ( !empty($path) ) {
+        $fullPath = public_path().$path;
+        if ( is_file($fullPath) ) {
+          unlink($fullPath);
+        }
+      }
     }
 
     // 根据品牌的id获取在该品牌下所有的优惠券的数量

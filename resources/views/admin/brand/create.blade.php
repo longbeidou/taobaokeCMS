@@ -22,14 +22,14 @@
                       <div class="form-group">
                           <label class="col-sm-3 control-label">品牌名称：</label>
                           <div class="col-sm-9">
-                              <input type="text" name="name" class="form-control" required placeholder="请输入要创建的品牌名称">
+                              <input type="text" name="name" value="{{ old('name') }}" class="form-control" required placeholder="请输入要创建的品牌名称">
                               <span class="help-block m-b-none">品牌名称最多由10个汉字组成</span>
                           </div>
                       </div>
                       <div class="form-group">
                           <label class="col-sm-3 control-label">排序：</label>
                           <div class="col-sm-9">
-                              <input type="number" required name="order" class="form-control" value="0" placeholder="请输入排序数值">
+                              <input type="number" required name="order" class="form-control" @if(old('order')) value="{{ old('order') }}" @endif @if(!old('order')) value="0" @endif placeholder="请输入排序数值">
                               <span class="help-block m-b-none">值越小，排名越靠前！</span>
                           </div>
                       </div>
@@ -44,7 +44,7 @@
                       <div class="form-group">
                           <label class="col-sm-3 control-label">品牌关键词：</label>
                           <div class="col-sm-9">
-                              <input type="text" name="keywords" class="form-control" required placeholder="请输入品牌关键词">
+                              <input type="text" name="keywords" value="{{ old('keywords') }}" class="form-control" required placeholder="请输入品牌关键词">
                           </div>
                       </div>
                       <div class="form-group">
@@ -58,9 +58,9 @@
                           <label class="col-sm-3 control-label">是否显示：</label>
                           <div class="col-sm-9">
                               <label class="radio-inline">
-                                  <input type="radio" checked value="1" id="optionsRadios1" name="is_show">显示</label>
+                                  <input type="radio" @if(old('is_show') === '1' || empty(old('is_show'))) checked @endif  value="1" id="optionsRadios1" name="is_show">显示</label>
                               <label class="radio-inline">
-                                  <input type="radio" value="0" id="optionsRadios2" name="is_show">不显示</label>
+                                  <input type="radio" @if(old('is_show') === '0') checked @endif value="0" id="optionsRadios2" name="is_show">不显示</label>
                           </div>
                       </div>
                   </div>
