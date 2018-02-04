@@ -22,14 +22,16 @@ class BrandsController extends Controller
       $oldRequest = $request->all();
       $idToNameArr = $this->getBrandIdToNameArr();
 
-      if ( !empty($request->pageSize) ) {
-        $pageSize = $request->pageSize;
-      }
+      $pageSize = empty($request->page_size)?$this->pageSize:$request->page_size;
 
-      $pageSize = $this->pageSize;
-      $brands = Brand::orderBy('order', 'asc')->paginate($pageSize);
+      $brandCategorys = BrandCategory::get(['id', 'name']);
+      $brandCategorys = $brandCategorys->count()?$brandCategorys:[];
 
-      return view('admin.brand.index', compact('title', 'brands', 'idToNameArr', 'oldRequest'));
+      $brands = new Brand;
+      $brands = empty($request->category)?$brands:$brands->where('brand_category_id', $request->category);
+      $brands = $brands->orderBy('order', 'asc')->paginate($pageSize);
+
+      return view('admin.brand.index', compact('title', 'brands', 'brandCategorys', 'idToNameArr', 'oldRequest'));
     }
 
     // 创建品牌的页面

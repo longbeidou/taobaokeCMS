@@ -7,22 +7,47 @@
 @section('content')
 
   @include('admin.layouts.table._tips')
+<div class="row">
+  <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>品牌分类</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <ul class="list-inline">
+                  <li><a href="{{ route('brands.index') }}">全部分类</a></li>
+                  @foreach($brandCategorys as $brandCategory)
+                  <li><a href="{{ route('brands.index') }}?category={{ $brandCategory->id }}&page_size={{ $oldRequest['page_size'] or '' }}">{{ $brandCategory->name }}</a></li>
+                  @endforeach
+                </ul>
+            </div>
+        </div>
+  </div>
+</div>
 
 <div class="row">
     <div class="col-sm-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>优惠券分类列表</h5>
+                <h5>品牌列表</h5>
                 <div class="ibox-tools">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-wrench"></i> 每页显示信息数
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="{{ route('brands.index') }}?page_size=10">每页显示10条信息</a></li>
-                        <li><a href="{{ route('brands.index') }}?page_size=15">每页显示15条信息</a></li>
-                        <li><a href="{{ route('brands.index') }}?page_size=20">每页显示20条信息</a></li>
-                        <li><a href="{{ route('brands.index') }}?page_size=25">每页显示25条信息</a></li>
-                        <li><a href="{{ route('brands.index') }}?page_size=30">每页显示30条信息</a></li>
+                        <li><a href="{{ route('brands.index') }}?category={{ $oldRequest['category'] or '' }}&page_size=10">每页显示10条信息</a></li>
+                        <li><a href="{{ route('brands.index') }}?category={{ $oldRequest['category'] or '' }}&page_size=15">每页显示15条信息</a></li>
+                        <li><a href="{{ route('brands.index') }}?category={{ $oldRequest['category'] or '' }}&page_size=20">每页显示20条信息</a></li>
+                        <li><a href="{{ route('brands.index') }}?category={{ $oldRequest['category'] or '' }}&page_size=25">每页显示25条信息</a></li>
+                        <li><a href="{{ route('brands.index') }}?category={{ $oldRequest['category'] or '' }}&page_size=30">每页显示30条信息</a></li>
                     </ul>
                 </div>
             </div>
