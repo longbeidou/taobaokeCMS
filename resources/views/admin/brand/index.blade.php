@@ -83,6 +83,7 @@
                       				<span>|</span>
                       				<button type="submit" class="btn btn-xs btn-info"    onclick="submitChoice(1)"><i class="fa fa-close text-navy" style="color:#fff;"></i> 删除选中</button>
                       				<button type="submit" class="btn btn-xs btn-primary" onclick="submitChoice(2)"><i class="fa fa-hand-o-up text-navy" style="color:#fff;"></i> 修改排序</button>
+                              <button type="submit" class="btn btn-xs btn-warning" onclick="submitChoice(3)"><i class="fa fa-hand-o-up text-navy" style="color:#fff;"></i> 一键更新商品总数</button>
                       			</td>
                       		</tr>
                       	</tbody>
@@ -133,6 +134,11 @@
     }
     if (value == 2) {
       form.action = "{{route('brands.changeOrder')}}";
+      $("#couponList").attr('action', form.action);
+      form.submit();
+    }
+    if (value == 3) {
+      form.action = "{{route('brands.updateTotalMuti')}}";
       $("#couponList").attr('action', form.action);
       form.submit();
     }

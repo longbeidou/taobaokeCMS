@@ -64,9 +64,8 @@ class BrandsController extends Controller
         'image' => $this->getImagesSavePath($request, $this->imagePath, 'image'),
       ]);
 
-      Brand::where('id', $brand->id)->update([
-        'total' => $this->getCouponsTotalByBrandKeywords($request->keywords)
-      ]);
+      $this->updateCouponsTotalByIdToKeywords([$brand->id=>$request->keywords]);
+      $this->updateBrandCatesTotal();
 
       return back()->with('success', '成功创建品牌！');
     }
@@ -92,6 +91,9 @@ class BrandsController extends Controller
         'image' => $this->getImagesUpdatePath($request, $this->imagePath, 'image', $brand),
         'total' => $this->getCouponsTotalByBrandKeywords($request->keywords)
       ]);
+
+      $this->updateCouponsTotalByIdToKeywords([$brand->id=>$request->keywords]);
+      $this->updateBrandCatesTotal();
 
       if ( $num ) {
         return redirect()->route('brands.index')->with('success', '成功更新id为'.$brand->id.'的品牌信息！');
@@ -142,6 +144,8 @@ class BrandsController extends Controller
       $this->unlinkFiles($brand->first()->image);
 
       if ($brand->delete()) {
+        $this->updateBrandCatesTotal();
+
         return redirect()->route('brands.index')->with('success','成功删除品牌信息！');
       } else {
         return redirect()->route('brands.index')->with('warning', '要删除的信息不存在！');
@@ -164,6 +168,8 @@ class BrandsController extends Controller
       }
 
       if ($num = Brand::destroy($ids)) {
+        $this->updateBrandCatesTotal();
+
         return redirect()->route('brands.index')->with('success', '成功删除'.$num.'条品牌信息！');
       } else {
         return redirect()->route('brands.index')->with('info', '没有删除任何品牌信息！');
@@ -188,6 +194,27 @@ class BrandsController extends Controller
         return redirect()->route('brands.index')->with('success', '成功更新'.$num.'条商品信息的排序！');
       } else {
         return redirect()->route('brands.index')->with('info', '没有更新任何品牌的排序！');
+      }
+    }
+
+    // 一键更新商品总数
+    public function updateTotalMuti (Request $request)
+    {
+      $ids = $request->ids;
+      $num = 0;
+
+      if ( count($ids) ) {
+        foreach ($ids as $id) {
+          $keywords = Brand::where('id', $id)->first(['keywords'])->keywords;
+          $total = Coupon::where('goods_name', 'like', $keywords)->count();
+          $num += Brand::where('id', $id)->update(['total'=>$total]);
+        }
+      }
+
+      if ( $num ) {
+        return redirect()->route('brands.index')->with('success', '成功更新'.$num.'的商品总数信息！');
+      } else {
+        return redirect()->route('brands.index')->with('info', '没有更新商品总数信息！');
       }
     }
 
@@ -239,18 +266,36 @@ class BrandsController extends Controller
       return Coupon::where('goods_name', 'like', $keywords)->count();
     }
 
-    // 根据品牌id与keywords的集合批量更新total字段
-    public function updateTotalByIdToKeywordsArr ( Array $idToKeywordArr )
+    // 根据id和keywords对应的数组来批量更新brands表的total字段
+    public function updateCouponsTotalByIdToKeywords ( Array $idToKeywordsArr )
     {
       $num = 0;
 
-      if ( count($ids) == 0 ) {
-        return $num;
+      if ( count($idToKeywordsArr) ) {
+        foreach ($idToKeywordsArr as $id => $keywords) {
+          $num++;
+          Brand::where('id', $id)->update([
+            'total' => $this->getCouponsTotalByBrandKeywords($keywords)
+          ]);
+        }
       }
 
-      foreach ($idToKeywordArr as  $id=>$keywords) {
-        $total = $this->getCouponsTotalByBrandKeywords($keywords);
-        $num += Brand::where('id', $id)->update(['total' => $total]);
+      return $num;
+    }
+
+    // 批量更新brand_categorys表total字段
+    public function updateBrandCatesTotal ()
+    {
+      $num = 0;
+
+      if ( Brand::count() ) {
+        $brandCategorys = BrandCategory::get(['id']);
+
+        foreach ($brandCategorys as $brandCategory) {
+          $num++;
+          $total = Brand::where('brand_category_id', $brandCategory->id)->count();
+          BrandCategory::where('id', $brandCategory->id)->update(['total'=>$total]);
+        }
       }
 
       return $num;
