@@ -43,6 +43,7 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
   Route::get('coupons/notrecommend/{id}', 'Admin\CouponsController@notRecommendById')->name('admin.coupons.notRecommendById')->where('id', '[0-9]+');
   Route::get('coupons/show/{id}', 'Admin\CouponsController@showById')->name('admin.coupons.showById')->where('id', '[0-9]+');
   Route::get('coupons/notshow/{id}', 'Admin\CouponsController@notShowById')->name('admin.coupons.notShowById')->where('id', '[0-9]+');
+  Route::post('coupons/updateBrandsTotal/all', 'Admin\CouponsController@updateBrandsTotalOneTime')->name('coupons.updateBrandsTotalOneTime');
 
   Route::get('couponCategorys/delete/{id}', 'Admin\CouponCategorysController@delete')->name('couponCategorys.delete')->where('id', '[0-9]+');
   Route::post('couponCategorys/deleteMany/', 'Admin\CouponCategorysController@deleteMany')->name('couponCategorys.deleteMany');

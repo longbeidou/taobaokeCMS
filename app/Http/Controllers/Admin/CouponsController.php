@@ -8,6 +8,7 @@ use App\Models\Coupon;
 use Excel;
 use Hash;
 use App\Models\Adminer;
+use App\Models\Brand;
 
 class CouponsController extends Controller
 {
@@ -49,6 +50,7 @@ class CouponsController extends Controller
       $num = Coupon::destroy($ids);
 
       if ($num) {
+        $this->updateBrandsTotalAll();
 
         return back()->with('success', '成功删除'.$num.'条商品信息！');
       } else {
@@ -137,13 +139,14 @@ class CouponsController extends Controller
       }
     }
 
-    // 根据优惠券的id批量删除
+    // 根据优惠券的id删除
     public function deleteById (Request $request)
     {
       $id = $request->id;
       $num = Coupon::destroy($id);
 
       if ($num) {
+        $this->updateBrandsTotalAll();
 
         return back()->with('success', '成功删除id为'.$id.'的商品信息！');
       } else {
@@ -227,6 +230,10 @@ class CouponsController extends Controller
         }
       });
 
+      if ( $request->brand ) {
+        $this->updateBrandsTotalAll();
+      }
+
       return redirect()->route('admin.coupons.create')->with('success', '成功增加'.self::$successInsertNum.'条优惠券信息！');
     }
 
@@ -243,6 +250,7 @@ class CouponsController extends Controller
     {
       if ( $this->isAdminerPassword($request->password, $request->adminer_id) ) {
         Coupon::truncate();
+        $this->updateBrandsTotalAll();
 
         return redirect()->route('admin.coupons.delete.show')->with('success', '成功清空数据库！');
       } else {
@@ -258,9 +266,22 @@ class CouponsController extends Controller
       $dateEnd = $this->getDateTimeEnd($request->date_end);
       $num = Coupon::whereBetween('created_at',[$dateBegin, $dateEnd])->delete();
       if ($num) {
+        $this->updateBrandsTotalAll();
         return redirect()->route('admin.coupons.delete.show')->with('success', '成功删除创建日期在'.$dateBegin.'至'.$dateEnd.'的'.$num.'条优惠券信息！');
       } else {
         return redirect()->route('admin.coupons.delete.show')->with('warning', '所选择的日期'.$dateBegin.'至'.$dateEnd.'没有对应的优惠券信息！');
+      }
+    }
+
+    // 一键更新brands表的total字段
+    public function updateBrandsTotalOneTime()
+    {
+      $num = $this->updateBrandsTotalAll();
+
+      if ($num) {
+        return redirect()->route('admin.coupons.create')->with('success', '成功更新品牌券的相关信息！');
+      } else {
+        return redirect()->route('admin.coupons.create')->with('info', '请添加品牌后再点击一键更新操作');
       }
     }
 
@@ -545,5 +566,22 @@ class CouponsController extends Controller
       }
 
       return $this->pageSize;
+    }
+
+    // 批量更新brands表的total字段
+    public function updateBrandsTotalAll ()
+    {
+      $brands = Brand::get(['id', 'keywords']);
+      $num = 0;
+
+      if ($brands->count()) {
+        foreach ($brands as $brand) {
+          $num++;
+          $total = Coupon::where('goods_name', 'like', $brand->keywords)->count();
+          Brand::where('id', $brand->id)->update(['total'=>$total]);
+        }
+      }
+
+      return $num;
     }
 }
