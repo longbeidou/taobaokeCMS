@@ -20,6 +20,7 @@ class BrandsController extends Controller
     {
       $title = '品牌列表';
       $oldRequest = $request->all();
+      $categoryId = empty($request->category) ? 0:$request->category;
       $idToNameArr = $this->getBrandIdToNameArr();
 
       $pageSize = empty($request->page_size)?$this->pageSize:$request->page_size;
@@ -31,7 +32,7 @@ class BrandsController extends Controller
       $brands = empty($request->category)?$brands:$brands->where('brand_category_id', $request->category);
       $brands = $brands->orderBy('order', 'asc')->paginate($pageSize);
 
-      return view('admin.brand.index', compact('title', 'brands', 'brandCategorys', 'idToNameArr', 'oldRequest'));
+      return view('admin.brand.index', compact('title', 'brands', 'brandCategorys','categoryId', 'idToNameArr', 'oldRequest'));
     }
 
     // 创建品牌的页面

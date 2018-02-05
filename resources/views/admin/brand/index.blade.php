@@ -23,9 +23,13 @@
             </div>
             <div class="ibox-content">
                 <ul class="list-inline">
-                  <li><a href="{{ route('brands.index') }}">全部分类</a></li>
+                  <li><a
+                    @if($categoryId == 0) class="btn btn-danger" @else class="btn btn-info" @endif
+                    href="{{ route('brands.index') }}">全部分类</a></li>
                   @foreach($brandCategorys as $brandCategory)
-                  <li><a href="{{ route('brands.index') }}?category={{ $brandCategory->id }}&page_size={{ $oldRequest['page_size'] or '' }}">{{ $brandCategory->name }}</a></li>
+                  <li><a
+                    @if($categoryId == $brandCategory->id) class="btn btn-danger" @else class="btn btn-info" @endif
+                    href="{{ route('brands.index') }}?category={{ $brandCategory->id }}&page_size={{ $oldRequest['page_size'] or '' }}">{{ $brandCategory->name }}</a></li>
                   @endforeach
                 </ul>
             </div>
