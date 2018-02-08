@@ -11,66 +11,58 @@
     @include('admin.layouts.form._tips')
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>创建banner</h5>
+            <h5>修改banner</h5>
         </div>
         <div class="ibox-content">
           <div class="row form-body form-horizontal m-t">
             <div class="col-md-12 droppable sortable ui-droppable ui-sortable">
-              <form action="{{ route('banners.store') }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('banners.update', $banner->id) }}" method="POST" enctype="multipart/form-data">
               		{{ csrf_field() }}
+                  {{ method_field('PATCH') }}
                   <div class="col-md-12">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">banner简介：</label>
                         <div class="col-sm-9">
-                            <input type="text" name="name" value="{{ old('name') }}" required class="form-control" placeholder="请输入banner介绍">
+                            <input type="text" name="name" value="{{ $banner->name }}" required class="form-control" placeholder="请输入banner介绍">
                             <span class="help-block m-b-none">banner简介最多由30个文字组成</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">网址链接：</label>
                         <div class="col-sm-9">
-                            <input type="text" name="link" value="{{ old('link') }}" required class="form-control" placeholder="请输入网址链接">
+                            <input type="text" name="link" value="{{ $banner->link }}" required class="form-control" placeholder="请输入网址链接">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">排列顺序：</label>
                         <div class="col-sm-9">
-                            <input type="number"
-                            @if(old('order') !== null) value="{{ old('order') }}" @else value="0" @endif
-                            min='0' required max='99' name="order" class="form-control" placeholder="请输入排列顺序">
+                            <input type="number" value="{{ $banner->order }}" min='0' required max='99' name="order" class="form-control" placeholder="请输入排列顺序">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">banner展示的平台：</label>
                         <div class="col-sm-9">
                             <select class="form-control" name="flat" required>
-                              <option value="wx">移动端</option>
-                              <option @if(old('flat') !== null) selected @endif value="pc">PC端</option>
+                              <option @if($banner->flat === 'wx') selected @endif value="wx">移动端</option>
+                              <option @if($banner->flat === 'pc') selected @endif value="pc">PC端</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">banner图片：</label>
                         <div class="col-sm-9">
-                            <input type="file" name="image" required class="form-control">
+                            <img class="img-thumbnail" style="max-width:400px; max-height:300px;" src="{{ $banner->image }}" alt="">
+                            <input type="file" name="image"  class="form-control">
                             <span class="help-block m-b-none text-warning">PC端的图片大小为**pxb<br>移动端的图片大小为400px*300px</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">是否显示：</label>
                         <div class="col-sm-9">
-                          <?php
-                              $yesChecked = 'checked';
-                              $noChecked = '';
-                              if (old('is_show') !== null && old('is_show') === '0') {
-                                $yesChecked = '';
-                                $noChecked = 'checked';
-                              }
-                           ?>
                             <label class="radio-inline">
-                                <input type="radio" {{ $yesChecked }} value="1" id="optionsRadios1" name="is_show">是</label>
+                                <input type="radio" @if($banner->is_show == '1') checked @endif value="1" id="optionsRadios1" name="is_show">是</label>
                             <label class="radio-inline">
-                                <input type="radio" {{ $noChecked }} value="0" id="optionsRadios2" name="is_show">否</label>
+                                <input type="radio" @if($banner->is_show == '0') checked @endif value="0" id="optionsRadios2" name="is_show">否</label>
                         </div>
                     </div>
                   </div>

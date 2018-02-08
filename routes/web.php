@@ -73,5 +73,10 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
   Route::post('brands/updateTotalMuti', 'Admin\BrandsController@updateTotalMuti')->name('brands.updateTotalMuti');
   Route::resource('brands', 'Admin\BrandsController');
 
+  Route::get('banners/isShow/{id}', 'Admin\BannersController@isShow')->name('banners.isShow')->where('id', '[0-9]+');
+  Route::get('banners/notShow/{id}', 'Admin\BannersController@notShow')->name('banners.notShow')->where('id', '[0-9]+');
+  Route::get('banners/delete/{id}', 'Admin\BannersController@delete')->name('banners.delete')->where('id', '[0-9]+');
+  Route::post('banners/deleteMany', 'Admin\BannersController@deleteMany')->name('banners.deleteMany');
+  Route::post('banners/changeOrder', 'Admin\BannersController@changeOrder')->name('banners.changeOrder');
   Route::resource('banners', 'Admin\BannersController');
 });
