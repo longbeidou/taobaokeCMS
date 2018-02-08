@@ -64,6 +64,21 @@
             <li>
                 <a href="#">
                     <i class="fa fa-home"></i>
+                    <span class="nav-label">网站banner</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem" href="{{ route('banners.index') }}" data-index="0">banner列表</a>
+                    </li>
+                    <li>
+                      <a class="J_menuItem" href="{{ route('banners.create') }}">添加banner</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-home"></i>
                     <span class="nav-label">网站栏目</span>
                     <span class="fa arrow"></span>
                 </a>

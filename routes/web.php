@@ -72,4 +72,6 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
   Route::post('brands/changeOrder', 'Admin\BrandsController@changeOrder')->name('brands.changeOrder');
   Route::post('brands/updateTotalMuti', 'Admin\BrandsController@updateTotalMuti')->name('brands.updateTotalMuti');
   Route::resource('brands', 'Admin\BrandsController');
+
+  Route::resource('banners', 'Admin\BannersController');
 });
