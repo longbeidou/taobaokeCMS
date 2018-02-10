@@ -80,3 +80,5 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
   Route::post('banners/changeOrder', 'Admin\BannersController@changeOrder')->name('banners.changeOrder');
   Route::resource('banners', 'Admin\BannersController');
 });
+
+Route::get('/', 'Home\IndexController@index')->name('home.index');
