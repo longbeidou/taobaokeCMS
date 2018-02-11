@@ -44,6 +44,7 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
   Route::get('coupons/show/{id}', 'Admin\CouponsController@showById')->name('admin.coupons.showById')->where('id', '[0-9]+');
   Route::get('coupons/notshow/{id}', 'Admin\CouponsController@notShowById')->name('admin.coupons.notShowById')->where('id', '[0-9]+');
   Route::post('coupons/updateBrandsTotal/all', 'Admin\CouponsController@updateBrandsTotalOneTime')->name('coupons.updateBrandsTotalOneTime');
+  Route::post('coupons/encryptImageOneTime/all', 'Admin\CouponsController@encryptImageOneTime')->name('coupons.encryptImageOneTime');
 
   Route::get('couponCategorys/delete/{id}', 'Admin\CouponCategorysController@delete')->name('couponCategorys.delete')->where('id', '[0-9]+');
   Route::post('couponCategorys/deleteMany/', 'Admin\CouponCategorysController@deleteMany')->name('couponCategorys.deleteMany');
@@ -80,5 +81,7 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
   Route::post('banners/changeOrder', 'Admin\BannersController@changeOrder')->name('banners.changeOrder');
   Route::resource('banners', 'Admin\BannersController');
 });
+
+Route::get('/image/{image}', 'Home\ImageControloer@index')->name('image.index');
 
 Route::get('/', 'Home\IndexController@index')->name('home.index');

@@ -25,7 +25,7 @@ class BrandsController extends Controller
 
       $pageSize = empty($request->page_size)?$this->pageSize:$request->page_size;
 
-      $brandCategorys = BrandCategory::get(['id', 'name']);
+      $brandCategorys = BrandCategory::orderBy('order', 'asc')->get(['id', 'name']);
       $brandCategorys = $brandCategorys->count()?$brandCategorys:[];
 
       $brands = new Brand;

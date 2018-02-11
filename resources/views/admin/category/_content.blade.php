@@ -6,8 +6,16 @@
     <td>{{ $category->name }}</td>
     <td class="text-center">{!! $category->font_icon !!}</td>
     <td class="text-center">
-      @if($category->is_show == 1) <span class="text-info">显示</span> @endif
-      @if($category->is_show == 0) <span class="text-danger">不显示</span> @endif
+      main:@if($category->is_show == 1)          <span class="text-info"  ><i class="fa fa-toggle-on  text-navy"  ></i></span> |  @endif
+           @if($category->is_show == 0)          <span class="text-danger"><i class="fa fa-toggle-off text-danger"></i></span> |  @endif
+      PC:@if($category->is_show_pc == 1)         <span class="text-info"  ><i class="fa fa-toggle-on  text-navy"  ></i></span> |  @endif
+         @if($category->is_show_pc == 0)         <span class="text-danger"><i class="fa fa-toggle-off text-danger"></i></span> |  @endif
+      wx:@if($category->is_show_wx == 1)         <span class="text-info"  ><i class="fa fa-toggle-on  text-navy"  ></i></span> |  @endif
+         @if($category->is_show_wx == 0)         <span class="text-danger"><i class="fa fa-toggle-off text-danger"></i></span> |  @endif
+      wechat:@if($category->is_show_wechat == 1) <span class="text-info"  ><i class="fa fa-toggle-on  text-navy"  ></i></span> |  @endif
+             @if($category->is_show_wechat == 0) <span class="text-danger"><i class="fa fa-toggle-off text-danger"></i></span> |  @endif
+      qq:@if($category->is_show_qq == 1)         <span class="text-info"  ><i class="fa fa-toggle-on  text-navy"  ></i></span>    @endif
+         @if($category->is_show_qq == 0)         <span class="text-danger"><i class="fa fa-toggle-off text-danger"></i></span>    @endif
     </td>
     <td class="text-center">
       @if(empty($category->image_small))

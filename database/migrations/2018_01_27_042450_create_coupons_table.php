@@ -22,6 +22,7 @@ class CreateCouponsTable extends Migration
             $table->char('goods_id',15);      //商品id
             $table->char('goods_name',120); //商品名称
             $table->string('image');          //商品主图
+            $table->string('image_encrypt', 400)->nullable(); // 加密的商品主图
             $table->string('goods_info_link');      //商品详情页链接地址
             $table->string('category');           //商品一级类目
             $table->string('taobaoke_click_link', 400);  //淘宝客链接

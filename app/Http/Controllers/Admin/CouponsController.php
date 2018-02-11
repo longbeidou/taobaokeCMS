@@ -9,9 +9,12 @@ use Excel;
 use Hash;
 use App\Models\Adminer;
 use App\Models\Brand;
+use App\Traits\EncryptOrDecryptImage;
 
 class CouponsController extends Controller
 {
+    use EncryptOrDecryptImage;
+
     static public $successInsertNum = 0; // 成功修改或插入数据库的优惠券信息条数
     public $pageSize = 10; // 后台优惠券列表每页默认显示的优惠券条数
 
@@ -285,6 +288,29 @@ class CouponsController extends Controller
       }
     }
 
+    // 一键加密所有优惠券的图片地址
+    public function encryptImageOneTime()
+    {
+      $num = 0;
+      
+      Coupon::orderBy('id', 'asc')->select(['id', 'image'])->chunk(100, function($coupons) use(&$num) {
+
+        foreach ($coupons as $coupon) {
+          $coupon = Coupon::find($coupon->id);
+          $coupon->image_encrypt = $coupon->image;
+          $coupon->save();
+          $num++;
+        }
+
+      });
+
+      if ($num) {
+        return redirect()->route('admin.coupons.create')->with('success', '成功机密'.$num.'条数据！');
+      } else {
+        return redirect()->route('admin.coupons.create')->with('info', '没有机密任何数据！');
+      }
+    }
+
     // 获取优惠券Excel文件的完整路径
     public function getExcelFileFullPath (Request $request)
     {
@@ -369,6 +395,10 @@ class CouponsController extends Controller
     {
       $couponStandardArray = $this->makeStandardArray( $coupon );
       $goodsId = array_shift($couponStandardArray);
+
+      $imageEncrypt = $this->encryptImage($couponStandardArray['image']);
+      $couponStandardArray = array_merge($couponStandardArray,['image_encrypt'=>$imageEncrypt]);
+
       Coupon::updateOrCreate(
         ['goods_id'=>$goodsId], $couponStandardArray
       );

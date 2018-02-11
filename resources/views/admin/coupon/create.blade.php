@@ -33,6 +33,15 @@
                             <input type="radio" checked value="0" id="optionsRadios2" name="brand">否</label>
                     </div>
                 </div>
+                <!-- <div class="form-group">
+                    <label class="col-sm-4 control-label">是否同步加密图片地址：</label>
+                    <div class="col-sm-8">
+                        <label class="radio-inline">
+                            <input type="radio"  value="1" id="optionsRadios1" name="image_encrypt">是</label>
+                        <label class="radio-inline">
+                            <input type="radio" checked value="0" id="optionsRadios2" name="image_encrypt">否</label>
+                    </div>
+                </div> -->
                 {{ csrf_field() }}
                 <div class="form-group">
                     <div class="col-sm-12 col-sm-offset-3">
@@ -70,6 +79,29 @@
         </div>
     </div>
   </div>
+
+  <div class="col-sm-4 col-sm-offset-0">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>一键加密图片地址信息</h5>
+        </div>
+        <div class="ibox-content">
+            <form class="form-horizontal" method="post" action="{{ route('coupons.encryptImageOneTime') }}">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-offset-4">
+                        <button class="btn btn-primary" type="submit">一键加密</button>
+                    </div>
+                </div>
+            </form>
+            <p class="text-danger">
+              1.如果个需改了加密图片地址的算法，请手动选择提交【一键加密】更新数据库<br />
+              2.此更新的效果是更新coupon数据表的image_encrypt字段
+            </p>
+        </div>
+    </div>
+  </div>
+
 </div>
 @stop
 @section('footJs')
