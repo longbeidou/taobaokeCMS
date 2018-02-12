@@ -11,12 +11,22 @@
   @foreach($coupons as $coupon)
     <li class="mui-table-view-cell mui-media mui-col-xs-6">
         <a href="#">
-            @if(in_array($from,['wechat','wx']))
+            @if(!empty($from) && in_array($from,['wechat','wx']))
             <img class="mui-media-object" src="{{ route('image.index', $coupon->image_encrypt) }}">
             @else
             <img class="mui-media-object" src="{{ $coupon->image }}">
             @endif
-            <span class="mui-badge mui-badge-red" style="position:absolute; right: 0px; top: 20px; background-color: #ed2a7a;">{{ $coupon->flat }}</span>
+            <span class="mui-badge mui-badge-red" style="position:absolute; right: 0px; top: 20px; background-color: #ed2a7a;">
+              @if(in_array($from, ['wechat']))
+                @if($coupon->flat == '淘宝')
+                <img src="/img/ta.png" height="12px" alt="">
+                @else
+                <img src="/img/tm.png" height="12px" alt="">
+                @endif
+              @else
+              {{ $coupon->flat }}
+              @endif
+            </span>
             <div class="mui-media-body" style="height: 52px;">
               <p style="white-space: normal; max-height: 30px; overflow: hidden;">{{ $coupon->goods_name }}</p>
               <p class="mui-text-left" style="margin-top: 7px;">
@@ -32,6 +42,6 @@
     </li>
    @endforeach
     <li class="mui-text-center mui-col-xs-12">
-      <a href="" class="mui-btn mui-btn-outlined ">查看更多淘宝优惠券</a>
+      <a href="{{ route('home.coupon') }}" class="mui-btn mui-btn-outlined ">查看更多淘宝优惠券</a>
     </li>
 </ul>

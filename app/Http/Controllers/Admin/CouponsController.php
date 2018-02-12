@@ -292,7 +292,7 @@ class CouponsController extends Controller
     public function encryptImageOneTime()
     {
       $num = 0;
-      
+
       Coupon::orderBy('id', 'asc')->select(['id', 'image'])->chunk(100, function($coupons) use(&$num) {
 
         foreach ($coupons as $coupon) {
@@ -305,9 +305,9 @@ class CouponsController extends Controller
       });
 
       if ($num) {
-        return redirect()->route('admin.coupons.create')->with('success', '成功机密'.$num.'条数据！');
+        return redirect()->route('admin.coupons.create')->with('success', '成功加密'.$num.'条数据！');
       } else {
-        return redirect()->route('admin.coupons.create')->with('info', '没有机密任何数据！');
+        return redirect()->route('admin.coupons.create')->with('info', '没有加密任何数据！');
       }
     }
 
@@ -601,6 +601,8 @@ class CouponsController extends Controller
     // 批量更新brands表的total字段
     public function updateBrandsTotalAll ()
     {
+      set_time_limit(0);
+
       $brands = Brand::get(['id', 'keywords']);
       $num = 0;
 

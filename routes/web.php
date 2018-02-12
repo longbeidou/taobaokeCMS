@@ -85,3 +85,4 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
 Route::get('/image/{image}', 'Home\ImageControloer@index')->name('image.index');
 
 Route::get('/', 'Home\IndexController@index')->name('home.index');
+Route::get('/coupon/{id?}', 'Home\CouponCategoryController@index')->name('home.coupon')->where('id', '[0-9]+');

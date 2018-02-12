@@ -14,4 +14,46 @@ class Category extends Model
 
   protected $hidden = [
   ];
+
+  // 获取分类信息
+  public static function categorys($from)
+  {
+    switch ($from) {
+      case 'pc':
+        $categorys = Category::where('is_show', 1)->where('is_show_pc', 1)->orderBy('order', 'asc')->get()->toArray();
+        $categorys = self::addLinkToCategorys($categorys,'link_pc');
+        break;
+
+      case 'wx':
+        $categorys = Category::where('is_show', 1)->where('is_show_wx', 1)->orderBy('order', 'asc')->get()->toArray();
+        $categorys = self::addLinkToCategorys($categorys, 'link_wx');
+        break;
+
+      case 'wechat':
+        $categorys = Category::where('is_show', 1)->where('is_show_wechat', 1)->orderBy('order', 'asc')->get()->toArray();
+        $categorys = self::addLinkToCategorys($categorys, 'link_wechat');
+        break;
+
+      case 'qq':
+        $categorys = Category::where('is_show', 1)->where('is_show_qq', 1)->orderBy('order', 'asc')->get()->toArray();
+        $categorys = self::addLinkToCategorys($categorys, 'link_qq');
+        break;
+    }
+
+    return $categorys;
+  }
+
+  // 给分类增加link属性
+  public static function addLinkToCategorys($categorys, $field)
+  {
+    if ( count($categorys) ) {
+      foreach ($categorys as $key => $category) {
+        $categorys[$key]['link'] = $category[$field];
+      }
+
+      return $categorys;
+    }
+
+    return $categorys;
+  }
 }

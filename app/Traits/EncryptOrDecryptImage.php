@@ -2,7 +2,7 @@
 namespace App\Traits;
 
 /**
- * 假币或者解密图片地址
+ * 加密或者解密图片地址
  */
 trait EncryptOrDecryptImage
 {

@@ -22,4 +22,16 @@ class Coupon extends Model
   {
     $this->attributes['image_encrypt'] = $this->encryptImage($value);
   }
+
+  // 获取优惠券
+  public static function couponsRecommendRandom($from, $pcNum = 20, $wxNum = 8)
+  {
+    if ($from == 'pc') {
+
+      return Coupon::where('is_show', 1)->where('is_recommend', 1)->inRandomOrder()->take($pcNum)->get();
+    } else {
+
+      return Coupon::where('is_show', 1)->where('is_recommend', 1)->inRandomOrder()->take($wxNum)->get();
+    }
+  }
 }
