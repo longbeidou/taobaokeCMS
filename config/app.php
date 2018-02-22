@@ -177,6 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Providers\TaobaokeServiceProvider::class,
+
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
