@@ -27,13 +27,13 @@
       	        <!-- 主界面具体展示内容 -->
       	        <div class="mui-row" style="padding: 10px; padding-bottom: 2px;">
       	        	<div class="mui-col-xs-4 mui-text-center">
-      	        		<a href="" style="color: #000000;">综合排序<span class="mui-icon mui-icon-arrowdown"></span></a>
+      	        		<a href="{{ $currentUrl }}" @if(!empty($oldRequest['order']) && ( $oldRequest['order'] === 'sales_down' || $oldRequest['order'] === 'rate_down' ) ) style="color: #000000;" @else style="color: #ed2a7a;" @endif>综合排序<span class="mui-icon mui-icon-arrowdown"></span></a>
       	        	</div>
       	        	<div class="mui-col-xs-4 mui-text-center">
-      	        		<a href="" style="color: #000000;">销量排序<span class="mui-icon mui-icon-arrowdown"></span></a>
+      	        		<a href="{{ $currentUrl }}?order=sales_down" @if(!empty($oldRequest['order']) && $oldRequest['order'] === 'sales_down') style="color: #ed2a7a;" @else style="color: #000000;" @endif>销量排序<span class="mui-icon mui-icon-arrowdown"></span></a>
       	        	</div>
       	        	<div class="mui-col-xs-4 mui-text-center">
-      	        		<a href="" style="color: #ed2a7a;">优惠金额<span class="mui-icon mui-icon-arrowdown"></span></a>
+      	        		<a href="{{ $currentUrl }}?order=rate_down"  @if(!empty($oldRequest['order']) && $oldRequest['order'] === 'rate_down')  style="color: #ed2a7a;" @else style="color: #000000;" @endif>优惠幅度<span class="mui-icon mui-icon-arrowdown"></span></a>
       	        	</div>
       	        </div>
       	        <div><hr /></div>
@@ -44,20 +44,7 @@
 
       		    <!--分页-->
       		    <div class="mui-row mui-text-center" style="background-color: #FFFFFF; padding-top: 5px;">
-      		    	<ul class="mui-pagination">
-      		    	    <li class="mui-disabled">
-      		    	        <span> &laquo; </span>
-      		    	    </li>
-      		    	    <li class="mui-active">
-      		    	        <a href="#">1</a>
-      		    	    </li>
-      		    	    <li>
-      		    	        <a href="#">2</a>
-      		    	    </li>
-      		    	    <li>
-      		    	        <a href="#">&raquo;</a>
-      		    	    </li>
-      		    	</ul>
+                {!! $coupons->links('home.wx.pagination.default') !!}
       		    </div>
 
       		    <!--猜你喜欢-->
@@ -74,7 +61,7 @@
       		        @include('home.wx.couponCategory._guss_you_like')
       		    </ul>
       		    <!--版权-->
-      		    @include('home.wx.layouts._foot_tab_index')
+      		    @include('home.wx.layouts._copy')
   	      </div>
   	    </div>
   	    <div class="mui-off-canvas-backdrop"></div>

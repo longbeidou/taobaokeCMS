@@ -16,6 +16,7 @@ class ImageControloer extends Controller
       $image = $request->image;
       $imageNew = $this->decryptImage($image);
       $this->headerLocation($imageNew);
+      // $this->headerGetImage($imageNew);
     }
 
     // header跳转返回

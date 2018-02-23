@@ -12,12 +12,15 @@ use App\Traits\CouponCategorySelfWhere;
 
 class CouponCategoryController extends SourceOfAccessController
 {
+    use CouponCategorySelfWhere;
+
     public $pageSize = 20;
 
     // 优惠券分类的列表
     public function index(Request $request)
     {
       $oldRequest = $request->all();
+      $currentUrl = $request->url();
       $from = self::$from;
       $TDK = ['title'=>'网站首页',
               'keywords'=>'',
@@ -31,7 +34,7 @@ class CouponCategoryController extends SourceOfAccessController
       if (self::$from == 'pc') {
         //
       } else {
-        return view('home.wx.couponCategory.index', compact('oldRequest', 'from', 'TDK', 'coupons', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
+        return view('home.wx.couponCategory.index', compact('oldRequest', 'currentUrl', 'from', 'TDK', 'coupons', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
       }
     }
 
@@ -48,6 +51,16 @@ class CouponCategoryController extends SourceOfAccessController
         }
 
         $coupons = $this->selfWhere($couponCategory->self_where, $coupons);
+      }
+
+      switch ($request->order) {
+        case 'sales_down':
+          $coupons = $coupons->orderBy('sales', 'desc');
+          break;
+
+        case 'rate_down':
+          $coupons = $coupons->orderBy('rate', 'desc');
+          break;
       }
 
       return $coupons->paginate($pageSize);
