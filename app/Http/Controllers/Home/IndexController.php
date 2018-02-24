@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Home\SourceOfAccessController;
+use App\Http\Controllers\Home\BaseController;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\BrandCategory;
 use App\Models\Coupon;
 
-class IndexController extends SourceOfAccessController
+class IndexController extends BaseController
 {
     public function index (Request $request)
     {

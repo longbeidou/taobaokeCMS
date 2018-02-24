@@ -10,7 +10,7 @@
 <ul class="mui-table-view mui-grid-view">
   @foreach($coupons as $coupon)
     <li class="mui-table-view-cell mui-media mui-col-xs-6">
-        <a href="#">
+        <a href="{{ route('home.couponInfo', $coupon->id) }}">
             @if(!empty($from) && in_array($from,['wechat','wx']))
             <img class="mui-media-object" src="{{ route('image.index', $coupon->image_encrypt) }}">
             @else

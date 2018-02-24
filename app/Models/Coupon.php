@@ -34,4 +34,22 @@ class Coupon extends Model
       return Coupon::where('is_show', 1)->where('is_recommend', 1)->inRandomOrder()->take($wxNum)->get();
     }
   }
+
+  // 获取制定id的优惠券信息
+  public static function couponInfo($id)
+  {
+    return Coupon::find($id);
+  }
+
+  // 将优惠券的面额处理成数组
+  public static function makeCouponInfoToArray ($couponInfo)
+  {
+    $couponInfoToSameStr = str_replace(['满', '元', '减', '无条件券'], ['', '', '-', '-'], $couponInfo);
+    $couponInfoArray = explode('-', $couponInfoToSameStr);
+    if ($couponInfoArray[1] == 0) {
+      return [0, $couponInfoArray[0]];
+    } else {
+      return $couponInfoArray;
+    }
+  }
 }

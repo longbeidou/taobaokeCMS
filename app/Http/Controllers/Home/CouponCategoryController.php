@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Home\SourceOfAccessController;
+use App\Http\Controllers\Home\BaseController;
 use App\Models\CouponCategory;
 use App\Models\Coupon;
 use App\Models\Category;
 use App\Models\BrandCategory;
 use App\Traits\CouponCategorySelfWhere;
 
-class CouponCategoryController extends SourceOfAccessController
+class CouponCategoryController extends BaseController
 {
     use CouponCategorySelfWhere;
 
@@ -59,7 +59,7 @@ class CouponCategoryController extends SourceOfAccessController
           break;
 
         case 'rate_down':
-          $coupons = $coupons->orderBy('rate', 'desc');
+          $coupons = $coupons->orderBy('rate_sales', 'desc');
           break;
       }
 

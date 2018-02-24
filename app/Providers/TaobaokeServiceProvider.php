@@ -23,6 +23,6 @@ class TaobaokeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('App\Libraries\Alimama\Contracts\AlimamaInterface', 'App\Libraries\Alimama\Repositories\AlimamaRepository');
     }
 }

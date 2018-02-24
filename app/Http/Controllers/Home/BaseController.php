@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\SourceOfAccess;
 
-class SourceOfAccessController extends Controller
+class BaseController extends Controller
 {
   use SourceOfAccess;
 
