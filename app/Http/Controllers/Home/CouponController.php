@@ -32,7 +32,7 @@ class CouponController extends BaseController
       } else {
         $taoKouLing = $couponInfo->tao_kou_ling;
       }
-phpinfo();
+
       if (self::$from == 'pc') {
         //
       } else {
