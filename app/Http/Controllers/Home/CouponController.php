@@ -6,14 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Home\BaseController;
 use App\Models\Coupon;
 use App\Libraries\Alimama\Contracts\AlimamaInterface;
+use App\Services\MakeCouponShareImageService as MakeImage;
 
 class CouponController extends BaseController
 {
     public $taobao;
+    public $image;
 
-    public function __construct(AlimamaInterface $taobao)
+    public function __construct(AlimamaInterface $taobao, MakeImage $image)
     {
       $this->taobao = $taobao;
+      $this->image = $image;
     }
 
     public function index(Request $request)
@@ -38,5 +41,14 @@ class CouponController extends BaseController
       } else {
         return view('home.wx.couponInformation.index', compact('TDK', 'couponsGussYouLike', 'couponInfo', 'couponInformationArr', 'taoKouLing'));
       }
+    }
+
+    // 返回商品优惠券的分享海报图片
+    public function shareCouponImage(Request $request)
+    {
+      $coupon = Coupon::couponInfo($request->id);
+      $img = $this->image->makeImage($coupon);
+
+      return $img->response();
     }
 }

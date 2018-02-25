@@ -5,7 +5,7 @@
   <div style="padding: 5px 20px; width: 100%; background-color: #FFFFFF; border: 1px solid #ed2a7a; border-bottom-right-radius: 30px; border-bottom-left-radius: 30px;">
     <div style="border: 1px dashed #ed2a7a; margin: 10px 0px 0px; height: 250px;">
       <div style="height: 250px; padding: 5px; width: 100%; text-align: center;">
-        <img src="http://placehold.it/889x1264" height="100%"/><br />
+        <img src="{{ route('home.shareCouponImage', $couponInfo->id) }}" height="100%"/><br />
       </div>
     </div>
     <div style="text-align: center; margin: 0px 5px 5px;">
@@ -15,7 +15,7 @@
       <span style="font-size: 12px; -webkit-user-select:auto;" id="shareCode">
         {{ $couponInfo->goods_name }}（包邮）<br>
         【原 价】￥{{ $couponInfo->price }}元 <br>
-        【券 后】￥{{ $couponInfo->price_now }}<br>
+        【券 后】￥{{ $couponInfo->price_now }}元<br>
         复制这条信息，打开「手机淘宝」即可领劵下单！{{ $taoKouLing }}
       </span>
     </div>
