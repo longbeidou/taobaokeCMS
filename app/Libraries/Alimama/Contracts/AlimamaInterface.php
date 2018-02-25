@@ -8,5 +8,8 @@ namespace App\Libraries\Alimama\Contracts;
 interface AlimamaInterface
 {
   // 获取淘口令, $info为请求的数组
-  public function createShareTpwd (Array $info);
+  public function wirelessShareTpwdCreate (Array $info);
+
+  // 获取淘宝客商品详情（简版）信息
+  public function tbkItemInfoGet ($num_iids, $platform, $fields);
 }

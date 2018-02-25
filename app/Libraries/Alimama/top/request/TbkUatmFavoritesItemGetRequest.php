@@ -2,6 +2,8 @@
 
 namespace App\Libraries\Alimama\top\request;
 
+use App\Libraries\Alimama\top\RequestCheckUtil;
+
 /**
  * TOP API: taobao.tbk.uatm.favorites.item.get request
  *

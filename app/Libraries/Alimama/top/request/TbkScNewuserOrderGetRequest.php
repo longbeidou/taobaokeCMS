@@ -1,5 +1,7 @@
 <?php
 
+use App\Libraries\Alimama\top\RequestCheckUtil;
+
 namespace App\Libraries\Alimama\top\request;
 
 /**
