@@ -40,17 +40,8 @@ class MakeCouponShareImageService
     $img = $this->addText($img, ['text'=>$info['priceOrigin'], 'x'=>118, 'y'=>1120, 'size'=>'40', 'color'=>array(149, 149, 149, 1)]); // 写入现价到图片
     $img = $this->addText($img, ['text'=>$info['couponInfo'], 'x'=>55, 'y'=>1180, 'size'=>'25', 'color'=>array(255, 79, 30, 1)]); // 写入优惠券面额
     $img = $this->addCopyToImage($img); // 插入版权
-
-    // 删除二维码图片
-    if (file_exists(public_path(self::QRCODES_SRC.'/'.self::NAME.'.png'))) {
-        unlink(public_path(self::QRCODES_SRC.'/'.self::NAME.'.png'));
-    }
-    // 删除淘宝商品图片
-    if (file_exists(public_path(self::TAOBAO_SRC.'/'.self::NAME.'.png'))) {
-        unlink(public_path(self::TAOBAO_SRC.'/'.self::NAME.'.png'));
-    }
-
     $img = $img->save(public_path(self::IMG_SRC.'/'.self::NAME.'.jpg'));
+    $this->deleteImages(); // 删除生成的图片
 
     return $img;
   }
@@ -174,5 +165,22 @@ class MakeCouponShareImageService
     $img = $this->addText($img, ['text'=>$webName, 'x'=>35, 'y'=>1230, 'size'=>'25', 'color'=>array(69, 69, 69, 0.5)]);
     $img = $this->addText($img, ['text'=>$website, 'x'=>335, 'y'=>1230, 'size'=>'25', 'color'=>array(69, 69, 69, 0.5)]);
     return $img;
+  }
+
+  // 删除生成的图片
+  public function deleteImages ()
+  {
+    // 删除二维码图片
+    if (file_exists(public_path(self::QRCODES_SRC.'/'.self::NAME.'.png'))) {
+        unlink(public_path(self::QRCODES_SRC.'/'.self::NAME.'.png'));
+    }
+    // 删除淘宝商品图片
+    if (file_exists(public_path(self::TAOBAO_SRC.'/'.self::NAME.'.png'))) {
+        unlink(public_path(self::TAOBAO_SRC.'/'.self::NAME.'.png'));
+    }
+    // 删除淘宝分享的图片
+    if (file_exists(public_path(self::IMG_SRC.'/'.self::NAME.'.jpg'))) {
+        unlink(public_path(self::IMG_SRC.'/'.self::NAME.'.jpg'));
+    }
   }
 }

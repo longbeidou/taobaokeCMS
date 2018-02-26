@@ -61,11 +61,13 @@ class CouponController extends BaseController
     public function getCouponSmallImages ($num_iids, $platform = 1, $fields = '')
     {
       self::$from == 'pc' ? $platform = 1 : $platform = 2;
-      $smallImages = $this->taobao->tbkItemInfoGet($num_iids, $platform, $fields)
-                                  ->results
-                                  ->n_tbk_item
-                                  ->small_images
-                                  ->string;
+      $smallImages = $this->taobao->tbkItemInfoGet($num_iids, $platform, $fields);
+
+      if (empty($smallImages->results)) {
+        return [];
+      }
+      
+      $smallImages = $smallImages->results->n_tbk_item->small_images->string;
       $smallImages = (array)$smallImages;
 
       foreach ($smallImages as $key => $smallImage) {
