@@ -16,10 +16,11 @@ class CouponController extends BaseController
     public $taobao;
     public $image;
 
-    public function __construct(AlimamaInterface $taobao, MakeImage $image)
+    public function __construct(Request $request, AlimamaInterface $taobao, MakeImage $image)
     {
       $this->taobao = $taobao;
       $this->image = $image;
+      $this->__construct_base($request);
     }
 
     public function index(Request $request)
@@ -59,6 +60,7 @@ class CouponController extends BaseController
     // 获取优惠券的小图片信息
     public function getCouponSmallImages ($num_iids, $platform = 1, $fields = '')
     {
+      self::$from == 'pc' ? $platform = 1 : $platform = 2;
       $smallImages = $this->taobao->tbkItemInfoGet($num_iids, $platform, $fields)
                                   ->results
                                   ->n_tbk_item
@@ -71,5 +73,15 @@ class CouponController extends BaseController
       }
 
       return $smallImages;
+    }
+
+    // 更加是否是移动端来确定显示的是页面还是链接
+    public function urlConfirm ($id) {
+      if (self::$from == 'wechat') {
+        return view('home.wx.couponInformation.url_confirm');
+      } else {
+        $taoBaoKeLink = Coupon::couponInfo($id)->coupon_promote_link;
+        header('Location:'.$taoBaoKeLink);
+      }
     }
 }

@@ -13,7 +13,7 @@
         </a>
     </div>
     <div style="float: left; width: 35%; background-color: #EC971F; padding-top: 4px;" >
-        <a href="#">
+        <a href="{{ route('home.coupon.urlConfirm', $couponInfo->id) }}">
             <span style="color: #FFFFFF; font-weight: 800; font-size: 20px; line-height: 46px;">领券下单</span>
         </a>
     </div>

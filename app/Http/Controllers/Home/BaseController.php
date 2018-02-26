@@ -18,4 +18,10 @@ class BaseController extends Controller
     self::$from = $this->from();
     self::$from = in_array($request->from, self::$fromArr) ? $request->from : self::$from;
   }
+
+  public function __construct_base(Request $request)
+  {
+    self::$from = $this->from();
+    self::$from = in_array($request->from, self::$fromArr) ? $request->from : self::$from;
+  }
 }
