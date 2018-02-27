@@ -20,6 +20,8 @@
     document.getElementById('shareInfo').style.display = 'none';
     document.getElementById('taoKouLingInfo').style.display = 'none';
     document.getElementById('keFuInfo').style.display = 'none';
+    document.getElementById('noCoupon').style.display = 'none';
+    document.getElementById('noCouponZheZhao').style.display = 'none';
         document.getElementById('kouLingBtn').innerHTML = "一键复制";
         document.getElementById('kouLingDivBtn').style.backgroundColor = "#ed2a7a";
         document.getElementById('shareBtn').innerHTML = "复制文案，分享给朋友";

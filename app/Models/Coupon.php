@@ -52,4 +52,16 @@ class Coupon extends Model
       return $couponInfoArray;
     }
   }
+
+  // 将优惠券设为不显示
+  public static function notShow ($id)
+  {
+    return Coupon::where('id', $id)->update(['is_show' => 0]);
+  }
+
+  // 清空优惠券的剩余数量
+  public static function clearCouponLast ($id)
+  {
+    return Coupon::where('id', $id)->update(['coupon_last'=>0]);
+  }
 }

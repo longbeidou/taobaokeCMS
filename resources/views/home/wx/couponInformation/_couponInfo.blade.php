@@ -10,13 +10,20 @@
       <div class="mui-col-xs-12">
         <span style="color: #ed2a7a;">￥</span>
         <span style="color: #ed2a7a; font-size: 30px;font-weight: 800;">{{ $couponInfo->price_now }}</span>
-        <span style="background-color: #ed2a7a; display: inline-block; height: 30px; color: #FFFFFF; padding: 10px 5px 0px; font-weight: 800;">券后价</span>
+        <span style="background-color: #ed2a7a; display: inline-block; height: 30px; line-height: 13px; color: #FFFFFF; padding: 10px 5px 0px; font-weight: 800;">券后价</span>
         <span style="font-size: 12px;color: #555555;">(包邮)</span>
       </div>
       <div class="mui-col-xs-12">
         <span style="font-size: 14px;">天猫在售￥{{ $couponInfo->price }}</span>&nbsp;
         <span style="font-size: 12px; color: #555555;">领券立省{{ $couponInformationArr[1]}}元</span>
       </div>
+      <div class="mui-col-xs-12">
+        @if(empty($couponCountInfo->coupon_remain_count))
+        <span style="font-size:12px; color:red;">优惠券没有了，请关注其他商品！</span>
+        @else
+  			<span style="font-size:12px;">优惠券剩余{{ $couponCountInfo->coupon_remain_count }}份,请抓紧时间领取！</span>
+        @endif
+  		</div>
     </div>
   </div>
   <div class="mui-col-xs-4 mui-text-center">

@@ -53,4 +53,8 @@
 	@include('home.wx.couponInformation._kefu')
   <!-- 底部js -->
 	@include('home.wx.couponInformation._js')
+  <!-- 没有优惠券的时候显示 -->
+  @if(empty($couponCountInfo->coupon_remain_count))
+    @include('home.wx.couponInformation._no_coupon')
+  @endif
 @stop

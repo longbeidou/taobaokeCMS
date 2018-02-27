@@ -33,6 +33,12 @@ class CouponController extends BaseController
       $couponInfo = Coupon::couponInfo($request->id);
       $couponInformationArr = Coupon::makeCouponInfoToArray ($couponInfo->coupon_info);
       $smallImages = $this->getCouponSmallImages($couponInfo->goods_id);
+      $couponCountInfo = $this->couponCountInfo(['item_id'=>$couponInfo->goods_id, 'activity_id'=>$couponInfo->coupon_id])->data;
+
+      if ($couponCountInfo->coupon_total_count) {
+         Coupon::notShow($couponInfo->id);
+         Coupon::clearCouponLast($couponInfo->id);
+      }
 
       if (empty($couponInfo->tao_kou_ling)) {
         $taoKouLing = $this->taobao->wirelessShareTpwdCreate(['url'=>$couponInfo->coupon_link])->model;
@@ -44,7 +50,7 @@ class CouponController extends BaseController
       if (self::$from == 'pc') {
         //
       } else {
-        return view('home.wx.couponInformation.index', compact('TDK', 'couponsGussYouLike', 'couponInfo', 'couponInformationArr', 'taoKouLing', 'smallImages'));
+        return view('home.wx.couponInformation.index', compact('TDK', 'couponsGussYouLike', 'couponInfo', 'couponInformationArr', 'taoKouLing', 'smallImages',  'couponCountInfo'));
       }
     }
 
@@ -66,7 +72,7 @@ class CouponController extends BaseController
       if (empty($smallImages->results)) {
         return [];
       }
-      
+
       $smallImages = $smallImages->results->n_tbk_item->small_images->string;
       $smallImages = (array)$smallImages;
 
@@ -85,5 +91,10 @@ class CouponController extends BaseController
         $taoBaoKeLink = Coupon::couponInfo($id)->coupon_promote_link;
         header('Location:'.$taoBaoKeLink);
       }
+    }
+
+    // 获取优惠券数量的信息
+    public function couponCountInfo ($info) {
+      return $this->taobao->tbkCouponGet($info);
     }
 }

@@ -7,6 +7,7 @@ use App\Libraries\Alimama\SDK;
 
 use App\Libraries\Alimama\top\request\WirelessShareTpwdCreateRequest;
 use App\Libraries\Alimama\top\request\TbkItemInfoGetRequest;
+use App\Libraries\Alimama\top\request\TbkCouponGetRequest;
 use App\Libraries\Alimama\top\domain\GenPwdIsvParamDto;
 
 /**
@@ -52,6 +53,27 @@ class AlimamaRepository implements AlimamaInterface
     $req->setPlatform($platform);
     $req->setNumIids($num_iids);
     return $this->taobao->execute($req);
+  }
+
+  // 推广券信息查询
+  public function tbkCouponGet ($info)
+  {
+    $one = [
+               'item_id', // 商品ID
+               'activity_id' // 券ID
+             ];
+     $two = [
+              'me',      // 带券ID与商品ID的加密串
+            ];
+    $req = new TbkCouponGetRequest;
+    $infoKeys = array_keys($info);
+
+    if ($infoKeys == $one || $infoKeys == $two) {
+      $req = $this->setAttribute($req, $info);
+      return $this->taobao->execute($req);
+    } else {
+      return null;
+    }
   }
 
   // 给对象赋值
@@ -106,5 +128,27 @@ class AlimamaRepository implements AlimamaInterface
     }
 
     return $platform;
+  }
+
+  // 给对象设置参数
+  public function setAttribute($obj, $attrArr)
+  {
+    foreach ($attrArr as $attr => $value) {
+        $setAttr = $this->attrToSnake($attr);
+        $obj->$setAttr($value);
+    }
+
+    return $obj;
+  }
+
+  // 变换字符串，将aaa_bbb变成setAaaBbb的形状
+  public function attrToSnake($str_str) {
+    $str_str_arr = explode('_', $str_str);
+
+    foreach ($str_str_arr as $key => $str) {
+      $str_str_arr[$key] = ucfirst($str);
+    }
+
+    return 'set'.implode('', $str_str_arr);
   }
 }

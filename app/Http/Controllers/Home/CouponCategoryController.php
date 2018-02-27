@@ -53,6 +53,8 @@ class CouponCategoryController extends BaseController
         $coupons = $this->selfWhere($couponCategory->self_where, $coupons);
       }
 
+      $coupons = $coupons->where('coupon_last', '>', 0);
+
       switch ($request->order) {
         case 'sales_down':
           $coupons = $coupons->orderBy('sales', 'desc');

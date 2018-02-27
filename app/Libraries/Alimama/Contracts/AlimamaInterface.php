@@ -12,4 +12,7 @@ interface AlimamaInterface
 
   // 获取淘宝客商品详情（简版）信息
   public function tbkItemInfoGet ($num_iids, $platform, $fields);
+
+  // 推广券信息查询
+  public function tbkCouponGet($info);
 }
