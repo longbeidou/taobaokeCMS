@@ -9,6 +9,18 @@
     <link href="/wxstyle/css/mui.min.css" rel="stylesheet"/>
     <script type="text/javascript" charset="utf-8">
       	mui.init();
+        window.onload = function(){
+    			mui('.mui-scroll-wrapper').scroll({
+    			deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+    			});
+    		}
+
+    		// 监听tap事件，解决 a标签 不能跳转页面问题
+    		mui(document).on('tap','a',function(){
+    		    var a = document.createElement('a');
+    		    a = this.cloneNode(true);
+    		    a.click();
+    		})
     </script>
 </head>
 <body>

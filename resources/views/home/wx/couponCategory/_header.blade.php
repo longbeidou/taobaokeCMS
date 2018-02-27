@@ -5,11 +5,7 @@
     </div>
     <div class="mui-col-xs-10">
       <!--<h1 class="mui-title">优惠券</h1>-->
-      <div class="mui-input-row mui-search">
-        <form action="" method="get">
-          <input type="search" name="keywords" class="mui-input-clear" placeholder="请输入要搜索的商品名称...">
-        </form>
-      </div>
+      @include('home.wx.layouts._search_input')
     </div>
     <div class="mui-col-xs-1">
       <a class="mui-icon mui-action-menu mui-icon-bars mui-pull-right" href="#offCanvasSide"></a>

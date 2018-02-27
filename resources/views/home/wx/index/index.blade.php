@@ -13,7 +13,7 @@
 	    @include('home.wx.index._banner')
 
 	    <!--搜索-->
-      @include('home.wx.index._search')
+      @include('home.wx.layouts._search_input')
 
 	    <!--栏目导航-->
 	    @include('home.wx.index._category')
