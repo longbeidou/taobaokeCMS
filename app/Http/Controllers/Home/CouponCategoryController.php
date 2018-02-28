@@ -28,13 +28,14 @@ class CouponCategoryController extends BaseController
 
       $coupons = $this->coupons($request, $this->pageSize);
       $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
+      $couponCategory = $this->couponCategory($request);
       $categorys = Category::categorys(self::$from);
       $couponCategorys = CouponCategory::couponCategorys(self::$from);
 
       if (self::$from == 'pc') {
         //
       } else {
-        return view('home.wx.couponCategory.index', compact('oldRequest', 'currentUrl', 'from', 'TDK', 'coupons', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
+        return view('home.wx.couponCategory.index', compact('oldRequest', 'currentUrl', 'from', 'TDK', 'coupons', 'couponsGussYouLike', 'categorys', 'couponCategory', 'couponCategorys'));
       }
     }
 
@@ -66,5 +67,15 @@ class CouponCategoryController extends BaseController
       }
 
       return $coupons->paginate($pageSize);
+    }
+
+    // 获取制定id的优惠券分类信息
+    public function couponCategory ($request)
+    {
+      if (!empty($request->id)) {
+        return CouponCategory::find($request->id);
+      }
+
+      return null;
     }
 }

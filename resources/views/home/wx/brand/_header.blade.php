@@ -4,14 +4,7 @@
       <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
     </div>
     <div class="mui-col-xs-10">
-      @if(!empty($brand->id))
-      <h1 class="mui-title">{{ $brand->name }}</h1>
-      @elseif(!empty($couponCategory->category_name))
-      <h1 class="mui-title">{{ $couponCategory->category_name }}</h1>
-      @else
-      <h1 class="mui-title">全部商品</h1>
-      @endif
-      <!-- @  include('home.wx.layouts._search_input') -->
+      <h1 class="mui-title">品牌优惠券</h1>
     </div>
     <div class="mui-col-xs-1">
       <a class="mui-icon mui-action-menu mui-icon-bars mui-pull-right" href="#offCanvasSide"></a>

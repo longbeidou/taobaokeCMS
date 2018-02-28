@@ -89,3 +89,5 @@ Route::get('/coupons/{id?}', 'Home\CouponCategoryController@index')->name('home.
 Route::get('/couponinfo/{id}', 'Home\CouponController@index')->name('home.couponInfo')->where('id', '[0-9]+');
 Route::get('/coupon/url/{id}', 'Home\CouponController@urlConfirm')->name('home.coupon.urlConfirm')->where('id', '[0-9]+');
 Route::get('/image/coupon/{id}', 'Home\CouponController@shareCouponImage')->name('home.shareCouponImage')->where('id', '[0-9]+');
+Route::get('/brands/{id?}', 'Home\BrandController@index')->name('home.brands')->where('id', '[0-9]+');
+Route::get('/brandCoupons/{id}', 'Home\BrandController@brandCoupons')->name('home.brandCoupons')->where('id', '[0-9]+');
