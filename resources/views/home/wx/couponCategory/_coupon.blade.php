@@ -1,6 +1,6 @@
 @foreach($coupons as $coupon)
 <li class="mui-table-view-cell mui-media mui-col-xs-6">
-    <a href="{{ route('home.couponInfo', $coupon->id) }}">
+    <a class="a-can-do" href="{{ route('home.couponInfo', $coupon->id) }}">
         <img class="mui-media-object" src="{{ route('image.index', $coupon->image_encrypt) }}">
         <span class="mui-badge mui-badge-red" style="position:absolute; right: 0px; top: 20px; background-color: #ed2a7a;">{{ $coupon->flat }}</span>
         <div class="mui-media-body" style="height: 52px;">

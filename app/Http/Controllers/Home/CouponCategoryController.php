@@ -64,6 +64,10 @@ class CouponCategoryController extends BaseController
         case 'rate_down':
           $coupons = $coupons->orderBy('rate_sales', 'desc');
           break;
+
+        default:
+          $coupons = $coupons->orderBy('id', 'desc');
+          break;
       }
 
       return $coupons->paginate($pageSize);

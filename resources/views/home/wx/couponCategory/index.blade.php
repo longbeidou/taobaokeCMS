@@ -27,18 +27,18 @@
       	        <!-- 主界面具体展示内容 -->
       	        <div class="mui-row" style="padding: 10px; padding-bottom: 2px;">
       	        	<div class="mui-col-xs-4 mui-text-center">
-      	        		<a href="{{ $currentUrl }}" @if(!empty($oldRequest['order']) && ( $oldRequest['order'] === 'sales_down' || $oldRequest['order'] === 'rate_down' ) ) style="color: #000000;" @else style="color: #ed2a7a;" @endif>综合排序<span class="mui-icon mui-icon-arrowdown"></span></a>
+      	        		<a class="a-can-do" href="{{ $currentUrl }}" @if(!empty($oldRequest['order']) && ( $oldRequest['order'] === 'sales_down' || $oldRequest['order'] === 'rate_down' ) ) style="color: #000000;" @else style="color: #ed2a7a;" @endif>综合排序<span class="mui-icon mui-icon-arrowdown"></span></a>
       	        	</div>
       	        	<div class="mui-col-xs-4 mui-text-center">
-      	        		<a href="{{ $currentUrl }}?order=sales_down" @if(!empty($oldRequest['order']) && $oldRequest['order'] === 'sales_down') style="color: #ed2a7a;" @else style="color: #000000;" @endif>销量排序<span class="mui-icon mui-icon-arrowdown"></span></a>
+      	        		<a class="a-can-do" href="{{ $currentUrl }}?order=sales_down" @if(!empty($oldRequest['order']) && $oldRequest['order'] === 'sales_down') style="color: #ed2a7a;" @else style="color: #000000;" @endif>销量排序<span class="mui-icon mui-icon-arrowdown"></span></a>
       	        	</div>
       	        	<div class="mui-col-xs-4 mui-text-center">
-      	        		<a href="{{ $currentUrl }}?order=rate_down"  @if(!empty($oldRequest['order']) && $oldRequest['order'] === 'rate_down')  style="color: #ed2a7a;" @else style="color: #000000;" @endif>优惠幅度<span class="mui-icon mui-icon-arrowdown"></span></a>
+      	        		<a class="a-can-do" href="{{ $currentUrl }}?order=rate_down"  @if(!empty($oldRequest['order']) && $oldRequest['order'] === 'rate_down')  style="color: #ed2a7a;" @else style="color: #000000;" @endif>优惠幅度<span class="mui-icon mui-icon-arrowdown"></span></a>
       	        	</div>
       	        </div>
       	        <div><hr /></div>
       	        <!--商品的详细列表-->
-      		    <ul class="mui-table-view mui-grid-view">
+      		    <ul id="couponList" class="mui-table-view mui-grid-view">
       		        @include('home.wx.couponCategory._coupon')
       		    </ul>
 

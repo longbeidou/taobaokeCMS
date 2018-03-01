@@ -14,7 +14,7 @@
       <!-- 具体内容 -->
       <ul class="mui-table-view">
           <li class="mui-table-view-cell mui-media">
-              <a href="javascript:;">
+              <a class="a-can-do" href="javascript:;">
                   <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
                   <div class="mui-media-body">
                       幸福

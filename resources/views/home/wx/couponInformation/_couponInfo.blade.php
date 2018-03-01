@@ -35,8 +35,8 @@
 <!--商品详情-->
 <ul class="mui-table-view" style="margin-top: 10px;">
     <li class="mui-table-view-cell mui-collapse">
-        <a class="mui-navigate-right" href="#">商品图文详情</a>
-        <a style="position:absolute; top:13px; right: 23px; color: #555555;" >（点击展开）</a>
+        <a class="mui-navigate-right a-can-do" href="#">商品图文详情</a>
+        <a class="a-can-do" style="position:absolute; top:13px; right: 23px; color: #555555;" >（点击展开）</a>
         <div class="mui-collapse-content">
             <p>商品图片详情</p>
         </div>

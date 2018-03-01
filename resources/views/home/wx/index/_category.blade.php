@@ -1,7 +1,7 @@
 <ul class="mui-table-view mui-grid-view mui-grid-9">
   @foreach($categorys as $category)
   <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-      <a href="{{ $category['link'] }}">
+      <a class="a-can-do" href="{{ $category['link'] }}">
           <img src="{{ $category['image_small'] }}" width="41px" height="41px" alt="" />
           <div class="mui-media-body">{{ $category['name'] }}</div>
       </a>

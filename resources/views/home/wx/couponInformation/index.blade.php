@@ -8,9 +8,9 @@
 <div class="mui-content">
 		<!--导航-->
 		<header class="mui-bar mui-bar-nav mui-bar-transparent" data-top='0' data-offset='150' data-duration='16' data-scrollby=".mui-scroll-wrapper">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left a-can-do"></a>
 		    <h1 class="mui-title">优惠券商品详情</h1>
-		    <a class="mui-badge mui-badge-warning mui-pull-right mui-text-center" style="line-height:30px; width: 36px; height: 36px;" onclick="share()">分享</a>
+		    <a class="mui-badge mui-badge-warning mui-pull-right mui-text-center a-can-do" style="line-height:30px; width: 36px; height: 36px;" onclick="share()">分享</a>
 		</header>
 
         <!--商品轮播图-->

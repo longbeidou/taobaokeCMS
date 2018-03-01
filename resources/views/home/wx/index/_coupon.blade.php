@@ -10,7 +10,7 @@
 <ul class="mui-table-view mui-grid-view">
   @foreach($coupons as $coupon)
     <li class="mui-table-view-cell mui-media mui-col-xs-6">
-        <a href="{{ route('home.couponInfo', $coupon->id) }}">
+        <a class="a-can-do" href="{{ route('home.couponInfo', $coupon->id) }}">
             @if(!empty($from) && in_array($from,['wechat','wx']))
             <img class="mui-media-object" src="{{ route('image.index', $coupon->image_encrypt) }}">
             @else
@@ -42,6 +42,6 @@
     </li>
    @endforeach
     <li class="mui-text-center mui-col-xs-12">
-      <a href="{{ route('home.coupon') }}" class="mui-btn mui-btn-outlined ">查看更多淘宝优惠券</a>
+      <a href="{{ route('home.coupon') }}" class="mui-btn mui-btn-outlined a-can-do">查看更多淘宝优惠券</a>
     </li>
 </ul>

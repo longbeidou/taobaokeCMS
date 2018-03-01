@@ -16,7 +16,7 @@
     		}
 
     		// 监听tap事件，解决 a标签 不能跳转页面问题
-    		mui(document).on('tap','a',function(){
+    		mui(document).on('tap','.a-can-do',function(){
     		    var a = document.createElement('a');
     		    a = this.cloneNode(true);
     		    a.click();

@@ -32,7 +32,7 @@
                 <ul class="mui-table-view mui-grid-view">
                   @foreach($brandArr as $brand)
                     <li class="mui-table-view-cell mui-media mui-col-xs-4">
-                        <a href="#?{{$brand->keywords}}">
+                        <a class="a-can-do" href="{{ route('home.brandCoupons', $brand->id) }}">
                             <img class="mui-media-object" src="{{ $brand->image }}">
                             <div class="mui-media-body">{{ $brand->name }}</div>
                         </a>

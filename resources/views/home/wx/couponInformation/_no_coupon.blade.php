@@ -10,7 +10,7 @@
       </span>
     </div>
     <div id="kouLingDivBtn" style="position: relative; width: 40%; margin-left: 30%; bottom: 13px; padding: 2px; background-color: #ed2a7a; text-align: center;  border-radius: 14px;">
-      <a href="{{ route('home.coupon') }}">
+      <a class="a-can-do" href="{{ route('home.coupon') }}">
           <span id="kouLingBtn" class="kouLingBtn" data-clipboard-action="copy" data-clipboard-target="#kouLingCode" style="font-size: 14px; line-height: 14px; color: #FFFFFF;">查看其他优惠券</span>
       </a>
     </div>
