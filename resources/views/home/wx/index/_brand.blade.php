@@ -6,11 +6,11 @@
     </div>
     <div class="mui-col-xs-4"><hr /></div>
 </div>
-<div class="mui-slider">
+<div class="mui-slider" id="index-mui-slider-brands">
     <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
         <a class="mui-control-item mui-active" href="#item0">全部</a>
         @foreach($brandCategorys as $key=>$brandCategory)
-        <a class="mui-control-item" href="#item{{ $key+1 }}">{{ $brandCategory->name }}</a>
+        <a class="mui-control-item " href="#item{{ $key+1 }}">{{ $brandCategory->name }}</a>
         @endforeach
     </div>
     <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-2"></div>

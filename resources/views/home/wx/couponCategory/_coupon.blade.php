@@ -11,8 +11,8 @@
           </p>
         </div>
         <div class="mui-media-body mui-row" style="height: 2.2em;">
-          <div class="mui-col-xs-7" style="background: #fd9b00; color: #fff; padding:5px 0;">{{ $coupon->coupon_info }}</div>
-          <div class="mui-col-xs-5" style="background: #ed2a7a; color:#fff; padding:5px 0;">马上领券</div>
+          <div class="mui-col-xs-7 coupon-info" >{{ $coupon->coupon_info }}</div>
+          <div class="mui-col-xs-5 coupon-take">马上领券</div>
         </div>
     </a>
 </li>

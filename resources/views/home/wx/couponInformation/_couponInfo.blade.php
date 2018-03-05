@@ -19,7 +19,7 @@
       </div>
       <div class="mui-col-xs-12">
         @if(empty($couponCountInfo->coupon_remain_count))
-        <span style="font-size:12px; color:red;">优惠券没有了，请关注其他商品！</span>
+        <span style="font-size:12px; color:#ed2a7a;">优惠券没有了，请关注其他商品！</span>
         @else
   			<span style="font-size:12px;">优惠券剩余{{ $couponCountInfo->coupon_remain_count }}份,请抓紧时间领取！</span>
         @endif

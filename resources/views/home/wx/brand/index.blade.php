@@ -23,7 +23,7 @@
         @include('home.wx.layouts._foot_tab_index')
 
   	    <div class="mui-content mui-scroll-wrapper">
-  	       <div class="mui-scroll">
+  	       <div class="mui-scroll" id="brand-tab-list">
       	        <!-- 主界面具体展示内容 -->
                 @include('home.wx.brand._brands_tab')
       	        <!--品牌的详细列表-->
