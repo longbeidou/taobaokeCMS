@@ -93,3 +93,5 @@ Route::get('/brands/{id?}', 'Home\BrandController@index')->name('home.brands')->
 Route::get('/brandCoupons/{id}', 'Home\BrandController@brandCoupons')->name('home.brandCoupons')->where('id', '[0-9]+');
 Route::get('/superSearch', 'Home\SuperSearchController@index')->name('home.superSearch.index');
 Route::post('/superSearch', 'Home\SuperSearchController@result')->name('home.superSearch.result');
+Route::get('/zhibo', 'Home\ZhiBoController@index')->name('home.zhibo.index');
+Route::post('/zhibo', 'Home\ZhiBoController@random')->name('home.zhibo.random');

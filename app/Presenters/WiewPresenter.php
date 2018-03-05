@@ -14,4 +14,13 @@ class WiewPresenter
 
     return $muiActive;
   }
+
+  // mui底部导航的active显示
+  public function muiFootTabActive ($url)
+  {
+    $currentUrl = url()->current();
+    $active = $currentUrl == $url ? 'mui-active' : '';
+
+    return $active;
+  }
 }
