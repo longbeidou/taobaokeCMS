@@ -11,7 +11,7 @@
         <span class="mui-icon mui-icon-star"></span>
         <span class="mui-tab-label">优惠直播</span>
     </a>
-    <a href="#" class="mui-tab-item a-can-do">
+    <a href="{{ route('home.superSearch.index') }}" class="mui-tab-item a-can-do">
         <span class="mui-icon mui-icon-search"></span>
         <span class="mui-tab-label">超级搜索</span>
     </a>

@@ -5,10 +5,13 @@ namespace App\Libraries\Alimama\Repositories;
 use App\Libraries\Alimama\Contracts\AlimamaInterface;
 use App\Libraries\Alimama\SDK;
 
+use App\Libraries\Alimama\top\domain\GenPwdIsvParamDto;
 use App\Libraries\Alimama\top\request\WirelessShareTpwdCreateRequest;
 use App\Libraries\Alimama\top\request\TbkItemInfoGetRequest;
 use App\Libraries\Alimama\top\request\TbkCouponGetRequest;
-use App\Libraries\Alimama\top\domain\GenPwdIsvParamDto;
+use App\Libraries\Alimama\top\request\WirelessShareTpwdQueryRequest;
+use App\Libraries\Alimama\top\request\TbkDgItemCouponGetRequest;
+use App\Libraries\Alimama\top\request\TbkTpwdCreateRequest;
 
 /**
  * 淘宝客接口对应的实现
@@ -37,6 +40,22 @@ class AlimamaRepository implements AlimamaInterface
     $tpwd_param = new GenPwdIsvParamDto;
     $tpwd_param = $this->batchAssignment($tpwd_param, $allInfo, $info);
     $req->setTpwdParam(json_encode($tpwd_param));
+    return $this->taobao->execute($req);
+  }
+
+  // 生成淘宝客淘口令
+  public function tbkTpwdCreate (Array $info)
+  {
+    $allInfo = [
+      'url'     => '',
+      'text'    => '超值活动，惊喜活动多多',
+      'logo'    => '',
+      'user_id' => config('alimama.id'),
+      'ext'     => ''
+    ];
+
+    $req = new TbkTpwdCreateRequest;
+    $req = $this->batchAssignmentSet($req, $allInfo, $info);
     return $this->taobao->execute($req);
   }
 
@@ -76,6 +95,25 @@ class AlimamaRepository implements AlimamaInterface
     }
   }
 
+  // 查询解析淘口令
+  public function wirelessShareTpwdQuery ($tpwd)
+  {
+    $req = new WirelessShareTpwdQueryRequest;
+    $req->setPasswordContent($tpwd);
+    return $this->taobao->execute($req);
+  }
+
+  // 好券清单API导购
+  public function tbkDgItemCouponGet($info = [], $adzone_id = false)
+  {
+    isset($adzone_id) ? $adzone_id = config('alimama.adzone_id') : null;
+
+    $req = new TbkDgItemCouponGetRequest;
+    $req->setAdzoneId($adzone_id);
+    $req = $this->setAttribute($req, $info);
+    return $this->taobao->execute($req);
+  }
+
   // 给对象赋值
   public function batchAssignment($obj, Array $allInfo, Array $info)
   {
@@ -90,6 +128,23 @@ class AlimamaRepository implements AlimamaInterface
     }
 
     return $obj;
+  }
+
+  // 给对象赋值,set形式
+  public function batchAssignmentSet($obj, Array $allInfo, Array $info)
+  {
+    $infoKeys = array_keys($info);
+    $allInfoNew = [];
+
+    foreach ($allInfo as $key => $value) {
+      if (in_array($key, $infoKeys)) {
+        $allInfoNew[$key] = $info[$key];
+      } elseif(!empty($value)) {
+        $allInfoNew[$key] = $value;
+      }
+    }
+
+    return $this->setAttribute($obj, $allInfoNew);
   }
 
   // 获取实际的请求参数

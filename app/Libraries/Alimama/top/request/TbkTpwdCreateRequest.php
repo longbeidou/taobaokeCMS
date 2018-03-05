@@ -15,29 +15,29 @@ class TbkTpwdCreateRequest
 	/**
 	 * 扩展字段JSON格式
 	 **/
-	private $ext;
+	public $ext;
 
 	/**
 	 * 口令弹框logoURL
 	 **/
-	private $logo;
+	public $logo;
 
 	/**
 	 * 口令弹框内容
 	 **/
-	private $text;
+	public $text;
 
 	/**
 	 * 口令跳转目标页
 	 **/
-	private $url;
+	public $url;
 
 	/**
 	 * 生成口令的淘宝用户ID
 	 **/
-	private $userId;
+	public $userId;
 
-	private $apiParas = array();
+	public $apiParas = array();
 
 	public function setExt($ext)
 	{

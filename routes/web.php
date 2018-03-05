@@ -91,3 +91,5 @@ Route::get('/coupon/url/{id}', 'Home\CouponController@urlConfirm')->name('home.c
 Route::get('/image/coupon/{id}', 'Home\CouponController@shareCouponImage')->name('home.shareCouponImage')->where('id', '[0-9]+');
 Route::get('/brands/{id?}', 'Home\BrandController@index')->name('home.brands')->where('id', '[0-9]+');
 Route::get('/brandCoupons/{id}', 'Home\BrandController@brandCoupons')->name('home.brandCoupons')->where('id', '[0-9]+');
+Route::get('/superSearch', 'Home\SuperSearchController@index')->name('home.superSearch.index');
+Route::post('/superSearch', 'Home\SuperSearchController@result')->name('home.superSearch.result');
