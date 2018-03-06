@@ -27,18 +27,17 @@
     </div>
   </div>
   <div class="mui-col-xs-4 mui-text-center">
-    <img src="http://placehold.it/400x400" style="width: 80%;">
+    <img src="/img/about/qcode_public.png" style="width: 80%;">
     <p>微信关注找券神器<br />随时随地想找就找</p>
   </div>
 </div>
 
 <!--商品详情-->
-<ul class="mui-table-view" style="margin-top: 10px;">
+<ul class="mui-table-view" id="couponInfo" style="margin-top: 10px;">
     <li class="mui-table-view-cell mui-collapse">
-        <a class="mui-navigate-right a-can-do" href="#">商品图文详情</a>
-        <a class="a-can-do" style="position:absolute; top:13px; right: 23px; color: #555555;" >（点击展开）</a>
+        <a class="mui-navigate-right" href="#">商品图文详情（点击展开）</a>
         <div class="mui-collapse-content">
-            <p>商品图片详情</p>
+            <p>正在加载商品详情信息...</p>
         </div>
     </li>
 </ul>

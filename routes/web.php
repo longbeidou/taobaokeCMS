@@ -95,3 +95,4 @@ Route::get('/superSearch', 'Home\SuperSearchController@index')->name('home.super
 Route::post('/superSearch', 'Home\SuperSearchController@result')->name('home.superSearch.result');
 Route::get('/zhibo', 'Home\ZhiBoController@index')->name('home.zhibo.index');
 Route::post('/zhibo', 'Home\ZhiBoController@random')->name('home.zhibo.random');
+Route::get('/about', 'Home\AboutUsController@index')->name('home.about.index');

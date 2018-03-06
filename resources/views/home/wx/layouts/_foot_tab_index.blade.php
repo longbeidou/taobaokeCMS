@@ -16,7 +16,7 @@
         <span class="mui-icon mui-icon-search"></span>
         <span class="mui-tab-label">超级搜索</span>
     </a>
-    <a href="#" class="mui-tab-item a-can-do">
+    <a href="{{ route('home.about.index') }}" class="mui-tab-item a-can-do">
         <span class="mui-icon icon iconfont icon-followus" style="color: #fff; font-size: 22px;"></span>
         <span class="mui-tab-label">关注我们</span>
     </a>
