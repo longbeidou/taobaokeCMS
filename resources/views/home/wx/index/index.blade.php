@@ -22,15 +22,15 @@
 	    @include('home.wx.index._brand')
 
 	    <!--魔方导航-->
-	    @include('home.wx.index._magic')
+	    <!-- include('home.wx.index._magic') -->
 
 	    <!--文章展示-->
-	    @include('home.wx.index._artical')
+	    <!-- include('home.wx.index._artical') -->
 
 	    <!--优惠券商品-->
 	    @include('home.wx.index._coupon')
 
       <!--版权-->
-      @include('home.wx.layouts._foot_tab_index')
+      @include('home.wx.layouts._copy')
 	</div>
 @stop

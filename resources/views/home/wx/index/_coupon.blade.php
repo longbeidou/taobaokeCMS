@@ -1,7 +1,7 @@
 <div class="mui-row">
   <div class="mui-col-xs-4"><hr /></div>
     <div class="mui-col-xs-4 mui-text-center">
-      <span class="mui-icon mui-icon-weixin"></span>
+      <span class="icon iconfont icon-shangpin1" style="font-size: 24px; color: #ed2a7a;"></span>
       优惠券商品
     </div>
     <div class="mui-col-xs-4"><hr /></div>
@@ -35,13 +35,13 @@
               </p>
             </div>
             <div class="mui-media-body mui-row" style="height: 2.2em;">
-              <div class="mui-col-xs-7" style="background: #fd9b00; color: #fff; padding:5px 0;">{{ $coupon->coupon_info }}</div>
-              <div class="mui-col-xs-5" style="background: #ed2a7a; color:#fff; padding:5px 0;">马上领券</div>
+              <div class="mui-col-xs-7 coupon-info">{{ $coupon->coupon_info }}</div>
+              <div class="mui-col-xs-5 coupon-take">马上领券</div>
             </div>
         </a>
     </li>
    @endforeach
     <li class="mui-text-center mui-col-xs-12">
-      <a href="{{ route('home.coupon') }}" class="mui-btn mui-btn-outlined a-can-do">查看更多淘宝优惠券</a>
+      <a href="{{ route('home.coupon') }}" class="mui-btn mui-btn-outlined a-can-do" style="background-color: #ed2a7a; color: #fff;">查看更多淘宝优惠券</a>
     </li>
 </ul>

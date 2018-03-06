@@ -8,7 +8,7 @@
     </div>
     <div class="coupon-info-footer coupon-info-footer-kefu" style="width: 15%;">
         <a onclick="keFu()" >
-            <span class="mui-icon mui-icon-weixin"></span><br />
+            <span class="mui-icon icon iconfont icon-kefu" style="font-size:22px;"></span><br />
             <span class="mui-tab-label">客服</span>
         </a>
     </div>

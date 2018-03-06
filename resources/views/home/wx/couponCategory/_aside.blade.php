@@ -5,7 +5,10 @@
       <div class="mui-row">
         <!--商品分类-->
         <div class="mui-col-xs-12">
-          <span class="nav-title" >商品分类</span>
+          <span class="nav-title" >
+            <i class="icon iconfont icon-shangpin1" style="font-size: 24px;"></i>
+            商品分类
+          </span>
         </div>
         <div class="mui-col-xs-4" style="padding: 2px;">
           <a href="{{ route('home.coupon') }}" class="mui-btn a-can-do" style="width: 100%;">全部商品</a>
@@ -20,7 +23,10 @@
       <!--导航-->
       <div class="mui-row">
         <div class="mui-col-xs-12">
-          <span class="nav-title" >导航</span>
+          <span class="nav-title" >
+            <i class="icon iconfont icon-daohang" style="font-size: 24px;"></i>
+            导航
+          </span>
         </div>
         @foreach($categorys as $category)
         <div class="mui-col-xs-4" style="padding: 2px;">

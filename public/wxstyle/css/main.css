@@ -74,12 +74,14 @@ aside .nav-title {
   background: #FFFFFF;
   color: #ed2a7a;
   padding:5px 0;
+  font-size: 14px;
 }
 .coupon-take {
   border:1px solid #ed2a7a;
   background: #ed2a7a;
   color:#fff;
   padding:5px 0;
+  font-size: 14px;
 }
 .coupon-share-btn {
   background-color: #fff;

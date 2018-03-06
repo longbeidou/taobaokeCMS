@@ -1,7 +1,7 @@
 <div class="mui-row">
   <div class="mui-col-xs-4"><hr /></div>
     <div class="mui-col-xs-4 mui-text-center">
-      <span class="mui-icon mui-icon-weixin"></span>
+      <span class="icon iconfont icon-brand" style="font-size: 24px; color: #ed2a7a;"></span>
       品牌券
     </div>
     <div class="mui-col-xs-4"><hr /></div>
