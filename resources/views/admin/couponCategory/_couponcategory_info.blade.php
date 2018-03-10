@@ -6,7 +6,7 @@
     <td>
       <input type="number" min="0" max="99" step="1" name="order[{{ $couponCategory->id }}]" value="{{ $couponCategory->order }}" />
     </td>
-    <td><a href="#" target="_blank">{{ $couponCategory->category_name }}</a></td>
+    <td><a href="{{ route('home.coupon', $couponCategory->id) }}" target="_blank">{{ $couponCategory->category_name }}</a></td>
     <td class="text-center"><img src="{{ $couponCategory->image_small }}" height="41px" /></td>
     <td class="text-center">{!! $couponCategory->font_icon !!}</td>
     <td class="text-center" style="color:">{{ $goodsTotal[$couponCategory->id] }}</td>

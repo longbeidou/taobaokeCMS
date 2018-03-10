@@ -6,7 +6,7 @@
     <td>
       <input type="number" min="0" max="99" step="1" name="order[{{ $brand->id }}]" value="{{ $brand->order }}" />
     </td>
-    <td><a href="#" target="_blank">{{ $brand->name }}</a></td>
+    <td><a href="{{ route('home.brandCoupons', $brand->id) }}" target="_blank">{{ $brand->name }}</a></td>
     <td class="text-center">{{ $brand->total}}</td>
     <td class="text-center">{{ $idToNameArr[$brand->brand_category_id] }}</td>
     <td class="text-center">

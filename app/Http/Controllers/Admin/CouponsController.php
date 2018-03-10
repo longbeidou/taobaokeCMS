@@ -225,12 +225,15 @@ class CouponsController extends Controller
     // 将Excel文件的内容入库
     public function storeExcel (Request $request)
     {
+      ini_set ('memory_limit', '1024M');
       $filePath = $this->getExcelFileFullPath($request);
       Excel::filter('chunk')->load($filePath)->chunk(250, function ( $result ) {
         $result = $result->toArray();
         foreach ($result as $coupon) {
           $this->insertOrUpdateCoupons($coupon);
         }
+        unset($result);
+        unset($coupon);
       });
 
       if ( $request->brand ) {

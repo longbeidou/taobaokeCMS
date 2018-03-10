@@ -29,7 +29,7 @@ class CreateCouponsTable extends Migration
             $table->decimal('price',7,2);     //商品价格(单位：元)
             $table->integer('sales');     //商品月销量
             $table->decimal('rate',5,2);  //收入比率(%)
-            $table->decimal('money',5,2); //佣金
+            $table->decimal('money',7,2); //佣金
             $table->string('seller_wangwang');   //卖家旺旺
             $table->string('seller_id');      //卖家id
             $table->string('shop_name')->nullable();//店铺名称

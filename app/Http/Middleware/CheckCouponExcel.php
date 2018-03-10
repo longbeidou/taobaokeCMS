@@ -20,6 +20,7 @@ class CheckCouponExcel
     public function handle($request, Closure $next)
     {
         set_time_limit(0);
+        ini_set ('memory_limit', '1024M');
 
         // 判断是否有上传文件
         if ( $request->hasFile('excel') ) {
@@ -30,7 +31,7 @@ class CheckCouponExcel
             $request->file('excel')->move($destinationPath, $fileName);
             $num = Excel::load($destinationPath.$fileName)->takeRows(1)->first()->count();
             if ( $num == 22 ) {
-              
+
               return $next($request);
             } else {
 

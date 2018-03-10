@@ -7,7 +7,7 @@
     <td>
       <input type="number" min="0" max="99" step="1" name="order[{{ $brandCategory->id }}]" value="{{ $brandCategory->order }}" />
     </td>
-    <td><a href="#" target="_blank">{{ $brandCategory->name }}</a></td>
+    <td><a href="{{ route('home.brands', $brandCategory->id) }}" target="_blank">{{ $brandCategory->name }}</a></td>
     <td class="text-center">{{ $brandCategory->total }}</td>
     <td class="text-center">{!! $brandCategory->font_icon !!}</td>
     <td class="text-center">
