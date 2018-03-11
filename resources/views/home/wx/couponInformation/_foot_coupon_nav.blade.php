@@ -3,13 +3,13 @@
     <div class="coupon-info-footer coupon-info-footer-home" style="width: 15%;">
       <a class="mui-tab-item mui-active mui-col-xs-2 a-can-do" href="/">
             <span class="mui-icon mui-icon-home"></span><br />
-            <span class="mui-tab-label">首页</span>
+            <span class="mui-tab-label" style="margin-top:-3px; font-size:11px;display:block;">首页</span>
         </a>
     </div>
     <div class="coupon-info-footer coupon-info-footer-kefu" style="width: 15%;">
         <a onclick="keFu()" >
             <span class="mui-icon icon iconfont icon-kefu" style="font-size:22px;"></span><br />
-            <span class="mui-tab-label">客服</span>
+            <span class="mui-tab-label" style="margin-top:-3px; font-size:11px;display:block;">客服</span>
         </a>
     </div>
     <div class="coupon-info-footer coupon-info-footer-take" style="width: 35%;" >
