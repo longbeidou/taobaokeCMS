@@ -1,4 +1,4 @@
-<ul class="mui-table-view mui-grid-view mui-grid-9">
+<ul class="mui-table-view mui-grid-view mui-grid-9" style="background-color:#fff;">
   @foreach($categorys as $category)
   <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
       <a class="a-can-do" href="{{ $category['link'] }}">
