@@ -22,13 +22,13 @@ class CouponCategoryController extends BaseController
       $oldRequest = $request->all();
       $currentUrl = $request->url();
       $from = self::$from;
-      $TDK = ['title'=>'网站首页',
-              'keywords'=>'',
-              'description'=>''];
-
       $coupons = $this->coupons($request, $this->pageSize);
       $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
       $couponCategory = $this->couponCategory($request);
+      $couponCategoryName = empty($couponCategory->category_name) ? '全部优惠券商品' : $couponCategory->category_name.'优惠券商品';
+      $TDK = ['title'=>$couponCategoryName.' | '.config('website.name'),
+              'keywords'=>'',
+              'description'=>''];
       $categorys = Category::categorys(self::$from);
       $couponCategorys = CouponCategory::couponCategorys(self::$from);
 
@@ -49,7 +49,7 @@ class CouponCategoryController extends BaseController
       $oldRequest = $request->all();
       $currentUrl = $request->url();
       $from = self::$from;
-      $TDK = ['title'=>'网站首页',
+      $TDK = ['title'=>'"'.$request->search.'"的优惠券商品搜素结果 |'.config('website.name'),
               'keywords'=>'',
               'description'=>''];
 

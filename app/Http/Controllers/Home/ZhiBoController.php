@@ -21,11 +21,11 @@ class ZhiBoController extends BaseController
     // 直播的页面
     public function index ()
     {
-      $TDK = ['title'=>'超级搜索',
+      $TDK = ['title'=>'优惠券商品直播 | '.config('website.name'),
               'keywords'=>'',
               'description'=>''];
 
-      $coupons = Coupon::couponsRecommendRandom(self::$from, 5, 5);
+      $coupons = Coupon::couponsRecommendRandom(self::$from, 15, 10);
 
       return view('home.wx.zhibo.index', compact('TDK', 'coupons'));
     }

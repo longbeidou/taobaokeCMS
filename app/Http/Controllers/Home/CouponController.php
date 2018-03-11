@@ -25,12 +25,11 @@ class CouponController extends BaseController
 
     public function index(Request $request)
     {
-      $TDK = ['title'=>'网站首页',
-              'keywords'=>'',
-              'description'=>''];
-
       $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
       $couponInfo = Coupon::couponInfo($request->id);
+      $TDK = ['title'=>$couponInfo->goods_name.' | '.config('website.name'),
+              'keywords'=>'',
+              'description'=>''];
       $couponInformationArr = Coupon::makeCouponInfoToArray ($couponInfo->coupon_info);
       $smallImages = $this->getCouponSmallImages($couponInfo->goods_id);
       $couponCountInfo = $this->couponCountInfo(['item_id'=>$couponInfo->goods_id, 'activity_id'=>$couponInfo->coupon_id])->data;

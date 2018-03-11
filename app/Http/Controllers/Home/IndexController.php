@@ -14,7 +14,7 @@ class IndexController extends BaseController
 {
     public function index (Request $request)
     {
-      $TDK = ['title'=>'网站首页',
+      $TDK = ['title'=>config('website.name').' - 专业的淘宝天猫优惠券分享网站',
               'keywords'=>'',
               'description'=>''];
 

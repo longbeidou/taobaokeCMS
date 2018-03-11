@@ -10,7 +10,7 @@ class AboutUsController extends BaseController
     // 关于我们
     public function index ()
     {
-      $TDK = ['title'=>'网站首页',
+      $TDK = ['title'=>'关注我们 | '.config('website.name'),
               'keywords'=>'',
               'description'=>''];
 

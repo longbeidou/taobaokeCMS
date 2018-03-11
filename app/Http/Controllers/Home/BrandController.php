@@ -24,7 +24,7 @@ class BrandController extends BaseController
     $currentUrl = $request->url();
     $id = empty($request->id) ? 0 : $request->id;
     $from = self::$from;
-    $TDK = ['title'=>'网站首页',
+    $TDK = ['title'=>'优惠券商品品牌 | '.config('website.name'),
             'keywords'=>'',
             'description'=>''];
 
@@ -62,13 +62,12 @@ class BrandController extends BaseController
     $oldRequest = $request->all();
     $currentUrl = $request->url();
     $from = self::$from;
-    $TDK = ['title'=>'网站首页',
-            'keywords'=>'',
-            'description'=>''];
-
     $coupons = $this->coupons($request, $this->pageSize);
     $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
     $brand = $this->brandInfo($request);
+    $TDK = ['title'=>$brand->name.'优惠券商品 | '.config('website.name'),
+            'keywords'=>'',
+            'description'=>''];
     $categorys = Category::categorys(self::$from);
     $couponCategorys = CouponCategory::couponCategorys(self::$from);
 

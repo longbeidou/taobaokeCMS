@@ -1,6 +1,6 @@
 <div id="msg_end" style="height:0px; overflow:hidden"></div>
 <script type="text/javascript">
-  setInterval('addCoupons()',30*1000);
+  setInterval('addCoupons()',20*1000);
   function addCoupons()
   {
     mui.ajax('{{route('home.zhibo.random')}}',{

@@ -19,7 +19,7 @@ class SuperSearchController extends BaseController
     // 超级搜索
     public function index ()
     {
-      $TDK = ['title'=>'超级搜索',
+      $TDK = ['title'=>'超级搜索 | '.config('website.name'),
               'keywords'=>'',
               'description'=>''];
       in_array(self::$from, ['wechat', 'qq']) ? $show_from = true : $show_from = false;
@@ -38,7 +38,7 @@ class SuperSearchController extends BaseController
         return back();
       }
 
-      $TDK = ['title'=>'超级搜索',
+      $TDK = ['title'=>'超级搜索的优惠券商品搜索结果 | '.config('website.name'),
               'keywords'=>'',
               'description'=>''];
       $has_search = true;
