@@ -39,6 +39,32 @@ class CouponCategoryController extends BaseController
       }
     }
 
+    // 优惠券搜索结果的列表
+    public function search(Request $request)
+    {
+      if (empty($request->search)) {
+        return back();
+      }
+
+      $oldRequest = $request->all();
+      $currentUrl = $request->url();
+      $from = self::$from;
+      $TDK = ['title'=>'网站首页',
+              'keywords'=>'',
+              'description'=>''];
+
+      $coupons = $this->searchCoupons($request, $this->pageSize);
+      $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
+      $categorys = Category::categorys(self::$from);
+      $couponCategorys = CouponCategory::couponCategorys(self::$from);
+
+      if (self::$from == 'pc') {
+        //
+      } else {
+        return view('home.wx.couponCategory.search', compact('oldRequest', 'currentUrl', 'from', 'TDK', 'coupons', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
+      }
+    }
+
     // 获取优惠券信息
     public function coupons (Request $request, $pageSize = 20)
     {
@@ -55,8 +81,44 @@ class CouponCategoryController extends BaseController
       }
 
       $coupons = $coupons->where('coupon_last', '>', 0);
+      $coupons = $coupons->where('is_show', 1);
+      $coupons = $this->couponOrderBy($coupons, $request->order);
 
-      switch ($request->order) {
+      return $coupons->paginate($pageSize);
+    }
+
+    // 获取优惠券搜索的信息
+    public function searchCoupons (Request $request, $pageSize = 20)
+    {
+      $coupons = new Coupon;
+      $coupons = $this->searchStrToWhere($coupons, $request->search);
+      $coupons = $coupons->where('coupon_last', '>', 0);
+      $coupons = $coupons->where('is_show', 1);
+      $coupons = $this->couponOrderBy($coupons, $request->order);
+
+      return $coupons->paginate($pageSize);
+    }
+
+    // 搜索关键词处理
+    public function searchStrToWhere ($coupons, $searchStr)
+    {
+      //将字符串按照空格来分割成数组
+      $qarr = explode(' ', $searchStr);
+      $qarr = array_filter($qarr);
+      foreach ($qarr as $key => $value) {
+          $qarr[$key] = '%'.$value.'%';
+      }
+      $qarr = array_values($qarr);
+      foreach ($qarr as $key => $value) {
+          $coupons = $coupons->where('goods_name','like',$value);
+      }
+      return $coupons;
+    }
+
+    // 优惠券的排序
+    public function couponOrderBy ($coupons, $order)
+    {
+      switch ($order) {
         case 'sales_down':
           $coupons = $coupons->orderBy('sales', 'desc');
           break;
@@ -70,7 +132,7 @@ class CouponCategoryController extends BaseController
           break;
       }
 
-      return $coupons->paginate($pageSize);
+      return $coupons;
     }
 
     // 获取制定id的优惠券分类信息

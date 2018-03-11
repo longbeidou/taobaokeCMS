@@ -8,6 +8,10 @@
       <h1 class="mui-title">{{ $brand->name }}</h1>
       @elseif(!empty($couponCategory->category_name))
       <h1 class="mui-title">{{ $couponCategory->category_name }}</h1>
+      @elseif(!empty($oldRequest['search']))
+          <div class="mui-row" style="color:#fff;">
+            @include('home.wx.layouts._search_input')
+          </div>
       @else
       <h1 class="mui-title">全部商品</h1>
       @endif
