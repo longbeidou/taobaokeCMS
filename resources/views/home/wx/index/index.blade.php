@@ -8,7 +8,7 @@
   <!--底部选项卡-->
   @include('home.wx.layouts._foot_tab_index')
 
-  <div class="mui-content">
+  <div class="mui-content" id="home-index">
 		  <!--幻灯片轮播-->
 	    @include('home.wx.index._banner')
 

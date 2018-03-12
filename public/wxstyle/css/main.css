@@ -183,3 +183,33 @@ aside .nav-title {
   position: relative;
   font-size: 2.4em;
 }
+
+#search-form .mui-placeholder {
+  font-size: 13px;
+}
+#search-form .mui-placeholder .mui-icon {
+  font-size: 16px;
+}
+#search-form input[type=search] {
+  font-size: 13px;
+  border-radius: 17px;
+}
+#search-form .mui-input-row .mui-input-clear~.mui-icon-clear,
+#search-form .mui-input-row .mui-input-password~.mui-icon-eye,
+#search-form .mui-input-row .mui-input-speech~.mui-icon-speech {
+  color: #fff;
+}
+
+#home-index #search-form input[type=search] {
+  background-color: rgba(237, 42, 122, 0.75);
+  color: #fff;
+}
+#home-index #search-form .mui-placeholder {
+  color: #fff;
+}
+#home-index #search-form .mui-search .mui-placeholder .mui-icon {
+  color: #fff;
+}
+body #home-index #search-form {
+  color: #fff;
+}

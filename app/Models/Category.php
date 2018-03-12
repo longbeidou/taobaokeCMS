@@ -16,26 +16,43 @@ class Category extends Model
   ];
 
   // 获取分类信息
-  public static function categorys($from)
+  public static function categorys($from, $num = 'notall', $limit = 8)
   {
+    $categorys = Category::where('is_show', 1);
     switch ($from) {
       case 'pc':
-        $categorys = Category::where('is_show', 1)->where('is_show_pc', 1)->orderBy('order', 'asc')->get()->toArray();
+        if ($num === 'notall') {
+          $categorys = $categorys->where('is_show_pc', 1)->orderBy('order', 'asc')->take($limit)->get()->toArray();
+        } else {
+          $categorys = $categorys->where('is_show_pc', 1)->orderBy('order', 'asc')->get()->toArray();
+        }
         $categorys = self::addLinkToCategorys($categorys,'link_pc');
         break;
 
       case 'wx':
-        $categorys = Category::where('is_show', 1)->where('is_show_wx', 1)->orderBy('order', 'asc')->get()->toArray();
+        if ($num === 'notall') {
+          $categorys = $categorys->where('is_show_wx', 1)->orderBy('order', 'asc')->take($limit)->get()->toArray();
+        } else {
+          $categorys = $categorys->where('is_show_wx', 1)->orderBy('order', 'asc')->get()->toArray();
+        }
         $categorys = self::addLinkToCategorys($categorys, 'link_wx');
         break;
 
       case 'wechat':
-        $categorys = Category::where('is_show', 1)->where('is_show_wechat', 1)->orderBy('order', 'asc')->get()->toArray();
+        if ($num === 'notall') {
+          $categorys = $categorys->where('is_show_wechat', 1)->orderBy('order', 'asc')->take($limit)->get()->toArray();
+        } else {
+          $categorys = $categorys->where('is_show_wechat', 1)->orderBy('order', 'asc')->get()->toArray();
+        }
         $categorys = self::addLinkToCategorys($categorys, 'link_wechat');
         break;
 
       case 'qq':
-        $categorys = Category::where('is_show', 1)->where('is_show_qq', 1)->orderBy('order', 'asc')->get()->toArray();
+        if ($num === 'notall') {
+          $categorys = $categorys->where('is_show_qq', 1)->orderBy('order', 'asc')->take($limit)->get()->toArray();
+        } else {
+          $categorys = $categorys->where('is_show_qq', 1)->orderBy('order', 'asc')->get()->toArray();
+        }
         $categorys = self::addLinkToCategorys($categorys, 'link_qq');
         break;
     }

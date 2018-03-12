@@ -1,10 +1,10 @@
 <ul class="mui-table-view mui-grid-view mui-grid-9" style="background-color:#fff;">
   @foreach($categorys as $category)
-  <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+  <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" style="padding: 0px 0px;">
       <a class="a-can-do" href="{{ $category['link'] }}">
           <!-- <img src="{{ $category['image_small'] }}" width="41px" height="41px" alt="" /> -->
           {!! $category['font_icon'] !!}
-          <div class="mui-media-body">{{ $category['name'] }}</div>
+          <div class="mui-media-body" style="font-size:12px;">{{ $category['name'] }}</div>
       </a>
   </li>
   @endforeach

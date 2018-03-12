@@ -11,11 +11,11 @@
           </span>
         </div>
         <div class="mui-col-xs-4" style="padding: 2px;">
-          <a href="{{ route('home.coupon') }}" class="mui-btn a-can-do" style="width: 100%;">全部商品</a>
+          <a href="{{ route('home.coupon') }}" class="mui-btn a-can-do" style="width: 100%; padding: 4px;">全部商品</a>
         </div>
         @foreach($couponCategorys as $couponCategory)
         <div class="mui-col-xs-4" style="padding: 2px;">
-          <a href="{{ route('home.coupon', $couponCategory->id) }}" class="mui-btn a-can-do" style="width: 100%;">{{ $couponCategory->category_name }}</a>
+          <a href="{{ route('home.coupon', $couponCategory->id) }}" class="mui-btn a-can-do" style="width: 100%; padding: 4px;">{{ $couponCategory->category_name }}</a>
         </div>
         @endforeach
       </div>
@@ -30,7 +30,7 @@
         </div>
         @foreach($categorys as $category)
         <div class="mui-col-xs-4" style="padding: 2px;">
-          <a href="{{ $category['link'] }}" class="mui-btn a-can-do" style="width: 100%;">{{ $category['name'] }}</a>
+          <a href="{{ $category['link'] }}" class="mui-btn a-can-do" style="width: 100%; padding: 4px;">{{ $category['name'] }}</a>
         </div>
         @endforeach
       </div>

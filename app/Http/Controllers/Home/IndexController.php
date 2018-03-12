@@ -19,7 +19,7 @@ class IndexController extends BaseController
               'description'=>''];
 
       $banners = Banner::banners(self::$from);
-      $categorys = Category::categorys(self::$from);
+      $categorys = Category::categorys(self::$from, 'all');
       $brandCategorys = BrandCategory::brandCategorys(self::$from);
       $brands = Brand::brands(self::$from, $brandCategorys);
       $coupons = Coupon::couponsRecommendRandom(self::$from);
