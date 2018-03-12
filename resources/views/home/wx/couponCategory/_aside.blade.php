@@ -34,6 +34,11 @@
         </div>
         @endforeach
       </div>
+      <div class="mui-row">
+          <div class="mui-col-xs-12">
+            <div style="width:100%; height:50px;"></div>
+          </div>
+      </div>
     </div>
   </div>
 </aside>

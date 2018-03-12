@@ -168,3 +168,18 @@ aside .nav-title {
 #couponInfo .mui-table-view-cell.mui-active {
   color: #fff;
 }
+.category-font-icon {
+  color: #ed2a7a;
+  font-weight: 400;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  font-style: normal;
+  font-family: Muiicons;
+  /* font-size: 24px; */
+  font-size: 42px;
+}
+.mui-grid-view.mui-grid-9 .mui-media .category-font-icon {
+  position: relative;
+  font-size: 2.4em;
+}

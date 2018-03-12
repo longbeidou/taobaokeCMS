@@ -8,7 +8,8 @@
     <script src="/wxstyle/js/mui.min.js"></script>
     <link href="/wxstyle/css/mui.min.css" rel="stylesheet"/>
     <link href="/wxstyle/css/main.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/selfIcon/iconfont.css">
+    <!-- <link rel="stylesheet" href="/css/selfIcon/iconfont.css"> -->
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_581943_sm8m2avffrgdgqfr.css">
     <script type="text/javascript" charset="utf-8">
       	mui.init();
         window.onload = function(){

@@ -13,3 +13,6 @@
 <link href="/adminstyle/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
 <link href="/adminstyle/css/animate.min.css" rel="stylesheet">
 <link href="/adminstyle/css/style.min.css?v=4.0.0" rel="stylesheet">
+<!-- <link rel="stylesheet" href="/css/selfIcon/iconfont.css"> -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_581943_gyeygamll98xs9k9.css">
+<link href="/wxstyle/css/main.css" rel="stylesheet"/>
