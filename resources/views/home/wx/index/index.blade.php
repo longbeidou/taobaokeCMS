@@ -21,6 +21,9 @@
 	    <!--品牌券-->
 	    @include('home.wx.index._brand')
 
+      <!-- 优惠券分类 -->
+      @include('home.wx.index._coupon_category')
+
 	    <!--魔方导航-->
 	    <!-- include('home.wx.index._magic') -->
 

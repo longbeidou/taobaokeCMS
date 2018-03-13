@@ -16,12 +16,12 @@ class Category extends Model
   ];
 
   // 获取分类信息
-  public static function categorys($from, $num = 'notall', $limit = 8)
+  public static function categorys($from, $limit = 0)
   {
     $categorys = Category::where('is_show', 1);
     switch ($from) {
       case 'pc':
-        if ($num === 'notall') {
+        if ($limit !== 0) {
           $categorys = $categorys->where('is_show_pc', 1)->orderBy('order', 'asc')->take($limit)->get()->toArray();
         } else {
           $categorys = $categorys->where('is_show_pc', 1)->orderBy('order', 'asc')->get()->toArray();
@@ -30,7 +30,7 @@ class Category extends Model
         break;
 
       case 'wx':
-        if ($num === 'notall') {
+        if ($limit !== 0) {
           $categorys = $categorys->where('is_show_wx', 1)->orderBy('order', 'asc')->take($limit)->get()->toArray();
         } else {
           $categorys = $categorys->where('is_show_wx', 1)->orderBy('order', 'asc')->get()->toArray();
@@ -39,7 +39,7 @@ class Category extends Model
         break;
 
       case 'wechat':
-        if ($num === 'notall') {
+        if ($limit !== 0) {
           $categorys = $categorys->where('is_show_wechat', 1)->orderBy('order', 'asc')->take($limit)->get()->toArray();
         } else {
           $categorys = $categorys->where('is_show_wechat', 1)->orderBy('order', 'asc')->get()->toArray();
@@ -48,7 +48,7 @@ class Category extends Model
         break;
 
       case 'qq':
-        if ($num === 'notall') {
+        if ($limit !== 0) {
           $categorys = $categorys->where('is_show_qq', 1)->orderBy('order', 'asc')->take($limit)->get()->toArray();
         } else {
           $categorys = $categorys->where('is_show_qq', 1)->orderBy('order', 'asc')->get()->toArray();

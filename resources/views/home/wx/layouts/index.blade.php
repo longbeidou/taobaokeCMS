@@ -9,7 +9,7 @@
     <link href="/wxstyle/css/mui.min.css" rel="stylesheet"/>
     <link href="/wxstyle/css/main.css" rel="stylesheet"/>
     <!-- <link rel="stylesheet" href="/css/selfIcon/iconfont.css"> -->
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_581943_sm8m2avffrgdgqfr.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_581943_m5ux7ktvwj2u766r.css">
     <script type="text/javascript" charset="utf-8">
       	mui.init();
         window.onload = function(){

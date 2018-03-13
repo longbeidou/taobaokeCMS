@@ -228,3 +228,7 @@ body #home-index #search-form {
 #search-coupon-category .mui-input-row .mui-input-speech~.mui-icon-speech {
   color: #ed2a7a;
 }
+
+#coupon-category-index ul {
+  background-color: #fff;
+}

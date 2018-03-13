@@ -12,9 +12,13 @@ class CouponCategory extends Model
       'category_name', 'self_where', 'image_small', 'order', 'is_show', 'font_icon'
     ];
 
-    // 获取优惠券分类的全部信息
-    public static function couponCategorys($from)
+    // 获取优惠券分类的信息
+    public static function couponCategorys($from, $limit = 0)
     {
-      return CouponCategory::where('is_show', 1)->orderBy('order', 'asc')->get();
+      $couponCategorys = CouponCategory::where('is_show', 1)->orderBy('order', 'asc');
+      if ($limit > 0) {
+        $couponCategorys = $couponCategorys->take($limit);
+      }
+      return $couponCategorys->get();
     }
 }

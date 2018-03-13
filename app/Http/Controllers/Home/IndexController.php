@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\BrandCategory;
 use App\Models\Coupon;
+use App\Models\CouponCategory;
 
 class IndexController extends BaseController
 {
@@ -19,16 +20,17 @@ class IndexController extends BaseController
               'description'=>''];
 
       $banners = Banner::banners(self::$from);
-      $categorys = Category::categorys(self::$from, 'all');
+      $categorys = Category::categorys(self::$from);
       $brandCategorys = BrandCategory::brandCategorys(self::$from);
       $brands = Brand::brands(self::$from, $brandCategorys);
       $coupons = Coupon::couponsRecommendRandom(self::$from);
+      $couponCategorys = CouponCategory::couponCategorys(self::$from);
       $from = self::$from;
 
       if (self::$from === 'pc') {
-        return view('home.wx.index.index', compact('TDK', 'banners', 'categorys', 'brandCategorys', 'brands', 'coupons', 'from'));
+        return view('home.wx.index.index', compact('TDK', 'banners', 'categorys', 'couponCategorys', 'brandCategorys', 'brands', 'coupons', 'from'));
       } else {
-        return view('home.wx.index.index', compact('TDK', 'banners', 'categorys', 'brandCategorys', 'brands', 'coupons', 'from'));
+        return view('home.wx.index.index', compact('TDK', 'banners', 'categorys', 'couponCategorys', 'brandCategorys', 'brands', 'coupons', 'from'));
       }
     }
 }
