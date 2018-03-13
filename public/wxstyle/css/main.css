@@ -23,7 +23,7 @@ aside .mui-btn {
 aside .nav-title {
   color: #ed2a7a;
   font-weight: 800;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 30px;
 }
 .mui-slider {
@@ -231,4 +231,15 @@ body #home-index #search-form {
 
 #coupon-category-index ul {
   background-color: #fff;
+}
+
+.aside-nav-box {
+  padding: 1px 0px;
+  border-top: 2px solid rgba(255,255,255, 1);
+  border-left: 2px solid rgba(255,255,255, 1);
+  background-color: rgba(255, 255, 255, 0.5)
+}
+.aside-nav-cell {
+  border-bottom: 2px solid rgba(255,255,255, 1);
+  border-right: 2px solid rgba(255,255,255, 1)
 }

@@ -36,6 +36,10 @@
           <div style="height:83px;"></div>
         </li>
       @endfor
+      <?php
+        unset($count);
+        unset($max);
+       ?>
           </ul>
         </div>
       <!-- 分类内容结束 -->
