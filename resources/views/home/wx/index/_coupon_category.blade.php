@@ -21,7 +21,7 @@
               <a class="a-can-do" href="{{ route('home.coupon', $couponCategory->id) }}">
                 <!-- <span class="mui-icon mui-icon-home"></span> -->
                 {!! $couponCategory->font_icon !!}
-                <div class="mui-media-body">{{ $couponCategory->category_name }}</div>
+                <div class="mui-media-body" style="font-size:12px;">{{ $couponCategory->category_name }}</div>
               </a>
             </li>
         @if ($key % 12 == 11 && $count != $key+1)
