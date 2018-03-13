@@ -42,7 +42,7 @@
       		        @include('home.wx.couponCategory._coupon')
                   @if(empty($coupons->count()))
                     <li class="mui-table-view-cell mui-media mui-col-xs-12">
-                      <p>系统没有相关商品的优惠券<br />请联系客服处理！</p>
+                      @include('home.wx.couponCategory._tips_no_result')
                     </li>
                   @endif
       		    </ul>

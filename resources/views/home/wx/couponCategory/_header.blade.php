@@ -9,7 +9,7 @@
       @elseif(!empty($couponCategory->category_name))
       <h1 class="mui-title">{{ $couponCategory->category_name }}</h1>
       @elseif(!empty($oldRequest['search']))
-          <div class="mui-row" style="color:#fff;">
+          <div class="mui-row" style="color:#fff;" id="search-coupon-category">
             @include('home.wx.layouts._search_input')
           </div>
       @else

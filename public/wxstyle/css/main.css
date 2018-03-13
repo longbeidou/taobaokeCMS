@@ -213,3 +213,18 @@ aside .nav-title {
 body #home-index #search-form {
   color: #fff;
 }
+#search-coupon-category {
+  padding: 2px 13px 2px 7px;
+}
+#search-coupon-category form {
+  color: #ed2a7a;
+}
+#search-coupon-category input[type=search] {
+  background-color: rgba(255, 255, 255, 0.75);
+  color: #ed2a7a;
+}
+#search-coupon-category .mui-input-row .mui-input-clear~.mui-icon-clear,
+#search-coupon-category .mui-input-row .mui-input-password~.mui-icon-eye,
+#search-coupon-category .mui-input-row .mui-input-speech~.mui-icon-speech {
+  color: #ed2a7a;
+}
