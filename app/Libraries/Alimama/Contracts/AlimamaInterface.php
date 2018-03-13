@@ -24,4 +24,7 @@ interface AlimamaInterface
 
   // 好券清单API导购
   public function tbkDgItemCouponGet($info, $adzone_id);
+
+  // 淘宝客商品查询, $info为请求的数组
+  public function tbkItemGet (Array $info, $platform, $fields);
 }

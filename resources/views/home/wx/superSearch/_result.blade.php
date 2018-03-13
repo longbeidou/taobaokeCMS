@@ -62,20 +62,20 @@
           <div class="dialogue-triangle"></div>
           <div>
             <p style="padding: 5px; font-size: 14px; margin-bottom: -10px;" >
-              原价：{{ $itemCoupon['zk_final_price'] }}元【券后只要{{ $coupon->finalPrice($itemCoupon['coupon_info'], $itemCoupon['zk_final_price']) }}元】<br>
-              店铺名：{{ $itemCoupon['shop_title'] }}<br />
+              <span style="color:#ed2a7a;">原价</span>：{{ $itemCoupon['zk_final_price'] }}元【券后只要{{ $coupon->finalPrice($itemCoupon['coupon_info'], $itemCoupon['zk_final_price']) }}元】<br>
+              <span style="color:#ed2a7a;">店铺名</span>：{{ $itemCoupon['shop_title'] }}<br />
               @if(!empty($itemCoupon['item_description']))
-              其他优惠：{{ $itemCoupon['item_description'] }}
+              <span style="color:#ed2a7a;">其他</span>：{{ $itemCoupon['item_description'] }}
               @endif
               {{ $itemCoupon['title'] }}<br>
               @if(!empty($itemCoupon['tkl']))
-              特价口令：<span id="kouLingCode{{ $key }}">{{ $itemCoupon['tkl'] }}</span>。复制此信息，打开手机淘宝即可领取优惠。
+              <span style="color:#ed2a7a;">特价口令</span>：<span id="kouLingCode{{ $key }}">{{ $itemCoupon['tkl'] }}</span>。复制此信息，打开手机淘宝即可领取优惠。
               @endif
             </p>
             <hr style="border: 1px dotted #555555;" />
             <div class="mui-row" style="padding-bottom: 5px;">
               <div class="mui-col-xs-6">
-                <span style="color: red; font-size: 16px; margin-left: 10px;">领取立省{{  $coupon->saveMoney($itemCoupon['coupon_info'], $itemCoupon['zk_final_price']) }}元</span>
+                <span style="color: #ed2a7a; font-size: 16px; margin-left: 10px;">领取立省{{  $coupon->saveMoney($itemCoupon['coupon_info'], $itemCoupon['zk_final_price']) }}元</span>
               </div>
               <div class="mui-col-xs-6">
                 @if($show_from)
@@ -83,9 +83,9 @@
                   <button id="kouLingBtn{{ $key }}" type="button" class="mui-btn mui-btn-danger mui-pull-right kouLingBtn"   data-clipboard-action="copy" data-clipboard-target="#kouLingCode{{ $key }}" name="button">点击复制</button>
                 </div>
                 @else
-                <a class="a-can-do" href="{{ $itemCoupon['coupon_click_url'] }}">
-                  <div style="border: 1px solid red; border-radius: 20px; width: 110px; background-color: red; color: #FFFFFF; font-size: 18px; font-weight: 800;">
-                    <span class="mui-icon mui-icon-plus" style="color: red; background-color: #FFFFFF; border-radius: 20px;"></span>领券购买
+                <a class="a-can-do" href="{{ $itemCoupon['coupon_click_url'] }}" target="_blank">
+                  <div style="border: 1px solid #ed2a7a; border-radius: 20px; width: 110px; background-color: #ed2a7a; color: #FFFFFF; font-size: 18px; font-weight: 800;">
+                    <span class="mui-icon mui-icon-plus" style="color: #ed2a7a; background-color: #FFFFFF; border-radius: 20px;"></span>领券购买
                   </div>
                 </a>
                 @endif

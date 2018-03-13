@@ -3,6 +3,11 @@
     <div class="mui-scroll" style="padding: 10px;">
       <!-- 菜单具体展示内容 -->
 
+      <!-- 搜索框 -->
+      <div class="mui-row" style="color:#fff;" id="aside-search">
+        @include('home.wx.layouts._search_input')
+      </div>
+
       <!--商品分类-->
       <div class="mui-row">
         <div class="mui-col-xs-12">
@@ -49,7 +54,7 @@
         @endforeach
       </div>
 
-      <div style="width:100%; height: 25px; padding-top: 5px;"><hr style="border: 1px dotted #ed2a7a;" /></div>
+      <!-- <div style="width:100%; height: 25px; padding-top: 5px;"><hr style="border: 1px dotted #ed2a7a;" /></div> -->
 
       <!--导航-->
       <div class="mui-row">

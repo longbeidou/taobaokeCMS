@@ -12,6 +12,7 @@ use App\Libraries\Alimama\top\request\TbkCouponGetRequest;
 use App\Libraries\Alimama\top\request\WirelessShareTpwdQueryRequest;
 use App\Libraries\Alimama\top\request\TbkDgItemCouponGetRequest;
 use App\Libraries\Alimama\top\request\TbkTpwdCreateRequest;
+use App\Libraries\Alimama\top\request\TbkItemGetRequest;
 
 /**
  * 淘宝客接口对应的实现
@@ -56,6 +57,34 @@ class AlimamaRepository implements AlimamaInterface
 
     $req = new TbkTpwdCreateRequest;
     $req = $this->batchAssignmentSet($req, $allInfo, $info);
+    return $this->taobao->execute($req);
+  }
+
+  // 淘宝客商品查询
+  public function tbkItemGet (Array $info, $platform = '1', $fields = '')
+  {
+    $allFields = 'num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,nick,seller_id,volume';
+    $allRequests = [
+                      'q'             => '',
+                      'cat'           => '',
+                      'itemloc'       => '',
+                      'sort'          => '',
+                      'is_tmall'      => '',
+                      'is_overseas'   => '',
+                      'start_price'   => '',
+                      'end_price'     => '',
+                      'start_tk_rate' => '',
+                      'end_tk_rate'   => '',
+                      'page_no'       => '',
+                      'page_size'     => ''
+                  ];
+
+    $fields = $this->getRealFields($allFields, $fields);
+    $platform = $this->getRealPlatForm($platform);
+    $req = new TbkItemGetRequest;
+    $req->setFields($fields);
+    $req->setPlatform($platform);
+    $req = $this->batchAssignmentSet($req, $allRequests, $info);
     return $this->taobao->execute($req);
   }
 

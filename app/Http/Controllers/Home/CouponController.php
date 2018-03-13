@@ -8,10 +8,12 @@ use App\Models\Coupon;
 use App\Libraries\Alimama\Contracts\AlimamaInterface;
 use App\Services\MakeCouponShareImageService as MakeImage;
 use App\Traits\EncryptOrDecryptImage;
+use App\Traits\TpwdParameter;
 
 class CouponController extends BaseController
 {
     use EncryptOrDecryptImage;
+    use TpwdParameter;
 
     public $taobao;
     public $image;
@@ -40,7 +42,9 @@ class CouponController extends BaseController
       }
 
       if (empty($couponInfo->tao_kou_ling)) {
-        $taoKouLing = $this->taobao->wirelessShareTpwdCreate(['url'=>$couponInfo->coupon_link])->model;
+        $tpwdInfo = $this->createTpwdPara($couponInfo);
+        $taoKouLing = (string)$this->taobao->tbkTpwdCreate($tpwdInfo)->data->model;
+        // $taoKouLing = $this->taobao->wirelessShareTpwdCreate($tpwdInfo)->model;
         Coupon::where('id', $couponInfo->id)->update(['tao_kou_ling'=>$taoKouLing]);
       } else {
         $taoKouLing = $couponInfo->tao_kou_ling;

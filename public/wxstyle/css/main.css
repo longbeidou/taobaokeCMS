@@ -200,17 +200,21 @@ aside .nav-title {
   color: #fff;
 }
 
-#home-index #search-form input[type=search] {
+#home-index #search-form input[type=search],
+#aside-search #search-form input[type=search]{
   background-color: rgba(237, 42, 122, 0.75);
   color: #fff;
 }
-#home-index #search-form .mui-placeholder {
+#home-index #search-form .mui-placeholder,
+#aside-search #search-form .mui-placeholder {
   color: #fff;
 }
-#home-index #search-form .mui-search .mui-placeholder .mui-icon {
+#home-index #search-form .mui-search .mui-placeholder .mui-icon,
+#aside-search #search-form .mui-search .mui-placeholder .mui-icon {
   color: #fff;
 }
-body #home-index #search-form {
+body #home-index #search-form,
+body #aside-search #search-form {
   color: #fff;
 }
 #search-coupon-category {
@@ -233,13 +237,20 @@ body #home-index #search-form {
   background-color: #fff;
 }
 
+#aside-search {
+  margin-bottom: -12px;
+}
+#aside-search #search-form .mui-placeholder {
+  overflow: hidden;
+}
+
 .aside-nav-box {
   padding: 1px 0px;
-  border-top: 2px solid rgba(255,255,255, 1);
-  border-left: 2px solid rgba(255,255,255, 1);
-  background-color: rgba(255, 255, 255, 0.5)
+  border-top: 1px solid rgba(255,255,255, 1);
+  border-left: 1px solid rgba(255,255,255, 1);
+  background-color: rgba(255, 255, 255, 0.6)
 }
 .aside-nav-cell {
-  border-bottom: 2px solid rgba(255,255,255, 1);
-  border-right: 2px solid rgba(255,255,255, 1)
+  border-bottom: 1px solid rgba(255,255,255, 1);
+  border-right: 1px solid rgba(255,255,255, 1)
 }

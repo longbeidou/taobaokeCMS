@@ -1,6 +1,6 @@
 <form action="{{ route('home.coupon.search') }}" method="get" id="search-form">
   <div class="mui-input-row mui-search">
-      <input type="search" name="search" value="{{ $oldRequest['search'] or '' }}" id="search" required class="mui-input-clear" placeholder="请输入要搜索的商品名称,多条件用空格隔开。">
+      <input type="search" name="search" value="{{ $oldRequest['search'] or '' }}" id="search" required class="mui-input-clear" placeholder="请输入商品名称,多条件用空格隔开。">
   </div>
 </form>
 <script  type="text/javascript" charset="utf-8">
