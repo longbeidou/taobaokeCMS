@@ -4,7 +4,7 @@
         <img class="mui-media-object" src="{{ route('image.index', $coupon->image_encrypt) }}">
         <span class="mui-badge mui-badge-red" style="position:absolute; right: 0px; top: 20px; background-color: #ed2a7a;">{{ $coupon->flat }}</span>
         <div class="mui-media-body" style="height: 52px;">
-          <p style="white-space: normal; color:#000; max-height: 30px; overflow: hidden;">{{ $coupon->goods_name}}</p>
+          <p style="white-space: normal; color:#000; max-height: 30px; overflow: hidden; text-align:left;">{{ $coupon->goods_name}}</p>
           <p class="mui-text-left" style="margin-top: 5px;">
             <span style="font-size: 18px; color: #ed2a7a;">￥{{ $coupon->price_now }}</span>
             <span style="text-decoration: line-through; color: #929292;">￥{{ $coupon->price }}</span>

@@ -63,7 +63,7 @@
       		    </div>
       		    <div style="width: 100%; height: 5px;"></div>
       		    <ul class="mui-table-view mui-grid-view">
-      		        @include('home.wx.couponCategory._guss_you_like')
+      		        @include('home.wx.couponCategory._guss_you_like_list')
       		    </ul>
       		    <!--版权-->
       		    @include('home.wx.layouts._copy')

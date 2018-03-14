@@ -16,7 +16,9 @@
       @include('home.wx.layouts._search_input')
 
 	    <!--栏目导航-->
-	    @include('home.wx.index._category')
+      @if(count($categorys)>0)
+	       @include('home.wx.index._category')
+      @endif
 
 	    <!--品牌券-->
 	    @include('home.wx.index._brand')

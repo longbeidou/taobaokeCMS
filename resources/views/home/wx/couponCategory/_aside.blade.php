@@ -59,10 +59,12 @@
       <!--导航-->
       <div class="mui-row">
         <div class="mui-col-xs-12">
+          @if(count($categorys) > 0)
           <span class="nav-title" >
             <i class="icon iconfont icon-daohang" style="font-size: 18px;"></i>
             导航
           </span>
+          @endif
         </div>
       </div>
       <div class="mui-row aside-nav-box">
