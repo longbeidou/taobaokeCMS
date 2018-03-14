@@ -34,15 +34,18 @@ class SuperSearchController extends BaseController
               'keywords'=>'',
               'description'=>''];
       in_array(self::$from, ['wechat', 'qq']) ? $show_from = true : $show_from = false;
-
       $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
-      $categorys = Category::categorys(self::$from);
-      $couponCategorys = CouponCategory::couponCategorys(self::$from);
-      
+
       if (self::$from == 'pc') {
         //
       } else {
+        if ($show_from) {
+          return view('home.wx.superSearch.index_simple', compact('TDK', 'show_from', 'couponsGussYouLike'));
+        } else {
+          $categorys = Category::categorys(self::$from);
+          $couponCategorys = CouponCategory::couponCategorys(self::$from);
           return view('home.wx.superSearch.index', compact('TDK', 'show_from', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
+        }
       }
     }
 
@@ -60,8 +63,6 @@ class SuperSearchController extends BaseController
       in_array(self::$from, ['wechat', 'qq']) ? $show_from = true : $show_from = false;
 
       $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
-      $categorys = Category::categorys(self::$from);
-      $couponCategorys = CouponCategory::couponCategorys(self::$from);
 
       if ($this->hasTwpd($request->q)) {
         $goodsInfoJson = $this->getCouponInfoFromTpwd($request->q);
@@ -85,7 +86,13 @@ class SuperSearchController extends BaseController
         //
       } else {
           $itemCouponsArr = $this->addTaoKouLing($itemCouponsArr);
-          return view('home.wx.superSearch.index', compact('TDK', 'show_from', 'itemCouponsArr', 'has_search', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
+          if ($show_from) {
+            return view('home.wx.superSearch.index_simple', compact('TDK', 'show_from', 'itemCouponsArr', 'has_search', 'couponsGussYouLike'));
+          } else {
+            $categorys = Category::categorys(self::$from);
+            $couponCategorys = CouponCategory::couponCategorys(self::$from);
+            return view('home.wx.superSearch.index', compact('TDK', 'show_from', 'itemCouponsArr', 'has_search', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
+          }
       }
     }
 

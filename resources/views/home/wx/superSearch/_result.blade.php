@@ -62,6 +62,7 @@
           <div class="dialogue-triangle"></div>
           <div>
             <p style="-webkit-user-select: auto; padding: 5px; font-size: 14px; margin-bottom: -10px;" id="tpwdInfo{{ $key }}" >
+              商品名：{{ $itemCoupon['title'] }}<br />
               原&nbsp;&nbsp;&nbsp;价：{{ $itemCoupon['zk_final_price'] }}元【券后只要{{ $coupon->finalPrice($itemCoupon['coupon_info'], $itemCoupon['zk_final_price']) }}元】<br>
               店铺名：{{ $itemCoupon['shop_title'] }}<br />
               @if(!empty($itemCoupon['item_description']))
@@ -81,7 +82,8 @@
               <div class="mui-col-xs-6">
                 @if($show_from)
                 <div style="padding-right:20px; font-size: 16px; font-weight: 800;">
-                  <span type="button" id="tpwdBtn{{ $key }}" class="tpwdBtn{{ $key }}"  data-clipboard-action="copy" data-clipboard-target="#tpwdInfo{{ $key }}" style="background-color: #ed2a7a; color: #fff; padding: 2px 10px; border-radius: 11px; float: right;">复制口令</span>
+                  <!-- <span type="button" id="tpwdBtn{{ $key }}" class="tpwdBtn{{ $key }}"  data-clipboard-text="{{ $itemCoupon['tkl'] }}" style="background-color: #ed2a7a; color: #fff; padding: 2px 10px; border-radius: 19px; float: right;">复制口令</span> -->
+                  <span type="button" id="tpwdBtn{{ $key }}" class="tpwdBtn{{ $key }}"  data-clipboard-action="copy" data-clipboard-target="#tpwdInfo{{ $key }}" style="background-color: #ed2a7a; color: #fff; padding: 2px 10px; border-radius: 19px; float: right;">复制口令</span>
                 </div>
                 @else
                 <a class="a-can-do" href="{{ $itemCoupon['coupon_click_url'] }}" target="_blank">

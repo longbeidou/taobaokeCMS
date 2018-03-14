@@ -12,7 +12,7 @@
   <div class="mui-row" >
     <div class="col-xs-12" style="height:44px;"></div>
   </div>
-  @include('home.wx.superSearch._header')
+  @include('home.wx.superSearch._header_simple')
 
   <!-- 主界面不动、菜单移动 -->
   	<!-- 侧滑导航根容器 -->
@@ -42,7 +42,7 @@
       </div>
       <div style="width: 100%; height: 5px;"></div>
       <ul class="mui-table-view mui-grid-view">
-          @include('home.wx.couponCategory._guss_you_like')
+          @include('home.wx.couponCategory._guss_you_like_block')
       </ul>
 
       <!--版权-->
