@@ -7,6 +7,14 @@ use App\Http\Controllers\Home\BaseController;
 use App\Libraries\Alimama\Contracts\AlimamaInterface;
 use App\Traits\TpwdParameter;
 
+
+
+use App\Models\CouponCategory;
+use App\Models\Coupon;
+use App\Models\Category;
+
+
+
 class SuperSearchController extends BaseController
 {
     use TpwdParameter;
@@ -27,10 +35,19 @@ class SuperSearchController extends BaseController
               'description'=>''];
       in_array(self::$from, ['wechat', 'qq']) ? $show_from = true : $show_from = false;
 
+
+
+$couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
+$categorys = Category::categorys(self::$from);
+$couponCategorys = CouponCategory::couponCategorys(self::$from);
+
+
+
+
       if (self::$from == 'pc') {
         //
       } else {
-          return view('home.wx.superSearch.index', compact('TDK', 'show_from'));
+          return view('home.wx.superSearch.index', compact('TDK', 'show_from', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
       }
     }
 
@@ -47,16 +64,18 @@ class SuperSearchController extends BaseController
       $has_search = true;
       in_array(self::$from, ['wechat', 'qq']) ? $show_from = true : $show_from = false;
 
-      if ($m = $this->hasTwpd($request->q)) {
+      if ($this->hasTwpd($request->q)) {
         $goodsInfoJson = $this->getCouponInfoFromTpwd($request->q);
-        
+
         if ((bool)$goodsInfoJson->suc && !empty($goodsInfoJson->content)) {
           $keyword = $this->getQueryKeyWordFromTwpdInfo($goodsInfoJson);
+        } else {
+          $keyword = $this->guessGoodsNameFromStr($request->q);
         }
       }
 
       empty($keyword) ? $keyword = $request->q : '';
-      $itemCoupons = $this->taobao->tbkDgItemCouponGet(['q'=>$keyword, 'page_size'=>'10']);
+      $itemCoupons = $this->taobao->tbkDgItemCouponGet(['q'=>$keyword, 'page_size'=>config('alimama.superSearchPageSize')]);
       $itemCouponsArr = $this->getItemCoupons($itemCoupons->results);
 
       if (count($itemCouponsArr) == 0) {
@@ -77,26 +96,27 @@ class SuperSearchController extends BaseController
       $goodsInfo = ((array)$goodsInfoJson);
       $str = str_replace(PHP_EOL, '', $goodsInfo['content']);
       $q = $this->removeTextPrefix($str);
-      $q = $this->filterKuoHao($q);
-      $q = $this->filterShuMingHao($q);
+      $q = $this->filterTBApp($q);
+      $q = $this->filterTBLMApp($q);
+      unset($str);
       unset($goodsInfo);
       unset($goodsInfoJson);
       return $q;
     }
 
-    // 过滤字符串中（）字符来获取商品名称
-    public function filterKuoHao ($str)
+    // 过滤淘宝APP分享的字符串中（）字符来获取商品名称
+    public function filterTBApp ($str)
     {
-      $q = explode('（', $str);
+      $q = explode('买的宝贝（', $str);
       if (count($q) == 2) {
-        $q = explode('）', $q[1]);
+        $q = explode('），快来', $q[1]);
       }
       return $q[0];
     }
 
-    // 过滤书名号【】的算法获取商品名称
-    public function filterShuMingHao ($str) {
-      $q = explode('【', $str);
+    // 过滤淘宝联盟APP默认信息的算法获取商品名称
+    public function filterTBLMApp ($str) {
+      $q = explode('【包邮】', $str);
       unset($str);
 
       return $q[0];
@@ -111,22 +131,45 @@ class SuperSearchController extends BaseController
     // 检验字符串中是否存在口令
     public function hasTwpd ($str)
     {
-      $codes = ['￥'];
+      $strArr = $this->makeTwpdStrToArray($str);
+
+      if (count($strArr) == 3 && strlen($strArr[1]) == 11) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    // 获取含有淘口令字符串中可能的商品名称
+    public function guessGoodsNameFromStr ($str)
+    {
+      $strArr = $this->makeTwpdStrToArray($str);
+
+      $firstLen = strlen($strArr[0]);
+      if ($firstLen > 75 && $firstLen <= 90) {
+        return $strArr[0];
+      }
+
+      $secondLen = strlen($strArr[0]);
+      if ($secondLen > 75 && $secondLen <= 90) {
+        return $strArr[2];
+      }
+
+      return null;
+    }
+
+    // 将含有淘口令的字符串变成数组
+    public function makeTwpdStrToArray ($str) {
+      $codes = config('alimama.tpwdCode');
+
       foreach ($codes as  $code) {
         $strArr = explode($code, $str);
         if (count($strArr) == 3) {
-          break;
+          return $strArr;
         }
       }
-      unset($codes);
-      unset($str);
-      if (count($strArr) == 3 && strlen($strArr[1]) == 11) {
-        unset($strArr);
-        return true;
-      } else {
-        unset($strArr);
-        return false;
-      }
+
+      return [];
     }
 
     // 将查询的结果信息转变成数组

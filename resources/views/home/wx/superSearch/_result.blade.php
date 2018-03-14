@@ -61,15 +61,16 @@
         <div class="mui-col-xs-10" style="position: relative; background-color: #FFFFFF; min-height: 40px; padding: 5px; border-radius: 10px;">
           <div class="dialogue-triangle"></div>
           <div>
-            <p style="padding: 5px; font-size: 14px; margin-bottom: -10px;" >
-              <span style="color:#ed2a7a;">原价</span>：{{ $itemCoupon['zk_final_price'] }}元【券后只要{{ $coupon->finalPrice($itemCoupon['coupon_info'], $itemCoupon['zk_final_price']) }}元】<br>
-              <span style="color:#ed2a7a;">店铺名</span>：{{ $itemCoupon['shop_title'] }}<br />
+            <p style="-webkit-user-select: auto; padding: 5px; font-size: 14px; margin-bottom: -10px;" id="tpwdInfo{{ $key }}" >
+              原&nbsp;&nbsp;&nbsp;价：{{ $itemCoupon['zk_final_price'] }}元【券后只要{{ $coupon->finalPrice($itemCoupon['coupon_info'], $itemCoupon['zk_final_price']) }}元】<br>
+              店铺名：{{ $itemCoupon['shop_title'] }}<br />
               @if(!empty($itemCoupon['item_description']))
-              <span style="color:#ed2a7a;">其他</span>：{{ $itemCoupon['item_description'] }}
+              其&nbsp;&nbsp;&nbsp;他：{{ $itemCoupon['item_description'] }}
               @endif
               {{ $itemCoupon['title'] }}<br>
               @if(!empty($itemCoupon['tkl']))
-              <span style="color:#ed2a7a;">特价口令</span>：<span id="kouLingCode{{ $key }}">{{ $itemCoupon['tkl'] }}</span>。复制此信息，打开手机淘宝即可领取优惠。
+              特价口令：{{ $itemCoupon['tkl'] }}。<br />
+              复制此信息，打开手机淘宝即可领取优惠。
               @endif
             </p>
             <hr style="border: 1px dotted #555555;" />
@@ -79,8 +80,8 @@
               </div>
               <div class="mui-col-xs-6">
                 @if($show_from)
-                <div id="kouLingDivBtn{{ $key }}" style="padding-right:20px; font-size: 18px; font-weight: 800;">
-                  <button id="kouLingBtn{{ $key }}" type="button" class="mui-btn mui-btn-danger mui-pull-right kouLingBtn"   data-clipboard-action="copy" data-clipboard-target="#kouLingCode{{ $key }}" name="button">点击复制</button>
+                <div style="padding-right:20px; font-size: 16px; font-weight: 800;">
+                  <span type="button" id="tpwdBtn{{ $key }}" class="tpwdBtn{{ $key }}"  data-clipboard-action="copy" data-clipboard-target="#tpwdInfo{{ $key }}" style="background-color: #ed2a7a; color: #fff; padding: 2px 10px; border-radius: 11px; float: right;">复制口令</span>
                 </div>
                 @else
                 <a class="a-can-do" href="{{ $itemCoupon['coupon_click_url'] }}" target="_blank">
@@ -98,21 +99,20 @@
 
 </div>
 
-
 <!--复制淘口令-->
   <script>
-  var clipboard = new Clipboard('.kouLingBtn{{ $key }}');
+  var clipboard = new Clipboard('.tpwdBtn{{ $key }}');
 
   clipboard.on('success', function(e) {
       console.log(e);
-      document.getElementById('kouLingBtn{{ $key }}').innerHTML = "复制成功";
-      document.getElementById('kouLingBtn{{ $key }}').style.backgroundColor = "green";
+      document.getElementById('tpwdBtn{{ $key }}').innerHTML = "复制成功";
+      document.getElementById('tpwdBtn{{ $key }}').style.backgroundColor = "green";
   });
 
   clipboard.on('error', function(e) {
       console.log(e);
-      document.getElementById('kouLingBtn{{ $key }}').innerHTML = "复制失败";
-      document.getElementById('kouLingBtn{{ $key }}').style.backgroundColor = "red";
+      document.getElementById('tpwdBtn{{ $key }}').innerHTML = "复制失败";
+      document.getElementById('tpwdBtn{{ $key }}').style.backgroundColor = "red";
   });
   </script>
 @endforeach

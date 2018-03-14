@@ -13,4 +13,10 @@ return [
 
 	// 好券清单API【导购】的必填adzone_id默认值
 	'adzone_id' => '121822521',
+
+	// 淘口令的标志字符数组
+	'tpwdCode' => ['￥'],
+
+	// 超级查询调取的券数量,参数为字符串
+	'superSearchPageSize' => '12',
 ];
