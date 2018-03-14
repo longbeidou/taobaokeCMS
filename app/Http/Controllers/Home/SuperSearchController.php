@@ -35,15 +35,10 @@ class SuperSearchController extends BaseController
               'description'=>''];
       in_array(self::$from, ['wechat', 'qq']) ? $show_from = true : $show_from = false;
 
-
-
-$couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
-$categorys = Category::categorys(self::$from);
-$couponCategorys = CouponCategory::couponCategorys(self::$from);
-
-
-
-
+      $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
+      $categorys = Category::categorys(self::$from);
+      $couponCategorys = CouponCategory::couponCategorys(self::$from);
+      
       if (self::$from == 'pc') {
         //
       } else {
@@ -63,6 +58,10 @@ $couponCategorys = CouponCategory::couponCategorys(self::$from);
               'description'=>''];
       $has_search = true;
       in_array(self::$from, ['wechat', 'qq']) ? $show_from = true : $show_from = false;
+
+      $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
+      $categorys = Category::categorys(self::$from);
+      $couponCategorys = CouponCategory::couponCategorys(self::$from);
 
       if ($this->hasTwpd($request->q)) {
         $goodsInfoJson = $this->getCouponInfoFromTpwd($request->q);
@@ -86,7 +85,7 @@ $couponCategorys = CouponCategory::couponCategorys(self::$from);
         //
       } else {
           $itemCouponsArr = $this->addTaoKouLing($itemCouponsArr);
-          return view('home.wx.superSearch.index', compact('TDK', 'show_from', 'itemCouponsArr', 'has_search'));
+          return view('home.wx.superSearch.index', compact('TDK', 'show_from', 'itemCouponsArr', 'has_search', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
       }
     }
 
