@@ -6,18 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Home\BaseController;
 use App\Libraries\Alimama\Contracts\AlimamaInterface;
 use App\Traits\TpwdParameter;
-
-
-
+use App\Traits\EncryptOrDecryptImage;
 use App\Models\CouponCategory;
 use App\Models\Coupon;
 use App\Models\Category;
 
-
-
 class SuperSearchController extends BaseController
 {
     use TpwdParameter;
+    use EncryptOrDecryptImage;
 
     public $taobao;
 
@@ -87,6 +84,7 @@ class SuperSearchController extends BaseController
       } else {
           $itemCouponsArr = $this->addTaoKouLing($itemCouponsArr);
           if ($show_from) {
+            $itemCouponsArr = $this->addImageEncrypt($itemCouponsArr);
             return view('home.wx.superSearch.index_simple', compact('TDK', 'show_from', 'itemCouponsArr', 'has_search', 'couponsGussYouLike'));
           } else {
             $categorys = Category::categorys(self::$from);
@@ -210,6 +208,21 @@ class SuperSearchController extends BaseController
       foreach ($itemCoupons as $key => $value) {
         $tpwdInfo = $this->createTpwdParaFromApi($value);
         $itemCoupons[$key]['tkl'] = (string)$this->taobao->tbkTpwdCreate($tpwdInfo)->data->model;
+      }
+
+      return $itemCoupons;
+    }
+
+    // 给数组的每个商品信息加入加密的图片地址
+    public function addImageEncrypt($itemCoupons)
+    {
+      if ($itemCoupons == []) {
+        return [];
+      }
+
+      foreach ($itemCoupons as $key => $value) {
+        $imageEncryptPath = $this->encryptImage($value['pict_url']);
+        $itemCoupons[$key]['image_encrpty'] = $imageEncryptPath;
       }
 
       return $itemCoupons;

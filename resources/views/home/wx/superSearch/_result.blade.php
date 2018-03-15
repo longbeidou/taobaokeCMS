@@ -46,7 +46,11 @@
         <div class="mui-col-xs-5" style="position: relative; background-color: #FFFFFF; min-height: 40px; padding: 5px; border-radius: 10px; margin-bottom: 10px;">
           <div class="dialogue-triangle"></div>
           <div style="text-align: center; padding: 5px;">
+            @if($show_from)
+            <img src="{{ route('image.index', $itemCoupon['image_encrpty']) }}" width="100%" />
+            @else
             <img src="{{ $itemCoupon['pict_url'] }}" width="100%" />
+            @endif
           </div>
         </div>
       </div>
