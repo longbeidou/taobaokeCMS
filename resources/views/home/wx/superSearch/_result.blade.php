@@ -33,6 +33,7 @@
 @inject('image', 'App\Presenters\ImageSrcShowFrom')
 @foreach($itemCouponsArr as $key=>$itemCoupon)
 <!--查询的结果-->
+@if(!empty($itemCoupon['coupon_info']))
 <div class="mui-row">
   <div class="mui-col-xs-12" style="text-align: center; margin: 10px 0px 5px;">
     <span style="color: #555555; font-size: 14px;">{{ date('H:i:s', time()) }}</span>
@@ -118,4 +119,5 @@
       document.getElementById('tpwdBtn{{ $key }}').style.backgroundColor = "red";
   });
   </script>
+  @endif
 @endforeach

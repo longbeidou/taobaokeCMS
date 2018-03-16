@@ -10,7 +10,7 @@
 		<!-- <a href="#"> -->
 			<div class="mui-row" style="padding-right: 10px;">
 				<div class="mui-col-xs-2" style="padding: 3px 3px 3px 5px;">
-					<img src="/img/logo.jpg" height="40px" style="border-radius: 20px;" alt="" />
+					<img src="/img/kefu.jpg" height="40px" style="border-radius: 20px;" alt="" />
 				</div>
 				<div class="mui-col-xs-5" style="position: relative; background-color: #FFFFFF; min-height: 40px; padding: 5px; border-radius: 10px; margin-bottom: 10px;">
 					<div class="dialogue-triangle"></div>
@@ -25,7 +25,7 @@
 	<div class="mui-col-xs-12" style="margin-bottom: 10px;">
 			<div class="mui-row" style="padding-right: 10px;">
 				<div class="mui-col-xs-2" style="padding: 3px 3px 3px 5px;">
-					<img src="/img/logo.jpg" height="40px" style="border-radius: 20px;" alt="" />
+					<img src="/img/kefu.jpg" height="40px" style="border-radius: 20px;" alt="" />
 				</div>
 				<div class="mui-col-xs-10" style="position: relative; background-color: #FFFFFF; min-height: 40px; padding: 5px; border-radius: 10px;">
 					<div class="dialogue-triangle"></div>
