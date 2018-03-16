@@ -12,7 +12,12 @@
         <div class="mui-col-xs-9" style="position: relative; background-color: #FFFFFF; min-height: 40px; padding: 5px; border-radius: 10px; margin-bottom: 10px;">
           <div class="dialogue-triangle"></div>
           <div style="text-align: center; padding: 5px;">
-            <img src="https://www.kemaide.com/data/upload/site/201803/5a9a3526bc7ef.png" width="100%" />
+            <img src="/img/supersearch/so_step_1.jpg" width="100%" /><br/>
+            <img src="/img/supersearch/so_step_2.jpg" width="100%" /><br/>
+            <img src="/img/supersearch/so_step_3.jpg" width="100%" /><br/>
+            <img src="/img/supersearch/so_step_4.jpg" width="100%" /><br/>
+            <img src="/img/supersearch/so_step_5.jpg" width="100%" /><br/>
+            <img src="/img/supersearch/so_step_6.jpg" width="100%" /><br/>
           </div>
         </div>
       </div>
