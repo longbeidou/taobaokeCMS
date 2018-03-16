@@ -14,15 +14,7 @@
         <a class="a-can-do" href="{{ route('home.couponInfo', $coupon->id) }}">
             <img class="mui-media-object" src="{{ $image->imageSrc($coupon, $show_from) }}">
             <span class="mui-badge mui-badge-red" style="position:absolute; right: 0px; top: 20px; background-color: #ed2a7a;">
-              @if(in_array($from, ['wechat']))
-                @if($coupon->flat == '淘宝')
-                <img src="/img/ta.png" height="12px" alt="">
-                @else
-                <img src="/img/tm.png" height="12px" alt="">
-                @endif
-              @else
-              {{ $coupon->flat }}
-              @endif
+              {!! $image->showFlat($show_from, $coupon->flat) !!}
             </span>
             <div class="mui-media-body" style="height: 52px;">
               <p style="white-space: normal; max-height: 30px; color:#000; overflow: hidden;">{{ $coupon->goods_name }}</p>

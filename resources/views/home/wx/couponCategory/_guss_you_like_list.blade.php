@@ -5,7 +5,9 @@
     <div class="mui-col-xs-4" style="height: 100%; overflow: hidden;">
       <a class="a-can-do" href="{{ route('home.couponInfo', $coupon->id) }}">
         <img style="height:100%;" src="{{ $image->imageSrc($coupon, $show_from) }}">
-        <span class="mui-badge mui-badge-red" style="position:absolute; right: 6px; top: 3px; background-color: #ed2a7a;">{{ $coupon->flat }}</span>
+        <span class="mui-badge mui-badge-red" style="position:absolute; right: 6px; top: 3px; background-color: #ed2a7a;">
+          {!! $image->showFlat($show_from, $coupon->flat) !!}
+        </span>
       </a>
     </div>
     <div class="mui-col-xs-8" style="padding:0px 0px 0px 8px; height: 100%;">

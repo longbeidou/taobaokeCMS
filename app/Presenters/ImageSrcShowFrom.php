@@ -30,4 +30,20 @@ class ImageSrcShowFrom
 
     return $imagePath;
   }
+
+  // 更加平台和self_from来确定是否展示图片还是文字
+  public function showFlat ($show_from, $flat)
+  {
+    if (!$show_from) {
+      return $flat;
+    }
+
+    if ($flat == '淘宝') {
+      $flat = '<img src="/img/ta.png" height="12px" alt="">';
+    } else {
+      $flat = '<img src="/img/tm.png" height="12px" alt="">';
+    }
+
+    return $flat;
+  }
 }
