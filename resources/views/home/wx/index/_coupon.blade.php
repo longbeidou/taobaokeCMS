@@ -1,3 +1,4 @@
+@inject('image', 'App\Presenters\ImageSrcShowFrom')
 <div class="mui-row">
   <div class="mui-col-xs-4"><hr /></div>
     <div class="mui-col-xs-4 mui-text-center">
@@ -11,11 +12,7 @@
   @foreach($coupons as $coupon)
     <li class="mui-table-view-cell mui-media mui-col-xs-6">
         <a class="a-can-do" href="{{ route('home.couponInfo', $coupon->id) }}">
-            @if(!empty($from) && in_array($from,['wechat','wx']))
-            <img class="mui-media-object" src="{{ route('image.index', $coupon->image_encrypt) }}">
-            @else
-            <img class="mui-media-object" src="{{ $coupon->image }}">
-            @endif
+            <img class="mui-media-object" src="{{ $image->imageSrc($coupon, $show_from) }}">
             <span class="mui-badge mui-badge-red" style="position:absolute; right: 0px; top: 20px; background-color: #ed2a7a;">
               @if(in_array($from, ['wechat']))
                 @if($coupon->flat == '淘宝')

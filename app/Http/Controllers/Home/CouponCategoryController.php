@@ -9,10 +9,11 @@ use App\Models\Coupon;
 use App\Models\Category;
 use App\Models\BrandCategory;
 use App\Traits\CouponCategorySelfWhere;
+use App\Traits\ShowFromToView;
 
 class CouponCategoryController extends BaseController
 {
-    use CouponCategorySelfWhere;
+    use CouponCategorySelfWhere, ShowFromToView;
 
     public $pageSize = 20;
 
@@ -31,11 +32,12 @@ class CouponCategoryController extends BaseController
               'description'=>''];
       $categorys = Category::categorys(self::$from);
       $couponCategorys = CouponCategory::couponCategorys(self::$from);
+      $show_from = $this->showFrom(self::$from);
 
       if (self::$from == 'pc') {
         //
       } else {
-        return view('home.wx.couponCategory.index', compact('oldRequest', 'currentUrl', 'from', 'TDK', 'coupons', 'couponsGussYouLike', 'categorys', 'couponCategory', 'couponCategorys'));
+        return view('home.wx.couponCategory.index', compact('oldRequest', 'currentUrl', 'show_from', 'from', 'TDK', 'coupons', 'couponsGussYouLike', 'categorys', 'couponCategory', 'couponCategorys'));
       }
     }
 
@@ -57,11 +59,12 @@ class CouponCategoryController extends BaseController
       $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
       $categorys = Category::categorys(self::$from);
       $couponCategorys = CouponCategory::couponCategorys(self::$from);
+      $show_from = $this->showFrom(self::$from);
 
       if (self::$from == 'pc') {
         //
       } else {
-        return view('home.wx.couponCategory.search', compact('oldRequest', 'currentUrl', 'from', 'TDK', 'coupons', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
+        return view('home.wx.couponCategory.search', compact('oldRequest', 'currentUrl', 'show_from', 'from', 'TDK', 'coupons', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
       }
     }
 

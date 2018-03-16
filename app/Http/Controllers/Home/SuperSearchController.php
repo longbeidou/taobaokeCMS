@@ -7,14 +7,14 @@ use App\Http\Controllers\Home\BaseController;
 use App\Libraries\Alimama\Contracts\AlimamaInterface;
 use App\Traits\TpwdParameter;
 use App\Traits\EncryptOrDecryptImage;
+use App\Traits\ShowFromToView;
 use App\Models\CouponCategory;
 use App\Models\Coupon;
 use App\Models\Category;
 
 class SuperSearchController extends BaseController
 {
-    use TpwdParameter;
-    use EncryptOrDecryptImage;
+    use TpwdParameter, ShowFromToView, EncryptOrDecryptImage;
 
     public $taobao;
 
@@ -30,7 +30,7 @@ class SuperSearchController extends BaseController
       $TDK = ['title'=>'超级搜索 | '.config('website.name'),
               'keywords'=>'',
               'description'=>''];
-      in_array(self::$from, ['wechat', 'qq']) ? $show_from = true : $show_from = false;
+      $show_from = $this->showFrom(self::$from);
       $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
 
       if (self::$from == 'pc') {
@@ -57,7 +57,7 @@ class SuperSearchController extends BaseController
               'keywords'=>'',
               'description'=>''];
       $has_search = true;
-      in_array(self::$from, ['wechat', 'qq']) ? $show_from = true : $show_from = false;
+      $show_from = $this->showFrom(self::$from);
 
       $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
 
@@ -222,7 +222,7 @@ class SuperSearchController extends BaseController
 
       foreach ($itemCoupons as $key => $value) {
         $imageEncryptPath = $this->encryptImage($value['pict_url']);
-        $itemCoupons[$key]['image_encrpty'] = $imageEncryptPath;
+        $itemCoupons[$key]['image_encrypt'] = $imageEncryptPath;
       }
 
       return $itemCoupons;

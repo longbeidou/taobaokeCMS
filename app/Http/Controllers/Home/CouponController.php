@@ -9,11 +9,11 @@ use App\Libraries\Alimama\Contracts\AlimamaInterface;
 use App\Services\MakeCouponShareImageService as MakeImage;
 use App\Traits\EncryptOrDecryptImage;
 use App\Traits\TpwdParameter;
+use App\Traits\ShowFromToView;
 
 class CouponController extends BaseController
 {
-    use EncryptOrDecryptImage;
-    use TpwdParameter;
+    use EncryptOrDecryptImage, TpwdParameter, ShowFromToView;
 
     public $taobao;
     public $image;
@@ -35,6 +35,7 @@ class CouponController extends BaseController
       $couponInformationArr = Coupon::makeCouponInfoToArray ($couponInfo->coupon_info);
       $smallImages = $this->getCouponSmallImages($couponInfo->goods_id);
       $couponCountInfo = $this->couponCountInfo(['item_id'=>$couponInfo->goods_id, 'activity_id'=>$couponInfo->coupon_id])->data;
+      $show_from = $this->showFrom(self::$from);
 
       if ($couponCountInfo->coupon_total_count) {
          Coupon::notShow($couponInfo->id);
@@ -53,7 +54,7 @@ class CouponController extends BaseController
       if (self::$from == 'pc') {
         //
       } else {
-        return view('home.wx.couponInformation.index', compact('TDK', 'couponsGussYouLike', 'couponInfo', 'couponInformationArr', 'taoKouLing', 'smallImages',  'couponCountInfo'));
+        return view('home.wx.couponInformation.index', compact('TDK', 'show_from', 'couponsGussYouLike', 'couponInfo', 'couponInformationArr', 'taoKouLing', 'smallImages',  'couponCountInfo'));
       }
     }
 
@@ -80,10 +81,13 @@ class CouponController extends BaseController
       $smallImages = (array)$smallImages;
 
       foreach ($smallImages as $key => $smallImage) {
-        $smallImages[$key] = $this->encryptImage($smallImage);
+        $smallImagesAll[$key]['src_encrypt'] = $this->encryptImage($smallImage);
+        $smallImagesAll[$key]['src'] = $smallImage;
       }
 
-      return $smallImages;
+      unset($smallImages);
+
+      return $smallImagesAll;
     }
 
     // 更加是否是移动端来确定显示的是页面还是链接

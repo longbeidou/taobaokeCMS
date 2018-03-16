@@ -1,9 +1,10 @@
+@inject('image', 'App\Presenters\ImageSrcShowFrom')
 @foreach($couponsGussYouLike as $coupon)
 <li class="mui-table-view-cell mui-media mui-col-xs-12">
   <div class="mui-row" style="height:120px;">
     <div class="mui-col-xs-4" style="height: 100%; overflow: hidden;">
       <a class="a-can-do" href="{{ route('home.couponInfo', $coupon->id) }}">
-        <img style="height:100%;" src="{{ route('image.index', $coupon->image_encrypt) }}">
+        <img style="height:100%;" src="{{ $image->imageSrc($coupon, $show_from) }}">
         <span class="mui-badge mui-badge-red" style="position:absolute; right: 6px; top: 3px; background-color: #ed2a7a;">{{ $coupon->flat }}</span>
       </a>
     </div>

@@ -1,12 +1,12 @@
 <div id="msg_end" style="height:0px; overflow:hidden"></div>
 <script type="text/javascript">
-  setInterval('addCoupons()',20*1000);
+  setInterval('addCoupons()',10*1000);
   function addCoupons()
   {
+    <?php $show_from ? $code = 1 : $code = 0; ?>
     mui.ajax('{{route('home.zhibo.random')}}',{
     	data:{
-    		username:'username',
-    		password:'password'
+        show_from: {{ $code }}
     	},
     	dataType:'json',//服务器返回json格式数据
     	type:'post',//HTTP请求类型

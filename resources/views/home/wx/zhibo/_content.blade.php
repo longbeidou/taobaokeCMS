@@ -1,4 +1,5 @@
 @inject('zhibo', 'App\Presenters\ZhiBoPresenter')
+@inject('image', 'App\Presenters\ImageSrcShowFrom')
 @foreach($coupons as $key => $coupon)
 <div class="mui-row">
 	<div class="mui-col-xs-12" style="text-align: center; margin: 10px 0px 5px;">
@@ -14,7 +15,7 @@
 				<div class="mui-col-xs-5" style="position: relative; background-color: #FFFFFF; min-height: 40px; padding: 5px; border-radius: 10px; margin-bottom: 10px;">
 					<div class="dialogue-triangle"></div>
 					<div style="text-align: center; padding: 5px;">
-						<img src="{{ route('image.index', $coupon->image_encrypt) }}" width="100%" />
+						<img src="{{ $image->imageSrc($coupon, $show_from) }}" width="100%" />
 					</div>
 				</div>
 			</div>

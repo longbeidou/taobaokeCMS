@@ -30,6 +30,7 @@
   </div>
 </div>
 @inject('coupon', 'App\Presenters\CouponPresenter')
+@inject('image', 'App\Presenters\ImageSrcShowFrom')
 @foreach($itemCouponsArr as $key=>$itemCoupon)
 <!--查询的结果-->
 <div class="mui-row">
@@ -46,11 +47,7 @@
         <div class="mui-col-xs-5" style="position: relative; background-color: #FFFFFF; min-height: 40px; padding: 5px; border-radius: 10px; margin-bottom: 10px;">
           <div class="dialogue-triangle"></div>
           <div style="text-align: center; padding: 5px;">
-            @if($show_from)
-            <img src="{{ route('image.index', $itemCoupon['image_encrpty']) }}" width="100%" />
-            @else
-            <img src="{{ $itemCoupon['pict_url'] }}" width="100%" />
-            @endif
+            <img src="{{ $image->imageSuperSearchSrc($itemCoupon, $show_from) }}" width="100%" />
           </div>
         </div>
       </div>
