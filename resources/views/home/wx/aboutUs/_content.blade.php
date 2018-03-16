@@ -24,7 +24,7 @@
 				<div class="mui-col-xs-10 dialogue-div-text">
 					<div class="dialogue-triangle"></div>
 					<div>
-						<p>网址：www.52010000.cn</p>
+						<p style="-webkit-user-select: auto; ">网址：www.52010000.cn</p>
 					</div>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 				<div class="mui-col-xs-10 dialogue-div-text">
 					<div class="dialogue-triangle"></div>
 					<div>
-						<p>我们的微信公众号每日会推送特价商品，欢迎关注我们的微信公众号：【我爱你一万年网】</p>
+						<p>我们的微信公众号每日会推送特价商品，欢迎关注我们的微信公众号：【<span style="-webkit-user-select: auto; ">我爱你一万年网</span>】</p>
 					</div>
 				</div>
 			</div>
@@ -77,7 +77,7 @@
 				<div class="mui-col-xs-10 dialogue-div-text">
 					<div class="dialogue-triangle"></div>
 					<div>
-						<p>如需人工查券服务可以加客服微信（微信号：13315839817），或扫描下方微信二维码：</p>
+						<p>如需人工查券服务可以加客服微信（微信号：<span style="-webkit-user-select: auto; ">13315839817</span>），或扫描下方微信二维码：</p>
 					</div>
 				</div>
 			</div>
