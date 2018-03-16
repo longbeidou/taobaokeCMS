@@ -27,7 +27,7 @@
     </div>
   </div>
   <div class="mui-col-xs-4 mui-text-center">
-    <img src="/img/about/qcode_public.png" style="width: 80%;">
+    <img src="/img/about/qcode_public.jpg" style="width: 80%;">
     <p>微信关注找券神器<br />随时随地想找就找</p>
   </div>
 </div>
