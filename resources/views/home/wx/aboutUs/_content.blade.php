@@ -37,7 +37,7 @@
 				<div class="mui-col-xs-10 dialogue-div-text">
 					<div class="dialogue-triangle"></div>
 					<div>
-						<p>我们的微信公众号每日会推送特价商品，欢迎关注我们的微信公众号：###</p>
+						<p>我们的微信公众号每日会推送特价商品，欢迎关注我们的微信公众号：【我爱你一万年网】</p>
 					</div>
 				</div>
 			</div>
@@ -64,7 +64,7 @@
 				<div class="mui-col-xs-5 dialogue-img">
 					<div class="dialogue-triangle"></div>
 					<div class="dialogue-div-img">
-						<img src="/img/about/qcode_public.png" />
+						<img src="/img/about/qcode_public.jpg" />
 					</div>
 				</div>
 			</div>
@@ -77,7 +77,7 @@
 				<div class="mui-col-xs-10 dialogue-div-text">
 					<div class="dialogue-triangle"></div>
 					<div>
-						<p>如需人工查券服务可以加客服微信（微信号：****），或扫描下方微信二维码：</p>
+						<p>如需人工查券服务可以加客服微信（微信号：13315839817），或扫描下方微信二维码：</p>
 					</div>
 				</div>
 			</div>
@@ -91,7 +91,7 @@
 				<div class="mui-col-xs-5 dialogue-img">
 					<div class="dialogue-triangle"></div>
 					<div class="dialogue-div-img">
-						<img src="/img/about/qcode_person.png" />
+						<img src="/img/about/qcode_person.jpg" />
 					</div>
 				</div>
 			</div>
