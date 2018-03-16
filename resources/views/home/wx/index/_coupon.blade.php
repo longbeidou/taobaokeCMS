@@ -1,4 +1,5 @@
 @inject('image', 'App\Presenters\ImageSrcShowFrom')
+@inject('couponPresenter', 'App\Presenters\CouponPresenter')
 <div class="mui-row">
   <div class="mui-col-xs-4"><hr /></div>
     <div class="mui-col-xs-4 mui-text-center">
@@ -24,7 +25,7 @@
               </p>
             </div>
             <div class="mui-media-body mui-row" style="height: 2.2em;">
-              <div class="mui-col-xs-7 coupon-info">{{ $coupon->coupon_info }}</div>
+              <div class="mui-col-xs-7 coupon-info">立省{{ $couponPresenter->saveMoney($coupon->coupon_info, $coupon->price) }}元</div>
               <div class="mui-col-xs-5 coupon-take">马上领券</div>
             </div>
         </a>

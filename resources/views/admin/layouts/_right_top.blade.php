@@ -86,6 +86,9 @@
             <!-- <li class="hidden-xs">
                 <a href="index_v1.html" class="J_menuItem" data-index="0"><i class="fa fa-cart-arrow-down"></i> 购买</a>
             </li> -->
+            <li class="hidden-xs">
+                <a href="/" target="_blank"><i class="fa fa-home"></i> 网站</a>
+            </li>
             <li class="dropdown hidden-xs">
                 <a class="right-sidebar-toggle" aria-expanded="false">
                     <i class="fa fa-tasks"></i> 主题
