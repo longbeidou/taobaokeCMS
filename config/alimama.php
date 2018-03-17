@@ -18,5 +18,5 @@ return [
 	'tpwdCode' => ['￥'],
 
 	// 超级查询调取的券数量,参数为字符串
-	'superSearchPageSize' => '12',
+	'superSearchPageSize' => '25',
 ];

@@ -28,7 +28,7 @@
 
       <!-- 搜索的结果 -->
       @if(!empty($has_search))
-        @include('home.wx.superSearch._result')
+        @include('home.wx.superSearch._result_list')
       @endif
 
       <!--猜你喜欢-->

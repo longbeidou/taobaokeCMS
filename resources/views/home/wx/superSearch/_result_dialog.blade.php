@@ -84,7 +84,6 @@
               <div class="mui-col-xs-6">
                 @if($show_from)
                 <div style="padding-right:20px; font-size: 16px; font-weight: 800;">
-                  <!-- <span type="button" id="tpwdBtn{{ $key }}" class="tpwdBtn{{ $key }}"  data-clipboard-text="{{ $itemCoupon['tkl'] }}" style="background-color: #ed2a7a; color: #fff; padding: 2px 10px; border-radius: 19px; float: right;">复制口令</span> -->
                   <span type="button" id="tpwdBtn{{ $key }}" class="tpwdBtn{{ $key }}"  data-clipboard-action="copy" data-clipboard-target="#tpwdInfo{{ $key }}" style="background-color: #ed2a7a; color: #fff; padding: 2px 10px; border-radius: 19px; float: right;">复制口令</span>
                 </div>
                 @else
