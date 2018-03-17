@@ -57,7 +57,7 @@
     <div style="width:100%; float:left;">
       <div class="mui-media-body mui-row" style="height: 2.2em;">
         <div class="mui-col-xs-7 mui-text-center coupon-info">立省10元</div>
-        @if(!$show_from)
+        @if($show_from)
         <div class="mui-col-xs-5 mui-text-center coupon-take" id="tpwddiv{{ $key }}">
           <span type="button" id="tpwdBtn{{ $key }}" class="tpwdBtn{{ $key }}"  data-clipboard-action="copy" data-clipboard-target="#tpwdInfo{{ $key }}" >复制口令</span>
         </div>
