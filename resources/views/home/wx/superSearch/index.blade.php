@@ -30,9 +30,18 @@
              <div class="mui-row">
                  <div class="mui-slider-group">
                     <div id="item1" class="mui-slider-item mui-control-content mui-active">
+
                       <!-- 搜索的结果 -->
                       @if(!empty($has_search))
                         @include('home.wx.superSearch._result_list')
+                      @endif
+
+                      @if (empty($has_search))
+                      <div class="mui-row">
+                        <div class="mui-col-xs-12">
+                          <img src="/img/supersearch/search_surper_bg.png" width="100%" alt="">
+                        </div>
+                      </div>
                       @endif
 
                       @if (count($errors) > 0)
@@ -65,7 +74,7 @@
              </ul>
              <!--版权-->
              @include('home.wx.layouts._copy')
-             <div class="mui-row" id="foot">
+             <div class="mui-row" id="footSpace">
                <div class="col-xs-12" style="height:80px;"></div>
              </div>
 
@@ -79,11 +88,15 @@
         mui('#superSearchTab').on('tap', 'a', function(){
           data = this.getAttribute("data");
           if (data == 'inner') {
-            document.getElementById('superSearchForm').style.display="none";
-            document.getElementById('foot').style.display="none";
+            document.getElementById('superSearchForm').classList.add('self-display-none');
+            document.getElementById('footSpace').classList.add('self-display-none');
+            document.getElementById('superSearchForm').classList.remove('self-display-block');
+            document.getElementById('footSpace').classList.remove('self-display-block');
           } else {
-            document.getElementById('superSearchForm').style.display="block";
-            document.getElementById('foot').style.display="block";
+            document.getElementById('superSearchForm').classList.add('self-display-block');
+            document.getElementById('footSpace').classList.add('self-display-block');
+            document.getElementById('superSearchForm').classList.remove('self-display-none');
+            document.getElementById('footSpace').classList.remove('self-display-none');
           }
         });
     </script>

@@ -294,3 +294,10 @@ body #aside-search #search-form {
 #super_search_inner_recommend ul li a {
   color: #5d5a5a;
 }
+
+.self-display-none {
+  display: none;
+}
+.self-display-block {
+  display: block;
+}

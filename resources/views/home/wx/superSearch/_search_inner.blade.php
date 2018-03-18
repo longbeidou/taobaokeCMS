@@ -6,7 +6,7 @@
     <form class="mui-input-group" action="{{ route('home.coupon.search') }}" method="get" style="background:transparent;">
         <div class="mui-row">
           <div class="mui-col-xs-9 mui-pull-right" style="color: #fff; padding-left: 20px;">
-            <input type="text" name="search" value="" placeholder="请输入商品名称,多条件用空格隔开。" style="background-color: #fff; border-radius: 20px 0px 0px 20px; height: 40px; color:rgba(237, 42, 122, 1);">
+            <input type="text" name="search" value="" placeholder="请输入商品名称,多条件用空格隔开。" style="font-size: 13px; background-color: #fff; border-radius: 20px 0px 0px 20px; height: 40px; color:rgba(237, 42, 122, 1);">
           </div>
           <div class="mui-col-xs-3 mui-pull-left" style="">
             <button type="submit" class="" style="height: 40px; background-color: rgba(237, 42, 122, 0.8); border: 0px; color: #fff; border-radius: 0px 20px 20px 0px; width: 80%;" >确认</button>
@@ -15,7 +15,7 @@
     </form>
   </div>
 </div>
-<div class="mui-row" id="super_search_inner_recommend">
+<div class="mui-row" id="super_search_inner_recommend" style="margin-top: -10px;">
   <h4>热门搜索</h4>
   <ul>
     <li><a class="a-can-do" href="{{ route('home.coupon.search') }}?search=衬衫">衬衫</a></li>

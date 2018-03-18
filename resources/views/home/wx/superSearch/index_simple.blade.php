@@ -30,6 +30,14 @@
                  @include('home.wx.superSearch._result_list')
                @endif
 
+               @if (empty($has_search))
+               <div class="mui-row">
+                 <div class="mui-col-xs-12">
+                   <img src="/img/supersearch/search_surper_bg.png" width="100%" alt="">
+                 </div>
+               </div>
+               @endif
+
                @if (count($errors) > 0)
                  @include('home.wx.superSearch._errors')
                @endif
@@ -62,7 +70,24 @@
       <!--版权-->
       @include('home.wx.layouts._copy')
   	</div>
-    <div class="mui-row" >
+    <div class="mui-row" id="footSpace">
       <div class="col-xs-12" style="height:80px;"></div>
     </div>
+
+    <script type="text/javascript">
+        mui('#superSearchTab').on('tap', 'a', function(){
+          data = this.getAttribute("data");
+          if (data == 'inner') {
+            document.getElementById('superSearchForm').classList.add('self-display-none');
+            document.getElementById('footSpace').classList.add('self-display-none');
+            document.getElementById('superSearchForm').classList.remove('self-display-block');
+            document.getElementById('footSpace').classList.remove('self-display-block');
+          } else {
+            document.getElementById('superSearchForm').classList.add('self-display-block');
+            document.getElementById('footSpace').classList.add('self-display-block');
+            document.getElementById('superSearchForm').classList.remove('self-display-none');
+            document.getElementById('footSpace').classList.remove('self-display-none');
+          }
+        });
+    </script>
 @stop
