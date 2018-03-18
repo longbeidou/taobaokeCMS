@@ -1,4 +1,4 @@
-<form class="" action="{{ route('home.superSearch.result') }}" method="post">
+<form class="" action="{{ route('home.superSearch.result') }}" method="post" id="superSearchForm">
   {{ csrf_field() }}
 <nav class="mui-bar mui-bar-tab" style="height: 80px; background-color: #FFFFFF;">
   <div style="float: left; height: 80px; width: 80%; padding: 5px;">

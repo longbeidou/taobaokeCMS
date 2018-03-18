@@ -254,3 +254,43 @@ body #aside-search #search-form {
   border-bottom: 1px solid rgba(255,255,255, 1);
   border-right: 1px solid rgba(255,255,255, 1)
 }
+
+#superSearchTab {
+  border-bottom: 0px;
+}
+#superSearchTab .mui-active {
+  background-color: rgba(237, 42, 122, 0.6);
+  color: #fff;
+}
+#superSearchTab a {
+  font-size: 14px;
+  color: rgba(237, 42, 122, 1);
+}
+#superSearchTab .mui-control-item {
+  line-height: 30px;
+  border-bottom: 1px solid rgba(237, 42, 122, 0.6);
+}
+
+#super_search_inner_recommend {
+  background:#fff;
+  padding: 0px 10px 10px;
+}
+#super_search_inner_recommend ul {
+  list-style: none;
+  padding: 5px 0px;
+  margin: 0px;
+}
+#super_search_inner_recommend ul li {
+  list-style: none;
+  float: left;
+  padding: 5px 10px;
+  margin: 5px 6px;
+  font-size: 12px;
+  line-height: 12px;
+  border-radius: 18px;
+  background-color: #eee;
+  border: 1px solid rgba(237, 42, 122, 1);
+}
+#super_search_inner_recommend ul li a {
+  color: #5d5a5a;
+}

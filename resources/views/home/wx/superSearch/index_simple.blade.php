@@ -17,19 +17,33 @@
   <!-- 主界面不动、菜单移动 -->
   	<!-- 侧滑导航根容器 -->
   	<div class="mui-off-canvas-wrap mui-draggable mui-slide-in">
-      @if (count($errors) > 0)
-        @include('home.wx.superSearch._errors')
-      @endif
 
-      @if(empty($has_search))
-    	  <!-- 超级搜索说明 -->
-        @include('home.wx.superSearch._info')
-      @endif
+      <div class="mui-segmented-control" style="background-color: #fff;" id="superSearchTab">
+         <a data="super" class="mui-control-item mui-active" href="#item1">超级搜索</a>
+         <a data="inner" class="mui-control-item" href="#item2">站内搜索</a>
+      </div>
+      <div class="mui-row">
+          <div class="mui-slider-group">
+             <div id="item1" class="mui-slider-item mui-control-content mui-active">
+               <!-- 搜索的结果 -->
+               @if(!empty($has_search))
+                 @include('home.wx.superSearch._result_list')
+               @endif
 
-      <!-- 搜索的结果 -->
-      @if(!empty($has_search))
-        @include('home.wx.superSearch._result_list')
-      @endif
+               @if (count($errors) > 0)
+                 @include('home.wx.superSearch._errors')
+               @endif
+
+               @if(empty($has_search))
+                <!-- 超级搜索说明 -->
+                 @include('home.wx.superSearch._info')
+               @endif
+             </div>
+             <div id="item2" class="mui-slider-item mui-control-content">
+                 @include('home.wx.superSearch._search_inner')
+             </div>
+          </div>
+      </div>
 
       <!--猜你喜欢-->
       <div class="mui-row"  style="margin-top: 12px;">

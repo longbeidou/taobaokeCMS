@@ -22,19 +22,33 @@
   	    <div class="mui-content mui-scroll-wrapper">
   	       <div class="mui-scroll" id="brand-tab-list">
 
-             @if (count($errors) > 0)
-               @include('home.wx.superSearch._errors')
-             @endif
+             <div class="mui-segmented-control" style="background-color: #fff;" id="superSearchTab">
+         		    <a data="super" class="mui-control-item mui-active" href="#item1">超级搜索</a>
+         		    <a data="inner" class="mui-control-item" href="#item2">站内搜索</a>
+             </div>
+             <!-- <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div> -->
+             <div class="mui-row">
+                 <div class="mui-slider-group">
+                    <div id="item1" class="mui-slider-item mui-control-content mui-active">
+                      <!-- 搜索的结果 -->
+                      @if(!empty($has_search))
+                        @include('home.wx.superSearch._result_list')
+                      @endif
 
-             @if(empty($has_search))
-              <!-- 超级搜索说明 -->
-               @include('home.wx.superSearch._info')
-             @endif
+                      @if (count($errors) > 0)
+                        @include('home.wx.superSearch._errors')
+                      @endif
 
-             <!-- 搜索的结果 -->
-             @if(!empty($has_search))
-               @include('home.wx.superSearch._result_list')
-             @endif
+                      @if(empty($has_search))
+                       <!-- 超级搜索说明 -->
+                        @include('home.wx.superSearch._info')
+                      @endif
+                   	</div>
+                    <div id="item2" class="mui-slider-item mui-control-content">
+                        @include('home.wx.superSearch._search_inner')
+                    </div>
+                 </div>
+             </div>
 
              <!--猜你喜欢-->
              <div class="mui-row"  style="margin-top: 12px;">
@@ -49,15 +63,28 @@
              <ul class="mui-table-view mui-grid-view">
                  @include('home.wx.couponCategory._guss_you_like_block')
              </ul>
-
              <!--版权-->
              @include('home.wx.layouts._copy')
-             <div class="mui-row" >
+             <div class="mui-row" id="foot">
                <div class="col-xs-12" style="height:80px;"></div>
              </div>
+
   	      </div>
   	    </div>
   	    <div class="mui-off-canvas-backdrop"></div>
   	  </div>
   	</div>
+
+    <script type="text/javascript">
+        mui('#superSearchTab').on('tap', 'a', function(){
+          data = this.getAttribute("data");
+          if (data == 'inner') {
+            document.getElementById('superSearchForm').style.display="none";
+            document.getElementById('foot').style.display="none";
+          } else {
+            document.getElementById('superSearchForm').style.display="block";
+            document.getElementById('foot').style.display="block";
+          }
+        });
+    </script>
 @stop

@@ -7,12 +7,17 @@ namespace App\Traits;
  */
 trait ShowFromToView
 {
-    public $allow = ['wechat', 'qq'];
-
     public function showFrom($from)
     {
-        in_array($from, $this->allow) ? $show_from = true : $show_from = false;
+        $allow = $this->getShowFrom();
+
+        in_array($from, $allow) ? $show_from = true : $show_from = false;
 
         return $show_from;
+    }
+
+    public function getShowFrom ()
+    {
+      return config('website.show_from');
     }
 }
