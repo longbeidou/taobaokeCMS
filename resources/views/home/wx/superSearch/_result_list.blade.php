@@ -50,13 +50,13 @@
     </div>
     <div style="width:100%; float:left;">
       <p class="mui-text-right" style="margin-top: 1px; margin-bottom: 0px;">
-        <span style="font-size: 18px; color: #ed2a7a;">￥{{ $itemCoupon['zk_final_price'] }}</span>
-        <span style="text-decoration: line-through; color: #929292;" >￥{{ $coupon->finalPrice($itemCoupon['coupon_info'], $itemCoupon['zk_final_price']) }}</span>
+        <span style="font-size: 18px; color: #ed2a7a;">￥{{ $coupon->finalPrice($itemCoupon['coupon_info'], $itemCoupon['zk_final_price']) }}</span>
+        <span style="text-decoration: line-through; color: #929292;" >￥{{ $itemCoupon['zk_final_price'] }}</span>
       </p>
     </div>
     <div style="width:100%; float:left;">
       <div class="mui-media-body mui-row" style="height: 2.2em;">
-        <div class="mui-col-xs-7 mui-text-center coupon-info">立省10元</div>
+        <div class="mui-col-xs-7 mui-text-center coupon-info">立省{{ $coupon->saveMoney($itemCoupon['coupon_info'], $itemCoupon['zk_final_price']) }}元</div>
         @if($show_from)
         <div class="mui-col-xs-5 mui-text-center coupon-take" id="tpwddiv{{ $key }}">
           <span type="button" id="tpwdBtn{{ $key }}" class="tpwdBtn{{ $key }}"  data-clipboard-action="copy" data-clipboard-target="#tpwdInfo{{ $key }}" >复制口令</span>
