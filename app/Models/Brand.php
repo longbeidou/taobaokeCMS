@@ -16,7 +16,7 @@ class Brand extends Model
   ];
 
   // 获取品牌信息
-  public static function brands($from, $brandCategorys, $pcNum = 10, $wxNum = 6)
+  public static function brands($from, $brandCategorys, $pcNum = 9, $wxNum = 6)
   {
     $brands = [];
 
