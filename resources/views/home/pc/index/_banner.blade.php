@@ -49,30 +49,30 @@
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane fade active in" id="banner-right-one" aria-labelledby="banner-right-one-tab">
           <p>
-            <a href="#" target="_blank">
+            <a href="https://mos.m.taobao.com/activity_newer?from=pub&pid=mm_46591525_34308672_311396917" target="_blank">
               <img src="/img/pc/laxin.jpg" width="100%" alt="">
             </a>
           </p>
         </div>
         <div role="tabpane2" class="tab-pane fade in" id="banner-right-two" aria-labelledby="banner-right-two-tab">
           <p>
-            <a href="#" target="_blank">
-              <img src="/img/pc/laxin.jpg" width="100%" alt="">
-            </a>
+            <!-- <a href="#" target="_blank"> -->
+              <img src="/img/about/qcode_public_239_239.png" width="100%" alt="">
+            <!-- </a> -->
           </p>
         </div>
         <div role="tabpane3" class="tab-pane fade in" id="banner-right-three" aria-labelledby="banner-right-three-tab">
           <p>
-            <a href="#" target="_blank">
-              <img src="/img/pc/laxin.jpg" width="100%" alt="">
-            </a>
+            <!-- <a href="#" target="_blank"> -->
+              <img src="/img/about/qcode_person_239_239.png" width="100%" alt="">
+            <!-- </a> -->
           </p>
         </div>
         <div role="tabpane4" class="tab-pane fade in" id="banner-right-four" aria-labelledby="banner-right-four-tab">
           <p>
-            <a href="#" target="_blank">
-              <img src="/img/pc/laxin.jpg" width="100%" alt="">
-            </a>
+            <!-- <a href="#" target="_blank"> -->
+              <img src="/img/about/qcode_website_239_239.png" width="100%" alt="">
+            <!-- </a> -->
           </p>
         </div>
       </div>

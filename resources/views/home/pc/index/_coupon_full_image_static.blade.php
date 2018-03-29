@@ -47,6 +47,9 @@
     <div class="col-sm-4 i-right">
       <div class="row image-box-right">
         @foreach($info['coupons'] as $key => $coupon)
+          @if($key >8)
+          <?php break; ?>
+          @endif
           @if($key > 4)
           <div class="col-sm-6 small-image-box">
             <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
@@ -57,9 +60,6 @@
               </div>
             </a>
           </div>
-          @endif
-          @if($key >8)
-          <?php break; ?>
           @endif
         @endforeach
 

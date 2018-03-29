@@ -24,6 +24,10 @@
       <?php $allNum = count($allCouponsCategoryToCoupons); ?>
       <?php $select = [0,1,2,3,4,5]; ?>
       @foreach($allCouponsCategoryToCoupons as $key => $info)
+        <?php
+          $idcode = $key+1;
+          $allKey = $key;
+        ?>
         @if( ($allNum % 3 == 1 && $key < $allNum-1) || ($allNum % 3 == 2 && $key < $allNum-1-1) || ($allNum % 3 == 0) )
           <?php
             $select = array_values($select);
@@ -68,12 +72,17 @@
           @endswitch
         @endif
 
-        @if($key == $allNum-1-2 && ($allNum % 3 == 1 || $allNum % 3 == 2) )
+        @if( ($allKey == $allNum-1-2) && $allNum % 3 == 2 )
           <!-- 横屏静态样式 开始 -->
           @include('home.pc.index._coupon_full_image_static')
         @endif
 
-        @if($key == $allNum-1-1 && $allNum % 3 == 2)
+        @if($allKey == $allNum-1-1 && $allNum % 3 == 1 )
+          <!-- 横屏静态样式 开始 -->
+          @include('home.pc.index._coupon_full_image_static')
+        @endif
+
+        @if($allKey == $allNum-1-1 && $allNum % 3 == 2)
           <!-- 横屏动态样式 开始 -->
           @include('home.pc.index._coupon_full_image_move')
         @endif

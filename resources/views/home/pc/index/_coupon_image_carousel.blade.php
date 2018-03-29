@@ -11,24 +11,29 @@
     <div class="panel-body image-carousel">
       <div class="row">
         <div class="col-sm-12">
-          <div id="image-carousel" class="carousel slide" data-ride="carousel">
+          <div id="image-carousel{{ $idcode }}" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
               <?php $m = count($info['coupons']); ?>
               @foreach($info['coupons'] as $key => $coupon)
-                @if($key == 0)
-                <li data-target="#image-carousel" data-slide-to="0" class="active"></li>
-                @else
-                <li data-target="#image-carousel" data-slide-to="{{ $key }}" class=""></li>
                 <?php
-                if($key > 15) {
+                if($key > 12) {
                   break;
                 }
                 ?>
+                @if($key == 0)
+                <li data-target="#image-carousel{{ $idcode }}" data-slide-to="0" class="active"></li>
+                @else
+                <li data-target="#image-carousel{{ $idcode }}" data-slide-to="{{ $key }}" class=""></li>
                 @endif
               @endforeach
             </ol>
             <div class="carousel-inner" role="listbox">
               @foreach($info['coupons'] as $key => $coupon)
+                <?php
+                if($key > 12) {
+                  break;
+                }
+                ?>
                 @if($key == 0)
                 <div class="item active">
                   <div class="row i-foot">
@@ -63,18 +68,13 @@
                     </div>
                   </div>
                 </div>
-                <?php
-                if($key > 15) {
-                  break;
-                }
-                ?>
                 @endif
               @endforeach
             </div>
-            <a class="carousel-control-left" href="#image-carousel" role="button" data-slide="prev">
+            <a class="carousel-control-left" href="#image-carousel{{ $idcode }}" role="button" data-slide="prev">
               <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             </a>
-            <a class="carousel-control-right" href="#image-carousel" role="button" data-slide="next">
+            <a class="carousel-control-right" href="#image-carousel{{ $idcode }}" role="button" data-slide="next">
               <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             </a>
           </div>

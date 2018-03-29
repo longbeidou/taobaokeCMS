@@ -10,14 +10,14 @@
     </div>
     <div class="panel-body i-coupon">
       <div class="row">
-        <div id="i-coupon" class="carousel slide" data-ride="carousel">
+        <div id="i-coupon{{ $idcode }}" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <?php $m = count($info['coupons'])/3; ?>
             @for($i=0; $i<$m; $i++)
               @if($i == 0)
-              <li data-target="#i-coupon" data-slide-to="0" class="active"></li>
+              <li data-target="#i-coupon{{ $idcode }}" data-slide-to="0" class="active"></li>
               @else
-              <li data-target="#i-coupon" data-slide-to="{{ $i }}" class=""></li>
+              <li data-target="#i-coupon{{ $idcode }}" data-slide-to="{{ $i }}" class=""></li>
               @endif
             @endfor
           </ol>
@@ -86,10 +86,10 @@
             @endfor
 
           </div>
-          <a class="carousel-control-left" href="#i-coupon" role="button" data-slide="prev">
+          <a class="carousel-control-left" href="#i-coupon{{ $idcode }}" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           </a>
-          <a class="carousel-control-right" href="#i-coupon" role="button" data-slide="next">
+          <a class="carousel-control-right" href="#i-coupon{{ $idcode }}" role="button" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           </a>
         </div>
