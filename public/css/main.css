@@ -901,6 +901,11 @@ body {
 #category-goods-list a:hover .goods-name {
   color: #ed2a7a;
 }
+#category-goods-list .pagination>.active>span {
+  background-color: #ed2a7a;
+  border-color: #ed2a7a;
+  color: #fff;
+}
 #category-goods-list .coupon-box {
   padding-left: 10px;
   padding-right: 10px;
@@ -929,6 +934,8 @@ body {
 }
 #category-goods-list .coupon .i-left{
   padding-right: 0px;
+  height: 25px;
+  overflow: hidden;
 }
 #category-goods-list .coupon .i-right {
   padding-left: 0px;

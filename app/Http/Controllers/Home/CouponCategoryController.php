@@ -15,7 +15,7 @@ class CouponCategoryController extends BaseController
 {
     use CouponCategorySelfWhere, ShowFromToView;
 
-    public $pageSize = 20;
+    public $pageSize = 24;
 
     // 优惠券分类的列表
     public function index(Request $request)
@@ -24,7 +24,6 @@ class CouponCategoryController extends BaseController
       $currentUrl = $request->url();
       $from = self::$from;
       $coupons = $this->coupons($request, $this->pageSize);
-      $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
       $couponCategory = $this->couponCategory($request);
       $couponCategoryName = empty($couponCategory->category_name) ? '全部优惠券商品' : $couponCategory->category_name.'优惠券商品';
       $TDK = ['title'=>$couponCategoryName.' | '.config('website.name'),
@@ -32,12 +31,34 @@ class CouponCategoryController extends BaseController
               'description'=>''];
       $categorys = Category::categorys(self::$from);
       $couponCategorys = CouponCategory::couponCategorys(self::$from);
-      $show_from = $this->showFrom(self::$from);
 
       if (self::$from == 'pc') {
-        //
+        $requestId = $request->id;
+        $couponsRecommend = Coupon::couponsRecommendRandom(self::$from, 6);
+        return view('home.pc.couponCategory.index', compact('TDK',
+                                                   'oldRequest',
+                                                   'categorys',
+                                                   'requestId',
+                                                   'currentUrl',
+                                                   'couponCategorys',
+                                                   'coupons',
+                                                   'from',
+                                                   'couponsRecommend'
+                                                 ));
       } else {
-        return view('home.wx.couponCategory.index', compact('oldRequest', 'currentUrl', 'show_from', 'from', 'TDK', 'coupons', 'couponsGussYouLike', 'categorys', 'couponCategory', 'couponCategorys'));
+        $show_from = $this->showFrom(self::$from);
+        $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
+        return view('home.wx.couponCategory.index', compact('oldRequest',
+                                                            'currentUrl',
+                                                            'show_from',
+                                                            'from',
+                                                            'TDK',
+                                                            'coupons',
+                                                            'couponsGussYouLike',
+                                                            'categorys',
+                                                            'couponCategory',
+                                                            'couponCategorys'
+                                                          ));
       }
     }
 
@@ -126,8 +147,32 @@ class CouponCategoryController extends BaseController
           $coupons = $coupons->orderBy('sales', 'desc');
           break;
 
+        case 'sales_up':
+          $coupons = $coupons->orderBy('sales', 'asc');
+          break;
+
         case 'rate_down':
           $coupons = $coupons->orderBy('rate_sales', 'desc');
+          break;
+
+        case 'rate_up':
+          $coupons = $coupons->orderBy('rate_sales', 'asc');
+          break;
+
+        case 'price_now_down':
+          $coupons = $coupons->orderBy('price_now', 'desc');
+          break;
+
+        case 'price_now_up':
+          $coupons = $coupons->orderBy('price_now', 'asc');
+          break;
+
+        case 'taobao':
+          $coupons = $coupons->orderBy('flat', 'asc');
+          break;
+
+        case 'tmall':
+          $coupons = $coupons->orderBy('flat', 'desc');
           break;
 
         default:

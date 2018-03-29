@@ -1,8 +1,8 @@
 @foreach($couponsRecommend as $coupon)
-<div class="col-sm-3 goods-box">
+<div class="col-sm-2 goods-box">
   <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
     <div class="goods">
-      <div class="img">
+      <div class="img" style="height:128px;">
         <img src="{{ $coupon->image }}" alt="{{ $coupon->goods_name }}">
       </div>
       <div class="info">
