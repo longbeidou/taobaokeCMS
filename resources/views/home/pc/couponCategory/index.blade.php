@@ -12,16 +12,7 @@
   @include('home.pc.layouts._nav')
 
   <!-- 商品分类列表部分开始 -->
-  <div class="container-fluid" id="category-list">
-    <div class="row">
-      <div class="container">
-        <ul class="list-inline">
-          @include('home.pc.couponCategory._couponCategory')
-        </ul>
-      </div>
-    </div>
-  </div>
-  <!-- 商品分类列表部分结束 -->
+  @include('home.pc.couponCategory._couponCategory')
 
   <!-- 商品的排序 开始 -->
   <div class="container" id="category-order">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Home\BaseController;
 use App\Models\Coupon;
+use App\Models\Category;
+use App\Models\CouponCategory;
 use App\Libraries\Alimama\Contracts\AlimamaInterface;
 use App\Services\MakeCouponShareImageService as MakeImage;
 use App\Traits\EncryptOrDecryptImage;
@@ -27,7 +29,6 @@ class CouponController extends BaseController
 
     public function index(Request $request)
     {
-      $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
       $couponInfo = Coupon::couponInfo($request->id);
       $TDK = ['title'=>$couponInfo->goods_name.' | '.config('website.name'),
               'keywords'=>'',
@@ -35,25 +36,40 @@ class CouponController extends BaseController
       $couponInformationArr = Coupon::makeCouponInfoToArray ($couponInfo->coupon_info);
       $smallImages = $this->getCouponSmallImages($couponInfo->goods_id);
       $couponCountInfo = $this->couponCountInfo(['item_id'=>$couponInfo->goods_id, 'activity_id'=>$couponInfo->coupon_id])->data;
-      $show_from = $this->showFrom(self::$from);
 
-      if ($couponCountInfo->coupon_total_count) {
+      if ($couponCountInfo->coupon_total_count == 0) {
          Coupon::notShow($couponInfo->id);
          Coupon::clearCouponLast($couponInfo->id);
       }
 
-      if (empty($couponInfo->tao_kou_ling)) {
-        $tpwdInfo = $this->createTpwdPara($couponInfo);
-        $taoKouLing = (string)$this->taobao->tbkTpwdCreate($tpwdInfo)->data->model;
-        // $taoKouLing = $this->taobao->wirelessShareTpwdCreate($tpwdInfo)->model;
-        Coupon::where('id', $couponInfo->id)->update(['tao_kou_ling'=>$taoKouLing]);
-      } else {
-        $taoKouLing = $couponInfo->tao_kou_ling;
-      }
-
       if (self::$from == 'pc') {
-        //
+        $categorys = Category::categorys(self::$from);
+        $couponCategorys = CouponCategory::couponCategorys(self::$from);
+        $couponsRecommend = Coupon::couponsRecommendRandom(self::$from, 16);
+        $datetime = explode('-', $couponInfo->coupon_end_date);
+
+        return view('home.pc.couponInformation.index', compact('TDK',
+                                                               'categorys',
+                                                               'couponCategorys',
+                                                               'couponsRecommend',
+                                                               'couponInfo',
+                                                               'couponInformationArr',
+                                                               'smallImages',
+                                                               'couponCountInfo',
+                                                               'datetime'
+                                                             ));
       } else {
+        $show_from = $this->showFrom(self::$from);
+        $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
+        if (empty($couponInfo->tao_kou_ling)) {
+          $tpwdInfo = $this->createTpwdPara($couponInfo);
+          $taoKouLing = (string)$this->taobao->tbkTpwdCreate($tpwdInfo)->data->model;
+          // $taoKouLing = $this->taobao->wirelessShareTpwdCreate($tpwdInfo)->model;
+          Coupon::where('id', $couponInfo->id)->update(['tao_kou_ling'=>$taoKouLing]);
+        } else {
+          $taoKouLing = $couponInfo->tao_kou_ling;
+        }
+
         return view('home.wx.couponInformation.index', compact('TDK', 'show_from', 'couponsGussYouLike', 'couponInfo', 'couponInformationArr', 'taoKouLing', 'smallImages',  'couponCountInfo'));
       }
     }
