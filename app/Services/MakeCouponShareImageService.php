@@ -46,6 +46,27 @@ class MakeCouponShareImageService
     return $img;
   }
 
+  // 生成二维码图片
+  public function makeQrCodeImage($info, $size = 242, $margin = 0, $color = '0,0,0', $bgcolor = '255,255,255', $path = '')
+  {
+    if ( $path == '' ) {
+      $path = public_path(self::QRCODES_SRC.'/'.self::NAME.'.png');
+    }
+
+    // 检测并生成目录
+    $this->mkdirSelf(self::QRCODES_SRC);  // 二维码的目录
+
+    // 生成二维码图片
+    $this->makeQrCode($size, $margin, $color, $bgcolor, $info, $path);
+
+    $img = Image::make(public_path(self::QRCODES_SRC.'/'.self::NAME.'.png'));
+
+    $img = $img->save(public_path(self::IMG_SRC.'/'.self::NAME.'.jpg'));
+    $this->deleteImages(); // 删除生成的图片
+
+    return $img;
+  }
+
   public function imageCouponInfo ($coupon)
   {
     $info['goodsName']   = $coupon->goods_name;
@@ -81,17 +102,24 @@ class MakeCouponShareImageService
   }
 
   // 生成二维码图片
-  public function makeQrCode($size, $margin, $color, $bgcolor, $info, $path)
+  public function makeQrCode($size, $margin, $color, $bgcolor, $info, $path = '')
   {
     $color = explode(',', $color);
     $bgcolor = explode(',', $bgcolor);
 
-    QrCode::format('png')
-           ->size($size)
-           ->margin($margin)
-           ->color($color[0], $color[1], $color[2])
-           ->backgroundColor($bgcolor[0], $bgcolor[1], $bgcolor[2])
-           ->generate($info, $path);
+    $QrCode = QrCode::format('png')
+                     ->size($size)
+                     ->margin($margin)
+                     ->color($color[0], $color[1], $color[2])
+                     ->backgroundColor($bgcolor[0], $bgcolor[1], $bgcolor[2]);
+
+    if ( $path == '') {
+      $QrCode = $QrCode->generate($info);
+    } else {
+      $QrCode = $QrCode->generate($info, $path);
+    }
+
+    return $QrCode;
   }
 
   // 将淘宝的图片下载到本地

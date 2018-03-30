@@ -74,6 +74,24 @@ class CouponController extends BaseController
       }
     }
 
+    // 二维码对应的网址
+    public function QrCode ($id)
+    {
+      $show_from = $this->showFrom(self::$from);
+
+      if ($show_from) {
+        return redirect()->route('home.couponInfo', $id);
+      } else {
+        $coupon = Coupon::find($id);
+        
+        if ($coupon) {
+          return redirect($coupon->coupon_promote_link);
+        } else {
+          return redirect('/');
+        }
+      }
+    }
+
     // 返回商品优惠券的分享海报图片
     public function shareCouponImage(Request $request)
     {

@@ -1,4 +1,4 @@
-<div class="container-fluid" id="category-list">
+<div class="container" id="category-list">
   <div class="row">
     <div class="container">
       <ul class="list-inline">

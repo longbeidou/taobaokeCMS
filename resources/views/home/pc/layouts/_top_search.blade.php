@@ -2,7 +2,9 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-3">
-        <img src="/img/pc/logolist.png" alt="">
+        <a href="/">
+          <img src="/img/pc/logolist.png" alt="">
+        </a>
       </div>
       <div class="col-sm-6">
         <div class="row">

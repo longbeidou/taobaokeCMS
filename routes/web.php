@@ -83,11 +83,13 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
 });
 
 Route::get('/image/{image}', 'Home\ImageControloer@index')->name('image.index');
+Route::get('/QrCode', 'Home\MakeInfoToQrCodeController@index')->name('image.QrCode.index');
 
 Route::get('/', 'Home\IndexController@index')->name('home.index');
 Route::get('/coupons/{id?}', 'Home\CouponCategoryController@index')->name('home.coupon')->where('id', '[0-9]+');
 Route::get('/coupons/search', 'Home\CouponCategoryController@search')->name('home.coupon.search');
 Route::get('/couponinfo/{id}', 'Home\CouponController@index')->name('home.couponInfo')->where('id', '[0-9]+');
+Route::get('/couponinfo/QrCode/{id}', 'Home\CouponController@QrCode')->name('home.couponInfo.QrCode')->where('id', '[0-9]+');
 Route::get('/coupon/url/{id}', 'Home\CouponController@urlConfirm')->name('home.coupon.urlConfirm')->where('id', '[0-9]+');
 Route::get('/image/coupon/{id}', 'Home\CouponController@shareCouponImage')->name('home.shareCouponImage')->where('id', '[0-9]+');
 Route::get('/brands/{id?}', 'Home\BrandController@index')->name('home.brands')->where('id', '[0-9]+');

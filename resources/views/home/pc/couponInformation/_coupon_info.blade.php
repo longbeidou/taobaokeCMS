@@ -53,7 +53,7 @@
               {{ $couponInfo->shop_name }}
             </div>
             <div class="col-sm-4" style="padding: 0px 0px;">
-              优惠券剩余{{ $couponCountInfo->coupon_total_count }}份
+              优惠券剩余 <strong>{{ $couponCountInfo->coupon_total_count }}</strong> 份
             </div>
             <div class="col-sm-4" style="padding: 0px 0px;">
               截止日期：{{ $couponInfo->coupon_end_date }}
@@ -82,7 +82,7 @@
         <div class="col-sm-3 text-center i-right">
           <h6>手机淘宝扫码领券购买</h6>
           <div class="image-box">
-            <img src="https://www.kemaide.com//item/qrcode/dataurl/https%253A%252F%252Fwww.52010000.cn%252Fcoupon%252Fedetail%253Fe%253DVg4DVd5pUGkGQASttHIRqdVXi0NAlwkZ87i4JEIe4h1OT%25252Fz9yavfqkDSYPLw84PSZa7%25252BK1aW%25252F5NHaGaoiQxs6pBh%25252BsFgnewCt5bBKNQlPfst%25252FzOJQMDvl0gfTscre%25252FnAq7mwfF7BeUuYWVLjprSXYw%25253D%25253D%2526activityId%253De3467899837744159ed0a240253811e2%2526itemId%253D555685917741%2526pid%253Dmm_11702096_18304123_65458007%2526af%253D1.html" alt="">
+            <img src="{{ route('image.QrCode.index') }}?info={{ route('home.couponInfo.QrCode', $couponInfo->id) }}" alt="">
           </div>
         </div>
       </div>
@@ -104,7 +104,11 @@
     var minute=Math.floor((leftsecond-day1*24*60*60-hour*3600)/60);
     var second=Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60);
     var cc = document.getElementById(divname);
-    cc.innerHTML = day1+"天"+hour+"小时"+minute+"分"+second+"秒";
+    if (day1 >= 0) {
+      cc.innerHTML = day1+"天"+hour+"小时"+minute+"分"+second+"秒";
+    } else {
+      cc.innerHTML = '优惠券已过期';
+    }
     }
     window.setInterval(function(){ShowCountDown({{$datetime[0]}},{{$datetime[1]}},{{$datetime[2]+1}},'timedown');}, interval);
 </script>
