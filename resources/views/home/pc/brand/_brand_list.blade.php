@@ -16,7 +16,7 @@
         @foreach($brand['brands'] as $brand)
         <div class="col-sm-2" style="padding-left: 0px; padding-right: 0px;">
           <div class="brand-box" style="margin-bottom: 10px;">
-            <a href="#" target="_blank">
+            <a href="{{ route('home.brandCoupons', $brand->id) }}">
               <div class="img-box" style="height: 101px; overflow: hidden;">
                 <img src="{{ $brand->image }}" alt="{{ $brand->name }}">
               </div>

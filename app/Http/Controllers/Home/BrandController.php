@@ -16,7 +16,7 @@ class BrandController extends BaseController
 {
   use CouponCategorySelfWhere, ShowFromToView;
 
-  public $pageSize = 12;
+  public $pageSize = 16;
 
   // 优惠券分类的列表
   public function index(Request $request)
@@ -119,19 +119,48 @@ class BrandController extends BaseController
     $currentUrl = $request->url();
     $from = self::$from;
     $coupons = $this->coupons($request, $this->pageSize);
-    $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
     $brand = $this->brandInfo($request);
     $TDK = ['title'=>$brand->name.'优惠券商品 | '.config('website.name'),
             'keywords'=>'',
             'description'=>''];
     $categorys = Category::categorys(self::$from);
-    $couponCategorys = CouponCategory::couponCategorys(self::$from);
     $show_from = $this->showFrom(self::$from);
 
     if (self::$from == 'pc') {
-      //
+      $currentBrand = Brand::find($request->id);
+      $currentBrandCategory = BrandCategory::find($currentBrand->brand_category_id);
+      $brandCategoryList = Brand::where('brand_category_id', $currentBrand->brand_category_id)->get();
+      // $AllBrandCategorys = BrandCategory::AllBrandCategorys();
+      $couponsRecommend = Coupon::couponsRecommendRandom(self::$from, 6);
+      return view('home.pc.brand.coupon', compact('oldRequest',
+                                                  'show_from',
+                                                  'currentUrl',
+                                                  'from',
+                                                  'TDK',
+                                                  'id',
+                                                  'brand',
+                                                  'coupons',
+                                                  'couponsRecommend',
+                                                  'currentBrand',
+                                                  'currentBrandCategory',
+                                                  'brandCategoryList',
+                                                  // 'AllBrandCategorys',
+                                                  'categorys'
+                                                ));
     } else {
-      return view('home.wx.couponCategory.index', compact('oldRequest', 'show_from', 'currentUrl', 'from', 'TDK', 'brand', 'coupons', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
+      $couponCategorys = CouponCategory::couponCategorys(self::$from);
+      $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
+      return view('home.wx.couponCategory.index', compact('oldRequest',
+                                                          'show_from',
+                                                          'currentUrl',
+                                                          'from',
+                                                          'TDK',
+                                                          'brand',
+                                                          'coupons',
+                                                          'couponsGussYouLike',
+                                                          'categorys',
+                                                          'couponCategorys'
+                                                        ));
     }
   }
 
@@ -146,18 +175,53 @@ class BrandController extends BaseController
     }
 
     $coupons = $coupons->where('coupon_last', '>', 0);
+    $coupons = $this->couponOrderBy($coupons, $request->order);
 
-    switch ($request->order) {
+    return $coupons->paginate($pageSize);
+  }
+
+  // 优惠券的排序
+  public function couponOrderBy ($coupons, $order)
+  {
+    switch ($order) {
       case 'sales_down':
         $coupons = $coupons->orderBy('sales', 'desc');
+        break;
+
+      case 'sales_up':
+        $coupons = $coupons->orderBy('sales', 'asc');
         break;
 
       case 'rate_down':
         $coupons = $coupons->orderBy('rate_sales', 'desc');
         break;
+
+      case 'rate_up':
+        $coupons = $coupons->orderBy('rate_sales', 'asc');
+        break;
+
+      case 'price_now_down':
+        $coupons = $coupons->orderBy('price_now', 'desc');
+        break;
+
+      case 'price_now_up':
+        $coupons = $coupons->orderBy('price_now', 'asc');
+        break;
+
+      case 'taobao':
+        $coupons = $coupons->orderBy('flat', 'asc');
+        break;
+
+      case 'tmall':
+        $coupons = $coupons->orderBy('flat', 'desc');
+        break;
+
+      default:
+        $coupons = $coupons->orderBy('id', 'desc');
+        break;
     }
 
-    return $coupons->paginate($pageSize);
+    return $coupons;
   }
 
   // 获取品牌信息
