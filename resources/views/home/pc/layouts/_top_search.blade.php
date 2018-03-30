@@ -21,9 +21,7 @@
           <div class="col-sm-12 searchword">
             <ul class="list-inline">
               <strong>热门搜索：</strong>
-              <li><a href="" target="_blank">男装</a></li>
-              <li><a href="" target="_blank">女装</a></li>
-              <li><a href="" target="_blank">零食</a></li>
+              @include('home.pc.layouts._search_keywords')
             </ul>
           </div>
         </div>

@@ -107,7 +107,8 @@ class MakeCouponShareImageService
     $color = explode(',', $color);
     $bgcolor = explode(',', $bgcolor);
 
-    $QrCode = QrCode::format('png')
+    $QrCode = QrCode::encoding('UTF-8')
+                     ->format('png')
                      ->size($size)
                      ->margin($margin)
                      ->color($color[0], $color[1], $color[2])

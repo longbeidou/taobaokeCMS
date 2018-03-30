@@ -26,7 +26,7 @@
           <!-- 站内搜索 -->
           <div role="tabpanel" class="tab-pane fade active in" id="search-inner" aria-labelledby="search-inner-tab">
             <div class="row" style="padding-top: 15px;">
-              <form action="" method="get">
+              <form action="{{ route('home.coupon.search') }}" method="get">
                 <div class="col-sm-10">
                   <input class="form-control" type="text" name="search" placeholder="请输入要搜索的商品关键词，多条件用空格隔开" value="">
                 </div>
@@ -41,11 +41,7 @@
             <div class="row recommend-word" style="padding: 15px 15px 0px;;">
               <ul class="list-inline" style="margin-bottom: 0px;">
                 <li><strong>热门搜索:</strong></li>
-                <li><a href="" target="_blank">关键词</a></li>
-                <li><a href="" target="_blank">关键词</a></li>
-                <li><a href="" target="_blank">关键词</a></li>
-                <li><a href="" target="_blank">关键词</a></li>
-                <li><a href="" target="_blank">关键词</a></li>
+                @include('home.pc.layouts._search_keywords')
               </ul>
             </div>
             <div class="row desc" style="padding: 15px;">
@@ -58,7 +54,7 @@
           <!-- 全站搜索开始 -->
           <div role="tabpanel" class="tab-pane fade" id="search-all" aria-labelledby="search-all-tab">
             <div class="row" style="padding-top: 15px;">
-              <form action="" method="get">
+              <form action="{{ route('home.coupon.search') }}" method="get">
                 <div class="col-sm-10">
                   <input class="form-control" type="text" name="search" placeholder="请输入要搜索的商品名称或者淘宝口令" value="">
                 </div>

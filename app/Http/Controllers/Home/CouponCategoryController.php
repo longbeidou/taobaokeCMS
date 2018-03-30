@@ -72,20 +72,42 @@ class CouponCategoryController extends BaseController
       $oldRequest = $request->all();
       $currentUrl = $request->url();
       $from = self::$from;
-      $TDK = ['title'=>'"'.$request->search.'"的优惠券商品搜素结果 |'.config('website.name'),
+      $TDK = ['title'=>'"'.$request->search.'"的优惠券商品搜素结果 | '.config('website.name'),
               'keywords'=>'',
               'description'=>''];
 
-      $coupons = $this->searchCoupons($request, $this->pageSize);
-      $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
       $categorys = Category::categorys(self::$from);
       $couponCategorys = CouponCategory::couponCategorys(self::$from);
       $show_from = $this->showFrom(self::$from);
 
       if (self::$from == 'pc') {
-        //
+        $coupons = $this->searchCoupons($request, $this->pageSize-10);
+        $couponsCount = $this->searchCouponsCount($request);
+        $couponsRecommend = Coupon::couponsRecommendRandom(self::$from, 16);
+        return view('home.pc.superSearch.result_local', compact('oldRequest',
+                                                             'currentUrl',
+                                                             'show_from',
+                                                             'from',
+                                                             'TDK',
+                                                             'coupons',
+                                                             'couponsCount',
+                                                             'categorys',
+                                                             'couponCategorys',
+                                                             'couponsRecommend'
+                                                           ));
       } else {
-        return view('home.wx.couponCategory.search', compact('oldRequest', 'currentUrl', 'show_from', 'from', 'TDK', 'coupons', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
+        $coupons = $this->searchCoupons($request, $this->pageSize);
+        $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
+        return view('home.wx.couponCategory.search', compact('oldRequest',
+                                                             'currentUrl',
+                                                             'show_from',
+                                                             'from',
+                                                             'TDK',
+                                                             'coupons',
+                                                             'couponsGussYouLike',
+                                                             'categorys',
+                                                             'couponCategorys'
+                                                           ));
       }
     }
 
@@ -121,6 +143,17 @@ class CouponCategoryController extends BaseController
       $coupons = $this->couponOrderBy($coupons, $request->order);
 
       return $coupons->paginate($pageSize);
+    }
+
+    // 获取优惠券搜索的结果总数
+    public function searchCouponsCount (Request $request)
+    {
+      $coupons = new Coupon;
+      $coupons = $this->searchStrToWhere($coupons, $request->search);
+      $coupons = $coupons->where('coupon_last', '>', 0);
+      $coupons = $coupons->where('is_show', 1);
+
+      return $coupons->count();
     }
 
     // 搜索关键词处理

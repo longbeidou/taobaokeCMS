@@ -1237,6 +1237,9 @@ body {
   color: #fff;
   text-decoration: none;
 }
+#search-info .category a:hover {
+  color: #ffeb00;
+}
 #search-info .i-content .coupon-info .i-box {
   margin: 0px 15px;
   padding: 15px;
@@ -1350,6 +1353,13 @@ body {
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
+}
+#search-info .page .pagination>.active>span {
+  background-color: #ed2a7a;
+  border-color: #ed2a7a;
+}
+#search-info .page .pagination>li>a {
+  color: #333;
 }
 
 #brand-category-list {
