@@ -1091,7 +1091,7 @@ body {
   text-decoration: none;
 }
 #search-top a:hover {
-  font-weight: 800;
+  color: #ffeb00;
 }
 #search-top li {
   padding-top: 10px;

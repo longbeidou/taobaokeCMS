@@ -16,7 +16,7 @@
         Powered by {{ config('website.company_name') }}
       </div>
       <div class="col-sm-6 text-right">
-        Copyright@2018-2018 备案号：{{ config('website.domain_beian') }}
+        Copyright@2017-2018 备案号：{{ config('website.domain_beian') }}
       </div>
     </div>
   </div>

@@ -25,23 +25,38 @@ class SuperSearchController extends BaseController
     }
 
     // 超级搜索
-    public function index ()
+    public function index (Request $request)
     {
       $TDK = ['title'=>'超级搜索 | '.config('website.name'),
               'keywords'=>'',
               'description'=>''];
       $show_from = $this->showFrom(self::$from);
-      $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
 
       if (self::$from == 'pc') {
-        //
+        $categorys = Category::categorys(self::$from);
+        $currentUrl = $request->url();
+
+        return view('home.pc.superSearch.index', compact('TDK',
+                                                         'show_from',
+                                                         'categorys',
+                                                         'currentUrl'
+                                                       ));
       } else {
+        $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
         if ($show_from) {
-          return view('home.wx.superSearch.index_simple', compact('TDK', 'show_from', 'couponsGussYouLike'));
+          return view('home.wx.superSearch.index_simple', compact('TDK',
+                                                                  'show_from',
+                                                                  'couponsGussYouLike'
+                                                                ));
         } else {
           $categorys = Category::categorys(self::$from);
           $couponCategorys = CouponCategory::couponCategorys(self::$from);
-          return view('home.wx.superSearch.index', compact('TDK', 'show_from', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
+          return view('home.wx.superSearch.index', compact('TDK',
+                                                           'show_from',
+                                                           'couponsGussYouLike',
+                                                           'categorys',
+                                                           'couponCategorys'
+                                                         ));
         }
       }
     }
