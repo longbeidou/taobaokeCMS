@@ -82,7 +82,7 @@
         <div class="col-sm-3 text-center i-right">
           <h6>手机淘宝扫码领券购买</h6>
           <div class="image-box">
-            <img src="{{ route('image.QrCode.index') }}?info={{ route('home.couponInfo.QrCode', $couponInfo->id) }}" alt="">
+            <img src="{{ route('image.QrCode.index') }}?info={{ route('home.couponInfo.QrCode', $couponInfo->id) }}&size=244" alt="">
           </div>
         </div>
       </div>

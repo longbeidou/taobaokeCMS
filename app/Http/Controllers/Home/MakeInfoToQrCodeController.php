@@ -10,7 +10,8 @@ class MakeInfoToQrCodeController extends Controller
 {
     public function index (Request $request, MakeImage $image) {
       $info = $request->info;
-      $img = $image->makeQrCodeImage($info, 244);
+      $size = empty($request->size) ? 100 : $request->size;
+      $img = $image->makeQrCodeImage($info, $size);
       return $img->response();
     }
 }

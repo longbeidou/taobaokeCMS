@@ -30,21 +30,43 @@ class BrandController extends BaseController
             'description'=>''];
 
     $AllBrandCategorys = BrandCategory::AllBrandCategorys();
-    $brands = $this->brands($id, $this->pageSize);
-    $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
     $categorys = Category::categorys(self::$from);
-    $couponCategorys = CouponCategory::couponCategorys(self::$from);
-    $show_from = $this->showFrom(self::$from);
 
     if (self::$from == 'pc') {
-      //
+      $brands = $this->brandsPC($id, $AllBrandCategorys);
+      $couponsRecommend = Coupon::couponsRecommendRandom(self::$from, 12);
+      return view('home.pc.brand.index', compact('oldRequest',
+                                                 'id',
+                                                 'currentUrl',
+                                                 'from',
+                                                 'TDK',
+                                                 'AllBrandCategorys',
+                                                 'couponsRecommend',
+                                                 'brands',
+                                                 'categorys'
+                                               ));
     } else {
-      return view('home.wx.brand.index', compact('oldRequest', 'show_from', 'id', 'currentUrl', 'from', 'TDK', 'AllBrandCategorys', 'brands', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
+      $brands = $this->brandsWX($id, $this->pageSize);
+      $show_from = $this->showFrom(self::$from);
+      $couponCategorys = CouponCategory::couponCategorys(self::$from);
+      $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
+      return view('home.wx.brand.index', compact('oldRequest',
+                                                 'show_from',
+                                                 'id',
+                                                 'currentUrl',
+                                                 'from',
+                                                 'TDK',
+                                                 'AllBrandCategorys',
+                                                 'brands',
+                                                 'couponsGussYouLike',
+                                                 'categorys',
+                                                 'couponCategorys'
+                                               ));
     }
   }
 
-  // 获取优惠券信息
-  public function brands ($id, $pageSize = 20)
+  // 获取无线端优惠券信息
+  public function brandsWX ($id, $pageSize = 20)
   {
     $brands = Brand::where('is_show', 1)
                     ->where('total', '>', 0);
@@ -56,6 +78,38 @@ class BrandController extends BaseController
     return $brands->orderBy('order', 'asc')
                   ->paginate($pageSize);
 
+  }
+
+  // 获取PC端优惠券信息
+  public function brandsPC ($id, $AllBrandCategorys)
+  {
+    $brandsArr = [];
+
+    if ( $id != 0) {
+      $brandCategory = BrandCategory::find($id);
+      $brandsArr[0]['brand_category_name'] = $brandCategory->name;
+      $brandsArr[0]['id'] = $brandCategory->id;
+      $brandsArr[0]['brands'] = Brand::where('is_show', 1)
+                                      ->where('total', '>', 0)
+                                      ->where('brand_category_id', $id)
+                                      ->orderBy('order', 'asc')
+                                      ->get();
+    } else {
+      foreach ($AllBrandCategorys as $key => $AllBrandCategory) {
+        $brandsArr[$key]['brand_category_name'] = $AllBrandCategory->name;
+        $brandsArr[$key]['id'] = $AllBrandCategory->id;
+        $brandsArr[$key]['brands'] = Brand::where('is_show', 1)
+                                            ->where('total', '>', 0)
+                                            ->where('brand_category_id', $AllBrandCategory->id)
+                                            ->take(6)
+                                            ->orderBy('order', 'asc')
+                                            ->get();
+      }
+    }
+
+    unset($brands);
+
+    return $brandsArr;
   }
 
   // 展示品牌对应的优惠的列表
