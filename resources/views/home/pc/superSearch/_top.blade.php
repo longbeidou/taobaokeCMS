@@ -10,10 +10,10 @@
         <input class="form-control" type="text" name="search" value="{{ $oldRequest['search'] }}">
       </div>
       <div class="col-sm-2" style="padding-left: 0px; padding-right: 0px;">
-        <button onclick="submitChoice(1)" class="form-control local" type="submit">站内搜索</button>
+        <button onclick="submitChoice(2)" class="form-control local" type="submit">超级搜索</button>
       </div>
       <div class="col-sm-2" style="padding-left: 0px; padding-right: 0px;">
-        <button onclick="submitChoice(2)" class="form-control taobao" type="submit" style="background-color: #fef490; color: #ed2a7a;">超级搜索</button>
+        <button onclick="submitChoice(1)" class="form-control taobao" type="submit" style="background-color: #fef490; color: #ed2a7a;">站内搜索</button>
       </div>
     </form>
   </div>
