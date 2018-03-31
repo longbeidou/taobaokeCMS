@@ -19,40 +19,13 @@
     <div class="row i-form">
       <div class="col-sm-6 col-sm-offset-3 search-box">
         <ul id="myTabs" class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#search-inner" id="search-inner-tab" role="tab" data-toggle="tab" aria-controls="search-inner" aria-expanded="true">站内搜索</a></li>
-          <li role="presentation" class=""><a href="#search-all" role="tab" id="search-all-tab" data-toggle="tab" aria-controls="search-all" aria-expanded="false">超级搜索</a></li>
+          <li role="presentation" class="active"><a href="#search-all" role="tab" id="search-all-tab" data-toggle="tab" aria-controls="search-all" aria-expanded="false">超级搜索</a></li>
+          <li role="presentation" class=""><a href="#search-inner" id="search-inner-tab" role="tab" data-toggle="tab" aria-controls="search-inner" aria-expanded="true">站内搜索</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
-          <!-- 站内搜索 -->
-          <div role="tabpanel" class="tab-pane fade active in" id="search-inner" aria-labelledby="search-inner-tab">
-            <div class="row" style="padding-top: 15px;">
-              <form action="{{ route('home.coupon.search') }}" method="get">
-                <div class="col-sm-10">
-                  <input class="form-control" type="text" required name="search" placeholder="请输入要搜索的商品关键词，多条件用空格隔开" value="">
-                </div>
-                <div class="col-sm-2">
-                  <button type="submit" class="form-control">搜索</button>
-                </div>
-              </form>
-            </div>
-            <div class="row" style="padding-left: 15px;">
-              <p style="margin-bottom: 0px; margin-top: 15px; color: #777;">提示：搜索范围为 <strong>本站服务器</strong> 的优惠券商品</p>
-            </div>
-            <div class="row recommend-word" style="padding: 15px 15px 0px;;">
-              <ul class="list-inline" style="margin-bottom: 0px;">
-                <li><strong>热门搜索:</strong></li>
-                @include('home.pc.layouts._search_keywords')
-              </ul>
-            </div>
-            <div class="row desc" style="padding: 15px;">
-              <div class="col-sm-12 text-left" style="background-color: #fff; border: 1px solid #e6e6e6;">
-                <h5><strong>站内搜索使用说明</strong></h5>
-                <p>多个关键词有空格隔开，例如：T恤 白色<br />优惠券的有效期一般比较短，请及时查询，即时使用。</p>
-              </div>
-            </div>
-          </div>
+
           <!-- 全站搜索开始 -->
-          <div role="tabpanel" class="tab-pane fade" id="search-all" aria-labelledby="search-all-tab">
+          <div role="tabpanel" class="tab-pane fade active in" id="search-all" aria-labelledby="search-all-tab">
             <div class="row" style="padding-top: 15px;">
               <form action="{{ route('home.superSearch.resultPC') }}" method="get">
                 <div class="col-sm-10">
@@ -83,6 +56,36 @@
               </div>
             </div>
           </div>
+
+          <!-- 站内搜索 -->
+          <div role="tabpanel" class="tab-pane fade " id="search-inner" aria-labelledby="search-inner-tab">
+            <div class="row" style="padding-top: 15px;">
+              <form action="{{ route('home.coupon.search') }}" method="get">
+                <div class="col-sm-10">
+                  <input class="form-control" type="text" required name="search" placeholder="请输入要搜索的商品关键词，多条件用空格隔开" value="">
+                </div>
+                <div class="col-sm-2">
+                  <button type="submit" class="form-control">搜索</button>
+                </div>
+              </form>
+            </div>
+            <div class="row" style="padding-left: 15px;">
+              <p style="margin-bottom: 0px; margin-top: 15px; color: #777;">提示：搜索范围为 <strong>本站服务器</strong> 的优惠券商品</p>
+            </div>
+            <div class="row recommend-word" style="padding: 15px 15px 0px;;">
+              <ul class="list-inline" style="margin-bottom: 0px;">
+                <li><strong>热门搜索:</strong></li>
+                @include('home.pc.layouts._search_keywords')
+              </ul>
+            </div>
+            <div class="row desc" style="padding: 15px;">
+              <div class="col-sm-12 text-left" style="background-color: #fff; border: 1px solid #e6e6e6;">
+                <h5><strong>站内搜索使用说明</strong></h5>
+                <p>多个关键词有空格隔开，例如：T恤 白色<br />优惠券的有效期一般比较短，请及时查询，即时使用。</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
