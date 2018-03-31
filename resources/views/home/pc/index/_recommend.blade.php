@@ -21,7 +21,7 @@
             <div class="row r-coupon-box">
               <div class="col-sm-5 r-left">
                 <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
-                  <img src="{{ $coupon->image }}" alt="">
+                  <img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="">
                 </a>
               </div>
               <div class="col-sm-7 r-right">

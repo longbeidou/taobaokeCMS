@@ -38,7 +38,7 @@
                 <div class="item active">
                   <div class="row i-foot">
                     <div class="col-sm-12 image">
-                      <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank"><img src="{{ $coupon->image }}" ></a>
+                      <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank"><img data-src="{{ $coupon->image }}" src="/img/loading.gif"></a>
                     </div>
                     <div class="col-sm-12 title">
                       <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank"><h4>{{ $coupon->goods_name }}</h4></a>
@@ -55,7 +55,7 @@
                 <div class="item">
                   <div class="row i-foot">
                     <div class="col-sm-12 image">
-                      <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank"><img src="{{ $coupon->image }}" ></a>
+                      <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank"><img data-src="{{ $coupon->image }}" src="/img/loading.gif"></a>
                     </div>
                     <div class="col-sm-12 title">
                       <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank"><h4>{{ $coupon->goods_name }}</h4></a>

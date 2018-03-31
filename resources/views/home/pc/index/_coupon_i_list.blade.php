@@ -33,7 +33,7 @@
                       <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
                         <div class="row coupon">
                           <div class="col-sm-4 image-box">
-                            <img src="{{ $coupon->image }}" alt="{{ $coupon->goods_name }}">
+                            <img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="{{ $coupon->goods_name }}">
                           </div>
                           <div class="col-sm-8 content">
                             <h3 class="goods-name">{{ $coupon->goods_name }}</h3>
@@ -58,7 +58,7 @@
                       <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
                         <div class="row coupon">
                           <div class="col-sm-4 image-box">
-                            <img src="{{ $coupon->image }}" alt="{{ $coupon->goods_name }}">
+                            <img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="{{ $coupon->goods_name }}">
                           </div>
                           <div class="col-sm-8 content">
                             <h3 class="goods-name">{{ $coupon->goods_name }}</h3>

@@ -12,7 +12,7 @@
           @if($key < 4)
           <div class="col-sm-6 small-image-box">
             <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
-              <img src="{{ $coupon->image }}" alt="{{ $coupon->goods_name }}">
+              <img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="{{ $coupon->goods_name }}">
               <div class="text-center i-text">
                 <h6>{{ $coupon->goods_name }}</h6>
                 <h6 class="price">￥{{ $coupon->price_now }} <del>{{ $coupon->price }}</del></h6>
@@ -32,7 +32,7 @@
           @if($key == 4)
           <div class="col-sm-12">
             <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
-              <img src="{{ $coupon->image }}" alt="{{ $coupon->goods_name }}">
+              <img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="{{ $coupon->goods_name }}">
               <div class="text-center i-text">
                 <h6>{{ $coupon->goods_name }}</h6>
                 <h6 class="price">￥{{ $coupon->price_now }} <del>{{ $coupon->price }}</del></h6>
@@ -53,7 +53,7 @@
           @if($key > 4)
           <div class="col-sm-6 small-image-box">
             <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
-              <img src="{{ $coupon->image }}" alt="{{ $coupon->goods_name }}">
+              <img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="{{ $coupon->goods_name }}">
               <div class="text-center i-text">
                 <h6>{{ $coupon->goods_name }}</h6>
                 <h6 class="price">￥{{ $coupon->price_now }} <del>{{ $coupon->price }}</del></h6>

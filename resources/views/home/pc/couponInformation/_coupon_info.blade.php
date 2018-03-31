@@ -10,11 +10,11 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <div class="item active">
-            <img src="{{ $couponInfo->image }}" >
+            <img data-src="{{ $couponInfo->image }}" src="/img/loading.gif">
           </div>
           @foreach($smallImages as $key => $smallImage)
           <div class="item">
-            <img src="{{ $smallImage['src'] }}" >
+            <img data-src="{{ $smallImage['src'] }}" src="/img/loading.gif">
           </div>
           @endforeach
         </div>

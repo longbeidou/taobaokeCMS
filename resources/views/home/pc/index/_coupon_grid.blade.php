@@ -17,7 +17,7 @@
           <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
             <div class="col-sm-4 i-info">
               <div class="image">
-                <img src="{{ $coupon->image }}" alt="{{ $coupon->goods_name }}">
+                <img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="{{ $coupon->goods_name }}">
               </div>
               <div class="title">
                 <h6>{{ $coupon->goods_name }}</h6>
