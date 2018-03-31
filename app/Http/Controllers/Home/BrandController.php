@@ -129,7 +129,7 @@ class BrandController extends BaseController
     if (self::$from == 'pc') {
       $currentBrand = Brand::find($request->id);
       $currentBrandCategory = BrandCategory::find($currentBrand->brand_category_id);
-      $brandCategoryList = Brand::where('brand_category_id', $currentBrand->brand_category_id)->get();
+      $brandCategoryList = Brand::where('brand_category_id', $currentBrand->brand_category_id)->where('total','>', 0)->get();
       // $AllBrandCategorys = BrandCategory::AllBrandCategorys();
       $couponsRecommend = Coupon::couponsRecommendRandom(self::$from, 6);
       return view('home.pc.brand.coupon', compact('oldRequest',
