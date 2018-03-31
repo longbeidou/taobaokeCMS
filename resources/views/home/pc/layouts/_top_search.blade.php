@@ -9,7 +9,7 @@
       <div class="col-sm-6">
         <div class="row">
           <div class="col-sm-12 form">
-            <form class="" action="#" method="get">
+            <form class="" action="{{ route('home.coupon.search') }}" method="get">
               <div class="col-sm-9 input">
                 <input type="text" name="search" class="form-control" placeholder="请输入要搜索的商品">
               </div>

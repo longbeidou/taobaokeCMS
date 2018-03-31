@@ -1160,7 +1160,7 @@ body {
   padding-right: 0px;
 }
 #search-content input[type="text"] {
-  border: 0px;
+  border: 1px solid #ed2a7a;
   border-radius: 0px;
 }
 #search-content button {
@@ -1177,13 +1177,17 @@ body {
 #search-content .nav-tabs>li>a {
   color: #777;
 }
+#search-content .nav-tabs>li>a:hover {
+  border-color: #eee #eee #ed2a7a;
+  color: #ed2a7a;
+}
 #search-content .nav-tabs>li.active>a {
   background-color: #ed2a7a;
   color: #fff;
   border: 1px solid #ed2a7a;
 }
 #search-content .recommend-word a {
-  color: #ed2a7a;
+  color: #333;
   text-decoration: none;
 }
 

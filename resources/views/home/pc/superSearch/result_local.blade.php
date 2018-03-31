@@ -16,7 +16,7 @@
       <div class="row">
         <!-- 显示搜索的总结果数量 -->
         <div class="col-sm-12">
-          <h6 style="color: #333;">为您找到相关结果约 {{ $couponsCount }} 个</h6>
+          <h6 style="color: #333;">在 <strong>本网站服务器</strong> 中为您找到相关结果约 <strong>{{ $couponsCount }}</strong> 个。 如果对结果不满意，可以尝试进行 <a href="{{ route('home.superSearch.index') }}" target="_blank" style="color: #ed2a7a; font-weight: 800;">超级搜索</a>。</h6>
         </div>
         @inject('couponInfoPre', 'App\Presenters\CouponPresenter')
         <!-- 搜索的结果显示页面 -->

@@ -10,7 +10,7 @@
         <input class="form-control" type="text" name="search" value="{{ $oldRequest['search'] }}">
       </div>
       <div class="col-sm-2" style="padding-left: 0px; padding-right: 0px;">
-        <button class="form-control" type="submit">提交</button>
+        <button class="form-control" type="submit">搜索</button>
       </div>
     </form>
   </div>

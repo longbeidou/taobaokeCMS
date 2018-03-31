@@ -36,7 +36,7 @@
               </form>
             </div>
             <div class="row" style="padding-left: 15px;">
-              <p style="margin-bottom: 0px; margin-top: 15px; color: #777;">提示：搜索范围为本站服务器的优惠券商品</p>
+              <p style="margin-bottom: 0px; margin-top: 15px; color: #777;">提示：搜索范围为 <strong>本站服务器</strong> 的优惠券商品</p>
             </div>
             <div class="row recommend-word" style="padding: 15px 15px 0px;;">
               <ul class="list-inline" style="margin-bottom: 0px;">
@@ -64,7 +64,7 @@
               </form>
             </div>
             <div class="row" style="padding-left: 15px;">
-              <p style="margin-bottom: 0px; margin-top: 15px; color: #777;">提示：搜索范围为淘宝服务器的优惠券信息</p>
+              <p style="margin-bottom: 0px; margin-top: 15px; color: #777;">提示：搜索范围为 <strong>淘宝服务器</strong> 的优惠券信息</p>
             </div>
             <div class="row desc" style="padding: 15px;">
               <div class="col-sm-12 text-left" style="background-color: #fff; border: 1px solid #e6e6e6;">

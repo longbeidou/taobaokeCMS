@@ -8,6 +8,7 @@
       </div>
       <div class="col-sm-9 nav">
         <ul class="list-inline">
+          <li><a href="/" target="_blank">首页</a></li>
           @foreach($categorys as $category)
           <li><a href="{{ $category['link'] }}" target="-_blank">{{ $category['name'] }}</a></li>
           @endforeach
