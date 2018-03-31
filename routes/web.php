@@ -95,7 +95,8 @@ Route::get('/image/coupon/{id}', 'Home\CouponController@shareCouponImage')->name
 Route::get('/brands/{id?}', 'Home\BrandController@index')->name('home.brands')->where('id', '[0-9]+');
 Route::get('/brandCoupons/{id}', 'Home\BrandController@brandCoupons')->name('home.brandCoupons')->where('id', '[0-9]+');
 Route::get('/superSearch', 'Home\SuperSearchController@index')->name('home.superSearch.index');
-Route::post('/superSearch', 'Home\SuperSearchController@result')->name('home.superSearch.result');
+Route::post('/superSearchWX', 'Home\SuperSearchController@resultWX')->name('home.superSearch.result');
+Route::get('/superSearchPC', 'Home\SuperSearchController@resultPC')->name('home.superSearch.resultPC');
 Route::get('/zhibo', 'Home\ZhiBoController@index')->name('home.zhibo.index');
 Route::post('/zhibo', 'Home\ZhiBoController@random')->name('home.zhibo.random');
 Route::get('/about', 'Home\AboutUsController@index')->name('home.about.index');

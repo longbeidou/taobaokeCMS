@@ -1230,9 +1230,18 @@ body {
   border: 1px solid #ed2a7a;
   border-radius: 0px;
 }
-#search-info .search-form button {
+#search-info .search-form .local {
   background-color: #ed2a7a;
   color: #fff;
+}
+#search-info .search-form .taobao {
+  background-color: #fef490;
+  color: #ed2a7a;
+}
+#search-info .search-form .local:hover,
+#search-info .search-form .taobao:hover {
+  font-size: 16px;
+  font-weight: 800;
 }
 #search-info .category ul {
   margin-bottom: 0px;

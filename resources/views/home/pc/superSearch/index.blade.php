@@ -28,7 +28,7 @@
             <div class="row" style="padding-top: 15px;">
               <form action="{{ route('home.coupon.search') }}" method="get">
                 <div class="col-sm-10">
-                  <input class="form-control" type="text" name="search" placeholder="请输入要搜索的商品关键词，多条件用空格隔开" value="">
+                  <input class="form-control" type="text" required name="search" placeholder="请输入要搜索的商品关键词，多条件用空格隔开" value="">
                 </div>
                 <div class="col-sm-2">
                   <button type="submit" class="form-control">搜索</button>
@@ -54,9 +54,9 @@
           <!-- 全站搜索开始 -->
           <div role="tabpanel" class="tab-pane fade" id="search-all" aria-labelledby="search-all-tab">
             <div class="row" style="padding-top: 15px;">
-              <form action="{{ route('home.coupon.search') }}" method="get">
+              <form action="{{ route('home.superSearch.resultPC') }}" method="get">
                 <div class="col-sm-10">
-                  <input class="form-control" type="text" name="search" placeholder="请输入要搜索的商品名称或者淘宝口令" value="">
+                  <input class="form-control" type="text" name="search" required placeholder="请输入要搜索的商品名称或者淘宝口令" value="">
                 </div>
                 <div class="col-sm-2">
                   <button type="submit" class="form-control">搜索</button>

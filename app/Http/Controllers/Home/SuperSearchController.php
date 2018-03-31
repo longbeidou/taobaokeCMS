@@ -61,8 +61,8 @@ class SuperSearchController extends BaseController
       }
     }
 
-    // 执行搜索
-    public function result (Request $request)
+    // 执行搜索-无线端
+    public function resultWX (Request $request)
     {
       if (empty($request->q)) {
         return back();
@@ -73,30 +73,19 @@ class SuperSearchController extends BaseController
               'description'=>''];
       $has_search = true;
       $show_from = $this->showFrom(self::$from);
+      $keyword = $this->getKeywordFromSearch($request->q);
 
-      $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
-
-      if ($this->hasTwpd($request->q)) {
-        $goodsInfoJson = $this->getCouponInfoFromTpwd($request->q);
-
-        if ((bool)$goodsInfoJson->suc && !empty($goodsInfoJson->content)) {
-          $keyword = $this->getQueryKeyWordFromTwpdInfo($goodsInfoJson);
-        } else {
-          $keyword = $this->guessGoodsNameFromStr($request->q);
-        }
-      }
-
-      empty($keyword) ? $keyword = $request->q : '';
-      $itemCoupons = $this->taobao->tbkDgItemCouponGet(['q'=>$keyword, 'page_size'=>config('alimama.superSearchPageSize')]);
-      $itemCouponsArr = $this->getItemCoupons($itemCoupons->results);
-
-      if (count($itemCouponsArr) == 0) {
-        return back()->withErrors(['使出了吃奶的力气也没有找到要相关的宝贝，建议搜索其他的宝贝试试或者联系客服进行内部专属渠道人工查询~~~']);
-      }
-
-      if (self::$from == 'pc') {
+      if (self::$from == 'pc' && false) {
         //
       } else {
+          $itemCoupons = $this->taobao->tbkDgItemCouponGet(['q'=>$keyword, 'page_size'=>config('alimama.superSearchPageSize')]);
+          $itemCouponsArr = $this->getItemCoupons($itemCoupons->results);
+
+          if (count($itemCouponsArr) == 0) {
+            return back()->withErrors(['使出了吃奶的力气也没有找到要相关的宝贝，建议搜索其他的宝贝试试或者联系客服进行内部专属渠道人工查询~~~']);
+          }
+
+          $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);
           $itemCouponsArr = $this->addTaoKouLing($itemCouponsArr);
           if ($show_from) {
             $itemCouponsArr = $this->addImageEncrypt($itemCouponsArr);
@@ -107,6 +96,72 @@ class SuperSearchController extends BaseController
             return view('home.wx.superSearch.index', compact('TDK', 'show_from', 'itemCouponsArr', 'has_search', 'couponsGussYouLike', 'categorys', 'couponCategorys'));
           }
       }
+    }
+
+    // 执行搜索-PC端
+    public function resultPC (Request $request)
+    {
+      if (empty($request->search)) {
+        return back();
+      }
+
+      $pageSize = '10';
+      $keyword = $this->getKeywordFromSearch($request->search);
+      $TDK = ['title'=>'"'.$keyword.'"超级搜索的优惠券商品搜索结果 | '.config('website.name'),
+              'keywords'=>'',
+              'description'=>''];
+
+      $info = [
+                'q'=>$keyword,
+                'page_size'=>$pageSize,
+                'platform'=>1
+              ];
+      if (!empty($request->page) && $request->page > 1) {
+        $info['page_no'] = $request->page;
+      } else {
+        $info['page_no'] = 1;
+      }
+
+      $itemCoupons = $this->taobao->tbkDgItemCouponGet($info);
+      $itemCouponsArr = $this->getItemCoupons($itemCoupons->results);
+      $itemCouponsAll = $this->taobao->tbkDgItemCouponGet(['q'=>$keyword, 'page_size'=>'10000']);
+      $itemCouponsAllArr = $this->getItemCoupons($itemCouponsAll->results);
+      $couponsRecommend = Coupon::couponsRecommendRandom(self::$from, 16);
+      $categorys = Category::categorys(self::$from);
+      $oldRequest = $request->all();
+      $currentUrl = $request->url();
+      $paginaton['page'] = empty($request->page) ? 1 :$request->page;
+      $paginaton['page_size'] = $pageSize;
+      $paginaton['count'] = count($itemCouponsAllArr);
+
+      return view('home.pc.superSearch.result_taobao', compact(
+                                                           'oldRequest',
+                                                           'currentUrl',
+                                                           'TDK',
+                                                           'itemCouponsArr',
+                                                           'paginaton',
+                                                           'categorys',
+                                                           'couponCategorys',
+                                                           'couponsRecommend'
+                                                         ));
+    }
+
+    // 获取查询的关键词
+    public function getKeywordFromSearch ($q)
+    {
+      if ($this->hasTwpd($q)) {
+        $goodsInfoJson = $this->getCouponInfoFromTpwd($q);
+
+        if ((bool)$goodsInfoJson->suc && !empty($goodsInfoJson->content)) {
+          $keyword = $this->getQueryKeyWordFromTwpdInfo($goodsInfoJson);
+        } else {
+          $keyword = $this->guessGoodsNameFromStr($q);
+        }
+      }
+
+      empty($keyword) ? $keyword = $q : '';
+
+      return $keyword;
     }
 
     // 处理好券清单的查询词

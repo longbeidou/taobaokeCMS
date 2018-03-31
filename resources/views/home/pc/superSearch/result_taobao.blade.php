@@ -17,12 +17,12 @@
         <!-- 显示搜索的总结果数量 -->
         <div class="col-sm-12" style="padding: 15px 5px 15px 0px; margin-left: 15px;">
           <div class="" style="background-color: #fff; border-left: 3px solid #ed2a7a; padding: 1px 12px;">
-            <h6 style="color: #333;">在 <strong>本网站服务器</strong> 中为您找到相关结果约 <strong>{{ $couponsCount }}</strong> 个。 如果对结果不满意，可以尝试进行 <strong title="搜索淘宝服务器中的优惠券信息" style="color: #ed2a7a;">超级搜索</strong>。</h6>
+            <h6 style="color: #333;">在 <strong>淘宝服务器</strong> 中为您找到相关结果约 <strong>{{ $paginaton['count'] }}</strong> 个。 如果对结果不满意，可以尝试进行 <strong title="搜索本网站服务器中收集的淘宝优惠券信息" target="_blank" style="color: #ed2a7a;">站内搜索</strong>。</h6>
           </div>
         </div>
         @inject('couponInfoPre', 'App\Presenters\CouponPresenter')
         <!-- 搜索的结果显示页面 -->
-        @include('home.pc.superSearch._local_content')
+        @include('home.pc.superSearch._taobao_content')
         <!-- 商品的推荐页面 -->
         <div class="col-sm-4 i-recommend">
           <div class="row">

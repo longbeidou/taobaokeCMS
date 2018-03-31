@@ -4,17 +4,20 @@
       <img src="http://52010000.net/home/style/img/logolist.png" alt="">
     </a>
   </div>
-  <div class="col-sm-6">
-    <form action="{{ route('home.coupon.search') }}" method="get">
-      <div class="col-sm-10" style="padding-left: 0px; padding-right: 0px;">
+  <div class="col-sm-7">
+    <form id="superSearchForm" action="" method="get">
+      <div class="col-sm-8" style="padding-left: 0px; padding-right: 0px;">
         <input class="form-control" type="text" name="search" value="{{ $oldRequest['search'] }}">
       </div>
       <div class="col-sm-2" style="padding-left: 0px; padding-right: 0px;">
-        <button class="form-control" type="submit">搜索</button>
+        <button onclick="submitChoice(1)" class="form-control local" type="submit">站内搜索</button>
+      </div>
+      <div class="col-sm-2" style="padding-left: 0px; padding-right: 0px;">
+        <button onclick="submitChoice(2)" class="form-control taobao" type="submit" style="background-color: #fef490; color: #ed2a7a;">超级搜索</button>
       </div>
     </form>
   </div>
-  <div class="col-sm-5 text-right contact">
+  <div class="col-sm-4 text-right contact">
     <ul class="list-inline">
       <li>微信公众号 <i class="iconfont icon-msnui-triangle-down" style="font-size: 2px;"></i>
         <div class="img">
