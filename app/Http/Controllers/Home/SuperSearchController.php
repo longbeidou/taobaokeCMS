@@ -27,7 +27,7 @@ class SuperSearchController extends BaseController
     // 超级搜索
     public function index (Request $request)
     {
-      $TDK = ['title'=>'超级搜索 | '.config('website.name'),
+      $TDK = ['title'=>'淘宝天猫优惠券查询 | '.config('website.name'),
               'keywords'=>'',
               'description'=>''];
       $show_from = $this->showFrom(self::$from);
@@ -135,6 +135,51 @@ class SuperSearchController extends BaseController
       $paginaton['count'] = count($itemCouponsAllArr);
 
       return view('home.pc.superSearch.result_taobao', compact(
+                                                           'oldRequest',
+                                                           'currentUrl',
+                                                           'TDK',
+                                                           'itemCouponsArr',
+                                                           'paginaton',
+                                                           'categorys',
+                                                           'couponCategorys',
+                                                           'couponsRecommend'
+                                                         ));
+    }
+
+    // 聚划算的搜索结果-PC端
+    public function resultJuPC (Request $request)
+    {
+      if (empty($request->search)) {
+        return back();
+      }
+
+      $pageSize = '10';
+      $keyword = $this->getKeywordFromSearch($request->search);
+      $TDK = ['title'=>'"'.$keyword.'"聚划算的优惠商品搜索结果 | '.config('website.name'),
+              'keywords'=>'',
+              'description'=>''];
+
+      $info = [
+                'word'=>$keyword,
+                'page_size'=>$pageSize,
+              ];
+      if (!empty($request->page) && $request->page > 1) {
+        $info['current_page'] = $request->page;
+      } else {
+        $info['current_page'] = 1;
+      }
+
+      $itemsJu = $this->taobao->juItemsSearch($info);
+      $itemCouponsArr = $this->getItemJU($itemsJu);
+      $couponsRecommend = Coupon::couponsRecommendRandom(self::$from, 16);
+      $categorys = Category::categorys(self::$from);
+      $oldRequest = $request->all();
+      $currentUrl = $request->url();
+      $paginaton['page'] = empty($request->page) ? 1 :$request->page;
+      $paginaton['page_size'] = $pageSize;
+      $paginaton['count'] = empty($itemCouponsArr['total_item']) ? 0 : $itemCouponsArr['total_item'];
+
+      return view('home.pc.superSearch.result_juhuasuan', compact(
                                                            'oldRequest',
                                                            'currentUrl',
                                                            'TDK',
@@ -266,6 +311,49 @@ class SuperSearchController extends BaseController
       unset($array);
 
       return $itemCoupons;
+    }
+
+    // 将聚划算的查询结果转变成数组
+    public function getItemJU ($items)
+    {
+      $result = $items->result;
+      $itemsArr = [];
+      $itemsArr['current_page'] = empty($result->current_page) ? '': (int)$result->current_page;
+      $itemsArr['page_size']    = empty($result->page_size)    ? '': (int)$result->page_size;
+      $itemsArr['success']      = empty($result->success)      ? '': (bool)$result->success;
+      $itemsArr['total_item']   = empty($result->total_item)   ? '': (int)$result->total_item;
+      $itemsArr['total_page']   = empty($result->total_page)   ? '': (int)$result->total_page;
+      $itemsArr['total_page']   = empty($result->total_page)   ? '': (int)$result->total_page;
+
+      if ( empty($result->model_list) ) {
+        $itemsArr['items'] = '';
+      } else {
+        $result = (array)$items->result->model_list;
+
+        // 有多条商品信息
+        if ( empty($result['items']->category_name) ) {
+          foreach ($result['items'] as $key => $items) {
+            $itemsArr['items'][$key] = $this->juItemsToArr((array)$items);
+          }
+        } else {
+          $itemsArr['items'][0] = $this->juItemsToArr((array)$result['items']);
+        }
+      }
+
+      return $itemsArr;
+    }
+
+    // 把聚划算的二级以下的结果变成数组
+    public function juItemsToArr ($result) {
+      $itemsArr = $result;
+      $item_usp_list = (array)$itemsArr['item_usp_list'];
+      $itemsArr['item_usp_list'] = $item_usp_list['string'];
+      $item_usp_list = $itemsArr['price_usp_list'];
+      $itemsArr['price_usp_list'] = (string)$item_usp_list->string;
+      $usp_desc_list = (array)$itemsArr['usp_desc_list'];
+      $itemsArr['usp_desc_list'] = $usp_desc_list['string'];
+
+      return $itemsArr;
     }
 
     // 给数组的每个商品信息加入淘口令

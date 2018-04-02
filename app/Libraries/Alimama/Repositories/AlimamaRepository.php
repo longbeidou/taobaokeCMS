@@ -6,6 +6,7 @@ use App\Libraries\Alimama\Contracts\AlimamaInterface;
 use App\Libraries\Alimama\SDK;
 
 use App\Libraries\Alimama\top\domain\GenPwdIsvParamDto;
+use App\Libraries\Alimama\top\domain\TopItemQuery;
 use App\Libraries\Alimama\top\request\WirelessShareTpwdCreateRequest;
 use App\Libraries\Alimama\top\request\TbkItemInfoGetRequest;
 use App\Libraries\Alimama\top\request\TbkCouponGetRequest;
@@ -13,6 +14,7 @@ use App\Libraries\Alimama\top\request\WirelessShareTpwdQueryRequest;
 use App\Libraries\Alimama\top\request\TbkDgItemCouponGetRequest;
 use App\Libraries\Alimama\top\request\TbkTpwdCreateRequest;
 use App\Libraries\Alimama\top\request\TbkItemGetRequest;
+use App\Libraries\Alimama\top\request\JuItemsSearchRequest;
 
 /**
  * 淘宝客接口对应的实现
@@ -143,6 +145,27 @@ class AlimamaRepository implements AlimamaInterface
     return $this->taobao->execute($req);
   }
 
+
+  // 聚划算商品搜索接口
+  public function juItemsSearch (Array $info)
+  {
+    $allInfo = [
+      'current_page' => 1,
+      'page_size' => 20,
+      'pid' => config('alimama.ju_items_search_pid'),
+      'postage' => true,
+      'status' => 1,
+      'taobao_category_id' => '',
+      'word' => ''
+    ];
+
+    $req = new JuItemsSearchRequest;
+    $tpwd_param = new TopItemQuery;
+    $tpwd_param = $this->batchAssignment($tpwd_param, $allInfo, $info);
+    $req->setParamTopItemQuery(json_encode($tpwd_param));
+    return $this->taobao->execute($req);
+  }
+
   // 给对象赋值
   public function batchAssignment($obj, Array $allInfo, Array $info)
   {
@@ -152,7 +175,9 @@ class AlimamaRepository implements AlimamaInterface
       if (in_array($key, $infoKeys)) {
         $obj->$key = $info[$key];
       } else {
-        $obj->$key = $value;
+        if ($value !== '') {
+          $obj->$key = $value;
+        }
       }
     }
 

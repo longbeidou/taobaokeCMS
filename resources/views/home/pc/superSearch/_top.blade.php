@@ -10,13 +10,22 @@
       if ($currentUrl == route('home.superSearch.resultPC')) {
         $superSelected = 'selected';
         $innerSelected = '';
+        $juSelected    = '';
         $onclick = 'submitChoice(2)';
       }
       // 站内搜索
       if ($currentUrl == route('home.coupon.search')) {
         $superSelected = '';
         $innerSelected = 'selected';
+        $juSelected    = '';
         $onclick = 'submitChoice(1)';
+      }
+      // 聚划算搜索
+      if ($currentUrl == route('home.superSearch.resultJuPC')) {
+        $superSelected = '';
+        $innerSelected = '';
+        $juSelected    = 'selected';
+        $onclick = 'submitChoice(3)';
       }
     ?>
     <form id="superSearchForm" action="" method="get">
@@ -24,6 +33,7 @@
         <select class="form-control searchSelect" onchange="changeSubmit()" name="">
           <option {{ $superSelected }} value="super" title="搜索 淘宝服务器 中的优惠券信息">超级搜索</option>
           <option {{ $innerSelected }} value="inner" title="搜索 本网站服务器 中的优惠券信息">站内搜索</option>
+          <option {{ $juSelected }} value="ju" title="搜索 聚划算 中的优惠券信息">聚划算</option>
         </select>
       </div>
       <div class="col-sm-8" style="padding-left: 0px; padding-right: 0px;">

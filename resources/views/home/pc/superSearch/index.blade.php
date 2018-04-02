@@ -21,6 +21,7 @@
         <ul id="myTabs" class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#search-all" role="tab" id="search-all-tab" data-toggle="tab" aria-controls="search-all" aria-expanded="false">超级搜索</a></li>
           <li role="presentation" class=""><a href="#search-inner" id="search-inner-tab" role="tab" data-toggle="tab" aria-controls="search-inner" aria-expanded="true">站内搜索</a></li>
+          <li role="presentation" class=""><a href="#search-juhuasuan" id="search-juhuasuan-tab" role="tab" data-toggle="tab" aria-controls="search-juhuasuan" aria-expanded="true">聚划算</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
 
@@ -82,6 +83,30 @@
               <div class="col-sm-12 text-left" style="background-color: #fff; border: 1px solid #e6e6e6;">
                 <h5><strong>站内搜索使用说明</strong></h5>
                 <p>多个关键词有空格隔开，例如：T恤 白色<br />优惠券的有效期一般比较短，请及时查询，即时使用。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 聚划算搜索 -->
+          <div role="tabpanel" class="tab-pane fade " id="search-juhuasuan" aria-labelledby="search-juhuasuan-tab">
+            <div class="row" style="padding-top: 15px;">
+              <form action="{{ route('home.superSearch.resultJuPC') }}" method="get">
+                <div class="col-sm-10">
+                  <input class="form-control" type="text" required name="search" placeholder="请输入要搜索的商品关键词" value="">
+                </div>
+                <div class="col-sm-2">
+                  <button type="submit" class="form-control">搜索</button>
+                </div>
+              </form>
+            </div>
+            <div class="row" style="padding-left: 15px;">
+              <p style="margin-bottom: 0px; margin-top: 15px; color: #777;">提示：搜索范围为 <strong>淘宝聚划算平台</strong> 的优惠券商品</p>
+            </div>
+            <div class="row desc" style="padding: 15px;">
+              <div class="col-sm-12 text-left" style="background-color: #fff; border: 1px solid #e6e6e6;">
+                <h5><strong>聚划算搜索使用说明</strong></h5>
+                <p>搜索的结果为淘宝聚划算的团购商品<br />聚划算的团购优惠价格有一定的期限，请及时查询，即时使用。</p>
+                <p>什么是聚划算？<br />淘宝聚划算是阿里巴巴集团旗下的团购网站，是国内最大的团购网站，网站的商品质优价低，深受消费者喜爱。</p>
               </div>
             </div>
           </div>

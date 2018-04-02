@@ -11,6 +11,11 @@
 		if (value == 'inner') {
 			$('.submit-button').attr('onclick', 'submitChoice(1)')
 		}
+
+    // 聚划算搜索
+    if (value == 'ju') {
+      $('.submit-button').attr('onclick', 'submitChoice(3)')
+    }
 	}
 
 	function submitChoice(value) {
@@ -28,5 +33,11 @@
 			$("#superSearchForm").attr('action', form.action);
 			form.submit();
 		}
+    // 搜索聚划算的优惠信息
+    if (value == 3) {
+      form.action = "{{ route('home.superSearch.resultJuPC') }}";
+      $("#superSearchForm").attr('action', form.action);
+      form.submit();
+    }
   }
 </script>
