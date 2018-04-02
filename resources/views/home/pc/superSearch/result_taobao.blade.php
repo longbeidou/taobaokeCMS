@@ -21,7 +21,7 @@
           </div>
         </div>
         @inject('couponInfoPre', 'App\Presenters\CouponPresenter')
-        @inject('shortURL', 'App\Presenters\ShortURLPresenter')
+        <!-- inject('shortURL', 'App\Presenters\ShortURLPresenter') -->
         <!-- 搜索的结果显示页面 -->
         @include('home.pc.superSearch._taobao_content')
         <!-- 商品的推荐页面 -->

@@ -3,7 +3,7 @@
 namespace App\Presenters;
 
 /**
- * 优惠券直播用
+ * 优惠券直播用     补充：由于此操作耗时较长，已暂停使用
  */
 class ShortURLPresenter
 {

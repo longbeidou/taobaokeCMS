@@ -52,7 +52,10 @@
               </div>
               <div class="col-sm-4 text-center qrcode">
                 <h6>手机淘宝扫码领券购买</h6>
-                <img data-src="http://api.qrserver.com/v1/create-qr-code/?size=90x90&data={{ $shortURL->makeLongURLToShortURL($coupon['coupon_click_url']) }}" src="/img/loading.gif" width="90px" alt="">
+                <img data-src="http://api.qrserver.com/v1/create-qr-code/?size=90x90&data={{ $coupon['coupon_click_url'] }}" src="/img/loading.gif" width="90px" alt="">
+                <div class="big-qrcode">
+                  <img data-src="http://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ $coupon['coupon_click_url'] }}" src="/img/loading.gif"  alt="">
+                </div>
                 <!-- <img data-src="http://pan.baidu.com/share/qrcode?w=150&h=150&url= route('home.couponInfo.QrCode', $coupon->id) }}" src="/img/loading.gif" width="90px" alt=""> -->
                 <!-- <img data-src=" route('image.QrCode.index') }}?info= route('home.couponInfo.QrCode', $coupon->id) }}&size=104" src="/img/loading.gif" width="90px" alt=""> -->
               </div>

@@ -1292,6 +1292,23 @@ body {
 #search-info .i-content .coupon-info .price del {
   color: #777;
 }
+#search-info .i-content .coupon-info .qrcode {
+  position: relative;
+}
+#search-info .i-content .coupon-info .qrcode .big-qrcode {
+  position: absolute;
+  right: 15px;
+  bottom: 0px;
+  display: none;
+  width: 150px;
+  height: 150px;
+}
+#search-info .i-content .coupon-info .qrcode .big-qrcode img {
+  width: 100%;
+}
+#search-info .i-content .coupon-info .qrcode:hover .big-qrcode {
+  display: block;
+}
 #search-info .i-content .coupon-info .qrcode h6 {
   margin-bottom: 5px;
   margin-top: 5px;
