@@ -2,7 +2,7 @@
   <div class="row">
     <div class="container">
       <div class="col-sm-3 text-center home">
-        <a href="/">
+        <a href="{{ route('home.coupon') }}">
           <span class="glyphicon glyphicon-th-list"></span> 每日新品
         </a>
       </div>

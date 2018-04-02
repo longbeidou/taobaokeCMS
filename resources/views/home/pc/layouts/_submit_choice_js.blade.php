@@ -1,4 +1,18 @@
 <script type="text/javascript">
+  function changeSubmit () {
+		value = $('.searchSelect').val();
+
+		// 全站搜素
+		if (value == 'super') {
+			$('.submit-button').attr('onclick', 'submitChoice(2)')
+		}
+
+		// 站内搜索
+		if (value == 'inner') {
+			$('.submit-button').attr('onclick', 'submitChoice(1)')
+		}
+	}
+
 	function submitChoice(value) {
 		var form = $("#superSearchForm");
 

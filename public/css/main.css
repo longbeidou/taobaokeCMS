@@ -1225,10 +1225,19 @@ body {
 #search-info .search-form img {
   width: 100%;
 }
+#search-info .search-form .select {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#search-info .search-form .select select,
 #search-info .search-form input[type="text"],
 #search-info .search-form button {
   border: 1px solid #ed2a7a;
   border-radius: 0px;
+}
+#search-info .search-form .select select {
+  border-right: 0px;
+  background-color: #fef490;
 }
 #search-info .search-form .local {
   background-color: #ed2a7a;
