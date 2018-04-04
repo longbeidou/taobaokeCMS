@@ -53,7 +53,7 @@
                         <div class="col-sm-9">
                             <img class="img-thumbnail" style="max-width:400px; max-height:300px;" src="{{ $banner->image }}" alt="">
                             <input type="file" name="image"  class="form-control">
-                            <span class="help-block m-b-none text-warning">PC端的图片大小为585px*300px<br>移动端的图片大小为400px*300px</span>
+                            <span class="help-block m-b-none text-warning">PC端的图片大小为585px*300px<br>移动端的图片大小为400px*200px</span>
                         </div>
                     </div>
                     <div class="form-group">

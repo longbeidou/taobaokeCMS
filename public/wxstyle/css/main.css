@@ -205,6 +205,9 @@ aside .nav-title {
   background-color: rgba(237, 42, 122, 0.75);
   color: #fff;
 }
+#home-index #search-form input[type=search] {
+  margin-bottom: 0px;
+}
 #home-index #search-form .mui-placeholder,
 #aside-search #search-form .mui-placeholder {
   color: #fff;

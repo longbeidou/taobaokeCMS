@@ -34,4 +34,4 @@
     @endforeach
   </div>
 </div>
-<div style="width: 100%; height: 10px;"></div>
+<div style="width: 100%; height: 0px;"></div>

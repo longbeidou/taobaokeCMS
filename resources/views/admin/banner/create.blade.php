@@ -53,7 +53,7 @@
                         <label class="col-sm-3 control-label">banner图片：</label>
                         <div class="col-sm-9">
                             <input type="file" name="image" required class="form-control">
-                            <span class="help-block m-b-none text-warning">PC端的图片大小为585px*300px<br>移动端的图片大小为400px*300px</span>
+                            <span class="help-block m-b-none text-warning">PC端的图片大小为585px*300px<br>移动端的图片大小为400px*200px</span>
                         </div>
                     </div>
                     <div class="form-group">
