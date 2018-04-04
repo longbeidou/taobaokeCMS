@@ -46,7 +46,7 @@ class BrandController extends BaseController
                                                  'categorys'
                                                ));
     } else {
-      $brands = $this->brandsWX($id, $this->pageSize);
+      $brands = $this->brandsWX($id, 18);
       $show_from = $this->showFrom(self::$from);
       $couponCategorys = CouponCategory::couponCategorys(self::$from);
       $couponsGussYouLike = Coupon::couponsRecommendRandom(self::$from, 5, 4);

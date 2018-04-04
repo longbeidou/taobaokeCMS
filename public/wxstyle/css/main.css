@@ -53,6 +53,9 @@ aside .nav-title {
 #brand-tab-list .mui-segmented-control.mui-segmented-control-inverted .mui-control-item {
   color: #000;
 }
+#brand-tab-list ul li img {
+  border: 1px solid #efefef;
+}
 .mui-pagination>li>a, .mui-pagination>li>span {
   color: #fff;
 }
