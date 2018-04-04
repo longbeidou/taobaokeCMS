@@ -16,6 +16,9 @@
   <!-- 商品的详情 -->
   @include('home.pc.couponInformation._coupon_info')
 
+  <!-- 商品的详细介绍 -->
+  @include('home.pc.couponInformation._coupon_details')
+
   <!-- 没有优惠券的时候弹出警告框 -->
   @include('home.pc.couponInformation._no_coupon')
 

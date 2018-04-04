@@ -1081,6 +1081,22 @@ body {
   width: 100%;
 }
 
+#goods-details .i-title {
+  background-color: #fff;
+  border-left: 3px solid #ed2a7a;
+}
+#goods-details .i-title h3 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+#goods-details .i-content {
+  background-color: #fff;
+  border-top: 1px solid #efefef;
+}
+#couponInfoDetails img {
+  width: 100%;
+}
+
 #search-top {
   background-color: rgba(237, 42, 122, 1);
   position: fixed;
