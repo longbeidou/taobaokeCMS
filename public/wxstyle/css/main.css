@@ -168,6 +168,10 @@ aside .nav-title {
 #couponInfo .mui-table-view-cell.mui-active {
   color: #fff;
 }
+#couponInfo #couponInfoDetails img {
+  width: 100%;
+  margin-top: -6px;
+}
 .category-font-icon {
   color: #ed2a7a;
   font-weight: 400;

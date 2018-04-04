@@ -33,11 +33,34 @@
 </div>
 
 <!--商品详情-->
-<ul class="mui-table-view" id="couponInfo" style="margin-top: 10px;">
-    <li class="mui-table-view-cell mui-collapse">
-        <a class="mui-navigate-right" href="#">商品图文详情（点击展开）</a>
-        <div class="mui-collapse-content">
-            <p>正在加载商品详情信息...</p>
+<ul class="mui-table-view" onclick="getCouponInfo()" id="couponInfo" style="margin-top: 10px;">
+    <li  class="mui-table-view-cell mui-collapse mui-active">
+        <a class="mui-navigate-right" href="#">商品图文详情</a>
+        <div id="couponInfoDetails" class="mui-collapse-content" style="padding-left:0px; padding-right:0px;">
+            <p class="mui-text-center">点击查看商品详情...</p>
         </div>
     </li>
 </ul>
+
+<script type="text/javascript">
+  function getCouponInfo() {
+    mui.ajax('{{ route('couponItemInfo.index', $couponInfo->goods_id) }}',{
+    	data:{
+    	},
+    	dataType:'json',//服务器返回json格式数据
+    	type:'get',//HTTP请求类型
+    	timeout:10000,//超时时间设置为10秒；
+    	headers:{'Content-Type':'application/json'},
+    	success:function(data){
+    		if(data.status == 'ok') {
+          document.getElementById('couponInfoDetails').innerHTML = data.content;
+        }
+    	},
+    	error:function(xhr,type,errorThrown){
+    		//异常处理；
+    		console.log(type);
+    	}
+    });
+  }
+
+</script>

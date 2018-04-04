@@ -84,6 +84,7 @@ Route::group(['middleware'=>'checkAdminer', 'prefix'=>'admin'], function () {
 
 Route::get('/image/{image}', 'Home\ImageControloer@index')->name('image.index');
 Route::get('/QrCode', 'Home\MakeInfoToQrCodeController@index')->name('image.QrCode.index');
+Route::get('/itemInfo/{id}', 'Home\CouponItemInfoController@index')->name('couponItemInfo.index')->where('id', '[0-9]+');
 
 Route::get('/', 'Home\IndexController@index')->name('home.index');
 Route::get('/coupons/{id?}', 'Home\CouponCategoryController@index')->name('home.coupon')->where('id', '[0-9]+');
