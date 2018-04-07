@@ -24,7 +24,7 @@
   $(function() {
       $("img.lazy").lazyload({
         effect: "fadeIn",
-        threshold: 500,
+        threshold: 200,
         failure_limit : 20,
         skip_invisible : false,
         placeholder: "/img/loading.gif"
