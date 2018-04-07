@@ -45,8 +45,6 @@
 @include('home.pc.index._foot_say')
 <!-- 网址底部 -->
 @include('home.pc.layouts._footer')
-<!-- 采用lazyload加载图片 -->
-@include('home.pc.layouts._lazyload_js')
 <!-- 确定超级搜索提交地址的js -->
 @include('home.pc.layouts._submit_choice_js')
 @stop

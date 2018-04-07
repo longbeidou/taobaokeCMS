@@ -6,7 +6,7 @@
         <div class="row" style="padding-top: 15px; padding-bottom: 15px; height: 240px;">
           <div class="col-sm-4 image-box">
             <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank" class="goods-name">
-              <img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="{{ $coupon->goods_name }}">
+              <img class="lazy" data-original="{{ $coupon->image }}" alt="{{ $coupon->goods_name }}">
             </a>
           </div>
           <div class="col-sm-8">
@@ -46,7 +46,7 @@
               </div>
               <div class="col-sm-4 text-center qrcode">
                 <h6>手机淘宝扫码领券购买</h6>
-                <img data-src="http://api.qrserver.com/v1/create-qr-code/?size=90x90&data={{ route('home.couponInfo.QrCode', $coupon->id) }}" src="/img/loading.gif" width="90px" alt="">
+                <img class="lazy" data-original="http://api.qrserver.com/v1/create-qr-code/?size=90x90&data={{ route('home.couponInfo.QrCode', $coupon->id) }}"  width="90px" alt="">
                 <!-- <img data-src="http://pan.baidu.com/share/qrcode?w=150&h=150&url= route('home.couponInfo.QrCode', $coupon->id) }}" src="/img/loading.gif" width="90px" alt=""> -->
                 <!-- <img data-src=" route('image.QrCode.index') }}?info={{ route('home.couponInfo.QrCode', $coupon->id) }}&size=104" src="/img/loading.gif" width="90px" alt=""> -->
               </div>

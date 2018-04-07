@@ -4,7 +4,7 @@
   <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
     <div class="coupon">
       <div class="image-box">
-        <img data-src="{{ $coupon->image}}" src="/img/loading.gif" alt="">
+        <img class="lazy" data-original="{{ $coupon->image}}" alt="">
       </div>
       <h2 class="goods-name">{{ $coupon->goods_name }}</h2>
       <div class="row price">

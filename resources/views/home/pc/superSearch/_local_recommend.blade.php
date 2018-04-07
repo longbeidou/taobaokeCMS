@@ -3,7 +3,7 @@
   <div class="i-coupon">
     <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank" title="{{ $coupon->goods_name }}">
       <div class="image-box">
-        <img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="">
+        <img class="lazy" data-original="{{ $coupon->image }}"  alt="">
       </div>
       <div class="text-center">
         <h6 class="goods-name">{{ $coupon->goods_name }}</h6>

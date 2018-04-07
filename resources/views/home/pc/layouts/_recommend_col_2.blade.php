@@ -3,7 +3,7 @@
   <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
     <div class="goods">
       <div class="img" style="height:128px;">
-        <img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="{{ $coupon->goods_name }}">
+        <img class="lazy" data-original="{{ $coupon->image }}"  alt="{{ $coupon->goods_name }}">
       </div>
       <div class="info">
         <h5 class="card-title goods-name">{{ $coupon->goods_name }}</h5>

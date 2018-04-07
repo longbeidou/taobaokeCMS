@@ -34,6 +34,4 @@
   @include('home.pc.index._foot_say')
   <!-- 网址底部 -->
   @include('home.pc.layouts._footer')
-  <!-- 采用lazyload加载图片 -->
-  @include('home.pc.layouts._lazyload_js')
 @stop

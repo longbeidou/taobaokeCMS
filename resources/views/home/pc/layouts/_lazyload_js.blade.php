@@ -1,4 +1,5 @@
-<script>
+<!-- 图片懒加载方式一 -->
+<!-- <script>
     var num = document.getElementsByTagName('img').length;
     var img = document.getElementsByTagName("img");
     var n = 0; //存储图片加载到的位置，避免每次都从第一张图片开始遍历
@@ -16,4 +17,17 @@
             }
         }
     }
+</script> -->
+<!-- 图片懒加载方式二 -->
+<script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+      $("img.lazy").lazyload({
+        effect: "fadeIn",
+        threshold: 500,
+        failure_limit : 20,
+        skip_invisible : false,
+        placeholder: "/img/loading.gif"
+      });
+  });
 </script>

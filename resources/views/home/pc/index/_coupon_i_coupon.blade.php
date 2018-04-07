@@ -33,7 +33,7 @@
                         <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
                           <div class="row coupon">
                             <div class="col-sm-4 image-box">
-                              <img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="{{ $coupon->goods_name }}">
+                              <img class="lazy" data-original="{{ $coupon->image }}"   alt="{{ $coupon->goods_name }}">
                             </div>
                             <div class="col-sm-7 content">
                               <h4><span class="code">￥</span>{{ $coupon->price_now }}<del>￥{{ $coupon->price }}</del></h4>
@@ -61,7 +61,7 @@
                       <a href="{{ route('home.couponInfo', $coupon->id) }}" target="_blank">
                         <div class="row coupon">
                           <div class="col-sm-4 image-box">
-                            <img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="{{ $coupon->goods_name }}">
+                            <img class="lazy" data-original="{{ $coupon->image }}"   alt="{{ $coupon->goods_name }}">
                           </div>
                           <div class="col-sm-7 content">
                             <h4><span class="code">￥</span>{{ $coupon->price_now }}<del>￥{{ $coupon->price }}</del></h4>

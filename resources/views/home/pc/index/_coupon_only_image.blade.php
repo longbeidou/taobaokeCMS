@@ -13,7 +13,7 @@
         @foreach($info['coupons'] as $key => $coupon)
           @if($key == 0)
           <div class="col-sm-12 i-top">
-            <a href="{{ route('home.couponInfo', $coupon->id) }}" title="{{ $coupon->goods_name }}" target="_blank"><img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="{{ $coupon->goods_name }}"></a>
+            <a href="{{ route('home.couponInfo', $coupon->id) }}" title="{{ $coupon->goods_name }}" target="_blank"><img class="lazy" data-original="{{ $coupon->image }}"  alt="{{ $coupon->goods_name }}"></a>
           </div>
           @else
           <?php break; ?>
@@ -23,7 +23,7 @@
           @foreach($info['coupons'] as $key => $coupon)
             @if($key > 0 && $key < 4)
             <div class="col-sm-4 i-left">
-              <a href="{{ route('home.couponInfo', $coupon->id) }}" title="{{ $coupon->goods_name }}" target="_blank"><img data-src="{{ $coupon->image }}" src="/img/loading.gif" alt="{{ $coupon->goods_name }}"></a>
+              <a href="{{ route('home.couponInfo', $coupon->id) }}" title="{{ $coupon->goods_name }}" target="_blank"><img class="lazy" data-original="{{ $coupon->image }}"  alt="{{ $coupon->goods_name }}"></a>
             </div>
             @endif
             @if($key >= 4)

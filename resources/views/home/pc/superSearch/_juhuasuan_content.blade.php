@@ -7,7 +7,7 @@
         <div class="row" style="padding-top: 15px; padding-bottom: 15px; height: 240px;">
           <div class="col-sm-4 image-box">
             <a href="{{ $item['pc_url'] }}" target="_blank" class="goods-name">
-              <img data-src="{{ $item['pic_url_for_p_c'] }}" src="/img/loading.gif" alt="{{ $item['title'] }}">
+              <img class="lazy" data-original="{{ $item['pic_url_for_p_c'] }}"  alt="{{ $item['title'] }}">
             </a>
           </div>
           <div class="col-sm-8">
@@ -53,9 +53,9 @@
               </div>
               <div class="col-sm-4 text-center qrcode">
                 <h6>手机淘宝扫码领券购买</h6>
-                <img data-src="http://api.qrserver.com/v1/create-qr-code/?size=90x90&data={{ $item['wap_url'] }}" src="/img/loading.gif" width="90px" alt="">
+                <img class="lazy" data-original="http://api.qrserver.com/v1/create-qr-code/?size=90x90&data={{ $item['wap_url'] }}"   width="90px" alt="">
                 <div class="big-qrcode">
-                  <img data-src="http://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ $item['wap_url'] }}" src="/img/loading.gif" width="90px" alt="">
+                  <img class="lazy" data-original="http://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ $item['wap_url'] }}"  width="90px" alt="">
                 </div>
               </div>
             </div>
