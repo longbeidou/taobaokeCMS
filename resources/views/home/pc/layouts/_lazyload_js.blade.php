@@ -10,8 +10,10 @@
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop; //滚动条距离顶部高度
         for (var i = n; i < num; i++) {
             if (img[i].offsetTop < seeHeight + scrollTop) {
-                if (img[i].getAttribute("src") == "/img/loading.gif") {
-                    img[i].src = img[i].getAttribute("data-src");
+                var original = img[i].getAttribute("data-original")
+                if ( original != null) {
+                    img[i].src = '/img/loading.gif';
+                    img[i].src = img[i].getAttribute("data-original");
                 }
                 n = i + 1;
             }
