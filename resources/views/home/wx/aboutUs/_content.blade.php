@@ -11,7 +11,7 @@
 				<div class="mui-col-xs-10 dialogue-div-text">
 					<div class="dialogue-triangle"></div>
 					<div>
-						<p>欢迎使用【我爱你一万年】优惠券系统！</p>
+						<p>欢迎使用【{{ config('website.name' )}}】优惠券系统！</p>
 					</div>
 				</div>
 			</div>
@@ -24,7 +24,7 @@
 				<div class="mui-col-xs-10 dialogue-div-text">
 					<div class="dialogue-triangle"></div>
 					<div>
-						<p style="-webkit-user-select: auto; ">网址：www.52010000.cn</p>
+						<p style="-webkit-user-select: auto; ">网址：{{ config('website.domain' )}}</p>
 					</div>
 				</div>
 			</div>
