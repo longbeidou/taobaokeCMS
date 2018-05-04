@@ -30,5 +30,6 @@
   @section('content')
 
   @show
+  {!! config('website.analysisJs') !!}
 </body>
 </html>
