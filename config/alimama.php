@@ -9,13 +9,13 @@ return [
 	'secretKey' => '',
 
 	// 淘宝账户的id
-	'id' => '24234234234',
+	'id' => '',
 
 	// 好券清单API【导购】的必填adzone_id默认值
 	'adzone_id' => '121822521',
 
 	// 聚划算搜索api的默认pid参数
-	'ju_items_search_pid' => 'mm_46591525_34308672_395542379',
+	'ju_items_search_pid' => '',
 
 	// 淘口令的标志字符数组
 	'tpwdCode' => ['￥'],
